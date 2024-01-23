@@ -8,7 +8,6 @@ export default function ContactPage() {
       </h1>{" "}
       <motion.div
         whileInView={{ opacity: 1 }}
-        onViewportLeave={}
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}

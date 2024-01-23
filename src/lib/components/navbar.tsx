@@ -1,7 +1,5 @@
 "use client";
 import React, { useEffect } from "react";
-import Link from "next/link";
-import { Button } from "react-bootstrap";
 import { useState } from "react";
 import NavigationButton from "./buttons/navigation_button";
 
@@ -29,7 +27,7 @@ const Navbar = () => {
         <NavigationButton title={"Projects"} description={""} />
         <NavigationButton title={"Contact"} description={""} />
         <NavigationButton title={"Skills"} description={""} />
-        <NavigationButton title={"Experiences"} description={""} /> <Button />
+        <NavigationButton title={"Experiences"} description={""} />
       </div>
     </div>
   );
