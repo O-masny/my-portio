@@ -50,10 +50,20 @@ export default function Slider() {
 
   const x1 = useTransform(scrollYProgress, [0, 1], [0, 150]);
   const x2 = useTransform(scrollYProgress, [0, 1], [0, -150]);
-  const style = useTransform(scrollYProgress, [0, 0.9], [50, 0]);
+  const style = useTransform(scrollYProgress, [0, 1], [50, 0]);
+  const styley = useTransform(scrollYProgress, [1, 0], [-50, 0]);
 
   return (
     <div ref={container} className={styles.slidingImages}>
+      {" "}
+      <motion.div
+        style={{ scaleY: styley }}
+        className={styles.circleContainerUpper}
+      >
+        <div className={styles.circle}>
+          <div className={styles.circle}></div>
+        </div>
+      </motion.div>
       <motion.div style={{ x: x1 }} className={styles.slider}>
         {slider1.map((project, index) => {
           return (
@@ -92,7 +102,7 @@ export default function Slider() {
           );
         })}
       </motion.div>
-      <motion.div style={{ x: style }} className={styles.circleContainer}>
+      <motion.div style={{ scaleY: style }} className={styles.circleContainer}>
         <div className={styles.circle}></div>
       </motion.div>
     </div>

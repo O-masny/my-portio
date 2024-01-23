@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { Roboto_Mono } from "next/font/google";
+import { Bitter } from "next/font/google";
 import "../app/globals.css";
-const robotoMono = Roboto_Mono({
+const fonts = Bitter({
   subsets: ["latin"],
   display: "swap",
 });
@@ -17,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={robotoMono.className}>
+    <html lang="en" className={fonts.className}>
       <body>{children}</body>
     </html>
   );

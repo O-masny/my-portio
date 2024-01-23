@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 export default function ContactPage() {
   return (
-    <div className="my-6 mx-auto max-w-xl py-10">
+    <div id="Contact" className="my-6 mx-auto max-w-xl py-10">
       <h1 className="text-8xl pb-20 text-white font-extrabold text-center">
         Time is precious
       </h1>{" "}

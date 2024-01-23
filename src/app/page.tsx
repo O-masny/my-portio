@@ -1,14 +1,19 @@
 "use client";
 import Footer from "@/lib/components/footer";
 import Navbar from "@/lib/components/navbar";
+import Slider from "@/lib/components/slider";
 import { MyThemeContextProvider } from "@/lib/components/theme_provider";
+import StickCursor from "@/lib/components/utils/cursor";
 import Homepage from "@/lib/pages/homepage";
 import WelcomePage from "@/lib/pages/welcome";
 import { AnimatePresence } from "framer-motion";
+import { useRef } from "react";
 import { useEffect, useState } from "react";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
+  const stickyElement = useRef(null);
+
   useEffect(() => {
     (async () => {
       const LocomotiveScroll = (await import("locomotive-scroll")).default;
@@ -32,6 +37,7 @@ export default function Home() {
       <div>
         <MyThemeContextProvider>
           <Navbar />
+          <StickCursor />
           <Homepage />
           <Footer />
         </MyThemeContextProvider>
