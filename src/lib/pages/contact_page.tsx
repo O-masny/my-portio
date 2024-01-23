@@ -1,88 +1,45 @@
-"use-client";
-import styles from "../../styles/contacts.module.css";
-
-import Image from "next/image";
-
-import { useRef } from "react";
-
-import { useScroll, motion, useTransform, useSpring } from "framer-motion";
+import { motion } from "framer-motion";
 
 export default function ContactPage() {
-  const container = useRef(null);
-
-  const { scrollYProgress } = useScroll({
-    target: container,
-
-    offset: ["start end", "end end"],
-  });
-
-  const x = useTransform(scrollYProgress, [0, 1], [0, 100]);
-
-  const y = useTransform(scrollYProgress, [0, 1], [-500, 0]);
-
-  const rotate = useTransform(scrollYProgress, [0, 1], [120, 90]);
-
   return (
-    <motion.div style={{ y }} ref={container} className={styles.contact}>
-      <div className={styles.body}>
-        <div className={styles.title}>
-          <span>
-            <div className={styles.imageContainer}>
-              <Image fill={true} alt={"image"} src={`/images/background.jpg`} />
-            </div>
-
-            <h2>Lets work</h2>
-          </span>
-
-          <h2>together</h2>
-
-          <motion.div style={{ x }} className={styles.buttonContainer}>
-            <div className={styles.button}>
-              <p>Get in touch</p>
-            </div>
-          </motion.div>
-
-          <motion.svg
-            style={{ rotate, scale: 2 }}
-            width="9"
-            height="9"
-            viewBox="0 0 9 9"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M8 8.5C8.27614 8.5 8.5 8.27614 8.5 8L8.5 3.5C8.5 3.22386 8.27614 3 8 3C7.72386 3 7.5 3.22386 7.5 3.5V7.5H3.5C3.22386 7.5 3 7.72386 3 8C3 8.27614 3.22386 8.5 3.5 8.5L8 8.5ZM0.646447 1.35355L7.64645 8.35355L8.35355 7.64645L1.35355 0.646447L0.646447 1.35355Z"
-              fill="white"
-            />
-          </motion.svg>
-        </div>
-
-        <div className={styles.nav}>
-          <div className={styles.button}>
-            <p>info@dennissnellenberg.com</p>
-          </div>
-
-          <div className={styles.button}>
-            <p>+31 6 27 84 74 30</p>
-          </div>
-        </div>
-
-        <div className={styles.info}>
-          <div>
-            <span>
-              <h3>Version</h3>
-
-              <p>2022 © Edition</p>
-            </span>
-
-            <span>
-              <h3>Version</h3>
-
-              <p>11:49 PM GMT+2</p>
-            </span>
-          </div>
-        </div>
-      </div>
-    </motion.div>
+    <div className="my-6 mx-auto max-w-xl py-10">
+      <h1 className="text-8xl pb-20 text-white font-extrabold text-center">
+        Time is precious
+      </h1>{" "}
+      <motion.div
+        whileInView={{ opacity: 1 }}
+        onViewportLeave={}
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+        className="text-4xl font-bold"
+      >
+        Váš text zde
+      </motion.div>
+      <form className="mt-8 space-y-4">
+        <input
+          type="text"
+          placeholder="Name"
+          className="w-full rounded-md py-3 px-4 bg-gray-100 text-sm outline-blue-500"
+        />
+        <input
+          type="email"
+          placeholder="Email"
+          className="w-full rounded-md py-3 px-4 bg-gray-100 text-sm outline-blue-500"
+        />
+        <input
+          type="text"
+          placeholder="Subject"
+          className="w-full rounded-md py-3 px-4 bg-gray-100 text-sm outline-blue-500"
+        />
+        <textarea
+          placeholder="Message"
+          className="w-full rounded-md px-4 bg-gray-100 text-sm pt-3 outline-blue-500"
+        ></textarea>
+        <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+          Purple to pink
+        </span>
+      </form>
+    </div>
   );
 }

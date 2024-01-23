@@ -1,12 +1,10 @@
 "use-client";
-
 import Image from "next/image";
 import SplitCenter from "./split_page";
 import PortfolioCardGrid from "./portfolio_page";
 import ContactPage from "./contact_page";
 import { useEffect, useState } from "react";
-import { AnimatePresence } from "framer-motion";
-import WelcomePage from "./welcome";
+import Slider from "../components/slider";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -47,6 +45,7 @@ export default function Home() {
         <div className="mt-5">
           <PortfolioCardGrid />
         </div>{" "}
+        <Slider />
         <ContactPage />
         <SplitCenter leftBackground="#F2F3D9" rightBackground="#F2F3D9" />
       </div>
