@@ -34,14 +34,23 @@ export default function Home() {
       <AnimatePresence mode="wait">
         {isLoading && <WelcomePage />}
       </AnimatePresence>
-      <div>
-        <MyThemeContextProvider>
-          <Navbar />
-          <StickCursor />
-          <Homepage />
-          <Footer />
-        </MyThemeContextProvider>
-      </div>
+      <Body isLoading={isLoading} />)
     </div>
   );
 }
+interface Load {
+  isLoading: boolean;
+}
+
+const Body = (props: Load) => {
+  return (
+    <div>
+      <MyThemeContextProvider>
+        <Navbar />
+        <StickCursor />
+        <Homepage />
+        <Footer />
+      </MyThemeContextProvider>
+    </div>
+  );
+};

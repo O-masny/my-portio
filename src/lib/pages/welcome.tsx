@@ -1,4 +1,3 @@
-"use client";
 import "../../styles/portfolio.css";
 
 import { useEffect, useState } from "react";
@@ -6,7 +5,7 @@ import { motion } from "framer-motion";
 import { opacity, slideUp } from "../anim/anim";
 
 const words = [
-  "Hello",
+  "Ahoj",
   "Bonjour",
   "Ciao",
   "Olà",
@@ -21,17 +20,33 @@ export default function WelcomePage() {
   const [dimension, setDimension] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
-    setDimension({ width: window.innerWidth, height: window.innerHeight });
+    const updateDimensions = () => {
+      setDimension({ width: window.innerWidth, height: window.innerHeight });
+    };
+
+    // Initial dimensions
+    updateDimensions();
+
+    // Event listener for window resize
+    window.addEventListener("resize", updateDimensions);
+
+    // Cleanup event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", updateDimensions);
+    };
   }, []);
 
   useEffect(() => {
-    if (index == words.length - 1) return;
-    setTimeout(
+    if (index === words.length - 1) return;
+    const timeout = setTimeout(
       () => {
         setIndex(index + 1);
       },
-      index == 0 ? 1000 : 150
+      index === 0 ? 1000 : 150
     );
+
+    // Cleanup timeout on component unmount or index change
+    return () => clearTimeout(timeout);
   }, [index]);
 
   const initialPath = `M0 0 L${dimension.width} 0 L${dimension.width} ${
@@ -55,14 +70,18 @@ export default function WelcomePage() {
   };
 
   return (
-    <motion.div>
+    <motion.div
+      variants={slideUp}
+      initial="initial"
+      exit="exit"
+      className="introduction"
+    >
       {dimension.width > 0 && (
         <>
           <motion.p variants={opacity} initial="initial" animate="enter">
-            <span></span>
             {words[index]}
           </motion.p>
-          <svg>
+          <svg width={dimension.width} height={dimension.height}>
             <motion.path
               variants={curve}
               initial="initial"
