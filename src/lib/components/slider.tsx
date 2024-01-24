@@ -54,7 +54,7 @@ export default function Slider() {
   const styley = useTransform(scrollYProgress, [1, 0], [-50, 0]);
 
   return (
-    <div ref={container} className={styles.slidingImages}>
+    <div id="Carousel" ref={container} className={styles.slidingImages}>
       {" "}
       <motion.div
         style={{ scaleY: styley }}

@@ -1,6 +1,6 @@
 "use client";
 import Footer from "@/lib/components/footer";
-import Navbar from "@/lib/components/navbar";
+import Navbar from "@/lib/components/navabr/navbar";
 import Slider from "@/lib/components/slider";
 import { MyThemeContextProvider } from "@/lib/components/theme_provider";
 import StickCursor from "@/lib/components/utils/cursor";

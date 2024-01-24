@@ -6,7 +6,7 @@
     margin-top: 200px;
     background-color: transparent;
     z-index: 1;
-    margin-bottom: 100vh;
+    margin-bottom: 25vh;
 
     .slider {
         display: flex;

@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
-
+import "../../styles/contacts.module.css";
 export default function ContactPage() {
   return (
-    <div id="Contact" className="my-6 mx-auto max-w-xl py-10">
+    <div id="Contact" className=" contact">
       <h1 className="text-8xl pb-20 text-white font-extrabold text-center">
         Time is precious
       </h1>{" "}

@@ -25,18 +25,19 @@ export default function Home() {
     })();
   }, []);
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex min-h-screen flex-col items-center justify-between">
       <div className="h-1/2 ">
         {" "}
-        <div className="top-0 py-15 "> </div>
-        <h1 className="mt-10 text-5xl font-bitter ">My name is Ondřej Masný</h1>
+        <div className="top-0 pb-50px"> </div>
+        <h1 className="mt-10   text-5xl font-bitter ">
+          My name is Ondřej Masný
+        </h1>
       </div>
       <div className="mt-5">
         <PortfolioCardGrid />
       </div>{" "}
       <Slider />
       <ContactPage />
-      <SplitCenter leftBackground="#F2F3D9" rightBackground="#F2F3D9" />
     </main>
   );
 }
