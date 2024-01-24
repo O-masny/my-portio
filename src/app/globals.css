@@ -16,8 +16,8 @@
   }
 }
 
-body {overflow: hidden;
-  /* Hide scrollbars */
+body {
+  overflow: 'visible';
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
