@@ -3,7 +3,7 @@
     flex-direction: column;
     gap: 3vw;
     position: relative;
-    margin-top: 200px;
+    margin-top: 100px;
     background-color: transparent;
     z-index: 1;
     margin-bottom: 25vh;
@@ -42,7 +42,7 @@
             width: 120%;
             left: -10%;
             border-radius: 0 0 50% 50%;
-            background-color: white;
+            background-color: slateblue;
             z-index: 10;
             position: absolute;
         }
@@ -54,13 +54,13 @@
             width: 120%;
  
             border-radius: 25px;
-            background-color: rgb(168, 3, 3);
+            background-color: slateblue;
        
         }
     }
 } .cursor {
 
-     position: fixed;
+     position: -webkit-sticky;
 
      width: 15px;
 

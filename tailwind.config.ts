@@ -1,6 +1,9 @@
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
+  variants: {
+   animation: ['responsive', 'hover', 'focus'],
+    },
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -16,6 +19,15 @@ const config: Config = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      keyframes: {
+       wiggle: {
+           '0%, 100%': { transform: 'rotate(-3deg)' },
+           '50%': { transform: 'rotate(3deg)' },
+         }
+      },
+      animation: {
+       wiggle: 'wiggle 4s ease-in-out ',
+        }
     },
   },
   plugins: [],

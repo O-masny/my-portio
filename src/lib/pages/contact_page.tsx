@@ -3,7 +3,7 @@ import "../../styles/contacts.module.css";
 export default function ContactPage() {
   return (
     <div id="Contact" className=" contact">
-      <h1 className="text-8xl pb-20 text-white font-extrabold text-center">
+      <h1 className="text-8xl pb-20 text-white font-extrabold text-center  hover:transition-colors duration-700 animate-bounce hover:text-slate-400">
         Time is precious
       </h1>{" "}
       <motion.div
@@ -13,7 +13,7 @@ export default function ContactPage() {
         transition={{ duration: 1 }}
         className="text-4xl font-bold"
       >
-        Váš text zde
+        Kontaktujte mě
       </motion.div>
       <form className="mt-8 space-y-4">
         <input

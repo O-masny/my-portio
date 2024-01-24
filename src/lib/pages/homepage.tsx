@@ -25,8 +25,8 @@ export default function Home() {
     })();
   }, []);
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between">
-      <div className="h-1/2 ">
+    <main className="">
+      <div className="h-screen w-screen items-center flex  justify-center animate-wiggle">
         {" "}
         <div className="top-0 pb-50px"> </div>
         <h1 className="mt-10   text-5xl font-bitter ">

@@ -45,7 +45,7 @@ export default function Navbar(props: LinkArray) {
                   e.preventDefault();
                   router.push(data.href);
                 }}
-                className="flex h-[48px] hover:bg-slate-600 grow items-center justify-center text-pretty gap-2 rounded-md p-3  hover:translate-x-3 md:flex-none md:justify-start md:p-2 md:px-3"
+                className="flex h-[48px] py-35 hover:bg-slate-600 grow items-center justify-between gap-2 rounded-md p-3  md:flex-none md:justify-start md:p-2 md:px-3"
               >
                 {data.title}
               </motion.a>

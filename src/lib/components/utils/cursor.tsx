@@ -14,7 +14,7 @@ export default function StickCursor({}) {
     y: useMotionValue(0),
   };
 
-  const smoothOptions = { damping: 55, stiffness: 600, mass: 1 };
+  const smoothOptions = { damping: 55, stiffness: 600, mass: 0.5 };
 
   const smoothMouse = {
     x: useSpring(mouse.x, smoothOptions),
@@ -25,7 +25,7 @@ export default function StickCursor({}) {
   const manageMouseMove = (e: { clientX: number; clientY: number }) => {
     mouse.x.set(e.clientX - cursorSize / 2);
 
-    mouse.y.set(e.clientY - cursorSize / 2);
+    mouse.y.set(e.clientY + window.scrollY - cursorSize / 2);
   };
 
   useEffect(() => {
