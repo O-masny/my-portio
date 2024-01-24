@@ -10,34 +10,34 @@ const slider1 = [
   },
   {
     color: "#d6d7dc",
-    src: "pic1.jpg",
+    src: "pic2.jpeg",
   },
   {
     color: "#e3e3e3",
-    src: "pic1.jpg",
+    src: "pic3.jpeg",
   },
   {
     color: "#21242b",
-    src: "pic1.jpg",
+    src: "pic4.jpeg",
   },
 ];
 
 const slider2 = [
   {
     color: "#d4e3ec",
-    src: "pic1.jpg",
+    src: "pic4.jpeg",
   },
   {
     color: "#e5e0e1",
-    src: "pic1.jpg",
+    src: "pic6.jpeg",
   },
   {
     color: "#d7d4cf",
-    src: "pic1.jpg",
+    src: "pic5.jpeg",
   },
   {
     color: "#e1dad6",
-    src: "pic1.jpg",
+    src: "pic2.jpeg",
   },
 ];
 
