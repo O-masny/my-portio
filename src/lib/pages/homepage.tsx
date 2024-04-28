@@ -1,14 +1,19 @@
 "use-client";
-import Image from "next/image";
-import SplitCenter from "./split_page";
+
 import PortfolioCardGrid from "./portfolio_page";
 import ContactPage from "./contact_page";
 import { useEffect, useState } from "react";
 import Slider from "../components/slider";
+import ExperiencePage from "./experience_page";
+import { motion } from "framer-motion";
+import MainPage from "./landing_page";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
-
+  const revealVariants = {
+    hidden: { opacity: 0, y: -50 },
+    visible: { opacity: 1, y: 0 },
+  };
   useEffect(() => {
     (async () => {
       const LocomotiveScroll = (await import("locomotive-scroll")).default;
@@ -26,16 +31,13 @@ export default function Home() {
   }, []);
   return (
     <main className="">
-      <div className="h-screen w-screen items-center flex  justify-center animate-wiggle">
-        {" "}
-        <div className="top-0 pb-50px"> </div>
-        <h1 className="mt-10   text-5xl font-bitter ">
-          My name is Ondřej Masný
-        </h1>
-      </div>
+      <MainPage></MainPage>
+
+      {/* Zbytek obsahu stránky */}
       <div className="mt-5">
         <PortfolioCardGrid />
-      </div>{" "}
+      </div>
+      <ExperiencePage />
       <Slider />
       <ContactPage />
     </main>

@@ -1,30 +1,73 @@
 
-.contact {
-    color: white;
+.contactContainer {
+    padding: 2rem;
+    background-color: #000;
+    /* Černé pozadí */
+    color: #fff;
+    /* Bílé písmo */
+    text-align: center;
+}
+
+.contactHeading {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+
+.contactForm {
+    max-width: 600px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #141516;
+    gap: 1rem;
+}
+
+.inputGroup {
     position: relative;
-    margin-bottom: 50vh;
-    .button {
-        border-radius: 3em;
-        border: 1px solid rgb(136, 136, 136);
-        cursor: pointer;
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 15px 60px 15px 60px;
+}
 
-        p.button {
-            position: relative;
-            z-index: 1;
-            transition: color 0.4s linear;
-        }
+.input {
+    width: 100%;
+    padding: 1rem;
+    background-color: #333;
+    /* Tmavé pozadí */
+    color: #fff;
+    border: 1px solid #555;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
 
-    }
+.input:focus {
+    border-color: #00f;
+    /* Modrý obrys */
+}
+
+.textarea {
+    width: 100%;
+    height: 150px;
+    padding: 1rem;
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #555;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.submitButton {
+    padding: 1rem 2rem;
+    background-color: #00f;
+    /* Modrý gradient */
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.submitButton:hover {
+    background-color: #008cff;
+    /* O něco světlejší modrá na hover */
+}
 
     .body {
         padding-top: 200px;
@@ -94,7 +137,7 @@
                 }
             }
 
-            svg {
+            .svg {
                 position: absolute;
                 top: 30%;
                 left: 100%;
@@ -127,7 +170,7 @@
                     cursor: pointer;
                 }
 
-                p {
+                .p {
                     &::after {
                         content: "";
                         width: 0%;
@@ -164,4 +207,3 @@
 
         }
     }
-}

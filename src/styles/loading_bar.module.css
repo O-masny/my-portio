@@ -1,0 +1,40 @@
+.circularChart {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+.circularSkill {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+    /* Správná orientace pro začátek kruhu */
+}
+
+.circleBg {
+    fill: none;
+    stroke:#ff9f00;
+    /* Barva pozadí kruhu */
+    stroke-width: 3.8;
+    /* Tloušťka pozadí kruhu */
+}
+
+.circle {
+    fill: none;
+    stroke: #ff9f00;
+    stroke-width: 3.8;
+    stroke-dasharray: 100;
+    /* Obvod kruhu */
+    stroke-dashoffset: 100;
+    /* Výchozí bod animace */
+    transition: stroke-dashoffset 1s ease-out;
+    /* Animace pro plynulé zobrazení */
+}
+
+.percentage {
+    text-anchor: middle;
+    fill: white;
+    font-size: 0.35em;
+    /* Velikost textu */
+    /* Správné zarovnání textu */
+}
