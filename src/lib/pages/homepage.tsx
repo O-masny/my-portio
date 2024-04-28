@@ -31,13 +31,13 @@ export default function Home() {
   }, []);
   return (
     <main className="">
-      <MainPage></MainPage>
-
+      <MainPage />
+      <ExperiencePage />
       {/* Zbytek obsahu stránky */}
       <div className="mt-5">
         <PortfolioCardGrid />
       </div>
-      <ExperiencePage />
+
       <Slider />
       <ContactPage />
     </main>

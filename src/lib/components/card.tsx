@@ -1,29 +1,38 @@
-export default function CardProject() {
+import React from "react";
+import Image from "next/image"; // Import z Next.js nebo jiné knihovny
+
+interface CardProjectProps {
+  image: string; // URL obrázku
+  title: string; // Název projektu
+  description: string; // Popis projektu
+  date: string; // Datum projektu
+}
+
+export default function CardProject({
+  image,
+  title,
+  description,
+  date,
+}: CardProjectProps) {
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg mx-auto my-8 transition ease-in-out bg-inherit delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-white-100 duration-300">
-      <img
-        className="w-full"
-        src="https://tailwindcss.com/img/card-top.jpg"
-        alt="Sunset in the mountains"
-      />
-      <div className="px-6 py-4">
-        <div className="font-bold text-xl mb-2">The Coldest Sunset</div>
-        <p className="text-gray-600 text-base">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
-          quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
-          nihil.
-        </p>
+    <div className="flex flex-row items-center w-full p-4 border-b border-gray-300">
+      {/* Polovina pro obrázek */}
+      <div className="w-1/2 p-2">
+        <Image
+          src={image} // Odkaz na obrázek
+          alt={title}
+          layout="responsive" // Zajišťuje responzivní zobrazení
+          width={300} // Šířka pro Next.js
+          height={300} // Výška pro Next.js
+          className="rounded" // Ověření správného stylu
+        />
       </div>
-      <div className="px-6 py-4">
-        <span className="inline-block bg-gray-100 rounded-full px-3 py-1 text-sm font-semibold text-gray-600 mr-2">
-          #photography
-        </span>
-        <span className="inline-block bg-gray-100 rounded-full px-3 py-1 text-sm font-semibold text-gray-600 mr-2">
-          #travel
-        </span>
-        <span className="inline-block bg-gray-100 rounded-full px-3 py-1 text-sm font-semibold text-gray-600">
-          #winter
-        </span>
+
+      {/* Polovina pro text */}
+      <div className="w-1/2 p-2 flex flex-col space-y-4 ">
+        <h2 className="text-4xl font-bold">{title}</h2>{" "}
+        <span className="text-xl text-gray-500 mt-2">{date}</span>
+        <p className="text-sm white opacity-75">{description}</p>
       </div>
     </div>
   );

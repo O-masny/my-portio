@@ -1,19 +1,19 @@
-"use-client";
-import { projectDetails } from "../constats/about_me";
-import CardProject from "../components/card";
 import React from "react";
-import "../../styles/portfolio.css";
+import CardProject from "../components/card";
+import { projectDetails } from "../constats/about_me"; // Seznam projektů s detaily
 
 export default function PortfolioCardGrid() {
   return (
-    <div id="Projects" className="project">
-      {React.Children.toArray(
-        projectDetails.map(
-          ({ title, description, techstack, previewLink, githubLink }) => (
-            <CardProject />
-          )
-        )
-      )}
+    <div className="flex flex-col items-center w-full">
+      {projectDetails.map((project, index) => (
+        <CardProject
+          key={index}
+          image={project.image} // URL obrázku projektu
+          title={project.title} // Název projektu
+          description={project.description} // Popis projektu
+          date={"project.date"} // Datum projektu
+        />
+      ))}
     </div>
   );
 }

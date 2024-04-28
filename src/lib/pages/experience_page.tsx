@@ -12,7 +12,7 @@ const ExperiencePage = () => {
 
   return (
     <div className={styles.experienceContainer}>
-      <h1 className={styles.experienceHeading}>My Skills</h1>
+      <h1 className={styles.experienceHeading}>What I do?</h1>
 
       <div className={styles.skillsWrapper}>
         {skills.map((skill, index) => (

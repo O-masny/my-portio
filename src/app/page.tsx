@@ -43,13 +43,11 @@ interface Load {
 
 const Body = (props: Load) => {
   return (
-    <div>
-      <MyThemeContextProvider>
-        <Navbar />
-        <StickCursor />
-        <Homepage />
-        <Footer />
-      </MyThemeContextProvider>
-    </div>
+    <MyThemeContextProvider>
+      <Navbar />
+      <StickCursor />
+      <Homepage />
+      <Footer />
+    </MyThemeContextProvider>
   );
 };

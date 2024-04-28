@@ -5,7 +5,8 @@
     /* Černé pozadí */
     color: #fff;
     /* Bílé písmo */
-    text-align: center;
+    text-align: center; 
+    padding-bottom: 30%;
 }
 
 .contactHeading {
