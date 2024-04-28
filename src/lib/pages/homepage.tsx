@@ -5,8 +5,8 @@ import ContactPage from "./contact_page";
 import { useEffect, useState } from "react";
 import Slider from "../components/slider";
 import ExperiencePage from "./experience_page";
-import { motion } from "framer-motion";
 import MainPage from "./landing_page";
+import EducationAndHobbies from "./hobbies";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -32,6 +32,7 @@ export default function Home() {
   return (
     <main className="">
       <MainPage />
+      <EducationAndHobbies />
       <ExperiencePage />
       {/* Zbytek obsahu stránky */}
       <div className="mt-5">

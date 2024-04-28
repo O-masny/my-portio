@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/image"; // Import z Next.js nebo jiné knihovny
+import Image from "next/image";
 
 interface CardProjectProps {
   image: string; // URL obrázku
@@ -15,7 +15,15 @@ export default function CardProject({
   date,
 }: CardProjectProps) {
   return (
-    <div className="flex flex-row items-center w-full p-4 border-b border-gray-300">
+    <div
+      className="flex flex-row w-full p-6"
+      style={{
+        background: "radial-gradient(circle at center, #00000, #d7d4cf)", // Radialní gradient
+        borderRadius: "25px", // Zaoblené rohy
+        border: "1px solid rgba(0, 0, 0, 1)", // Tenká linka
+        color: "white",
+      }}
+    >
       {/* Polovina pro obrázek */}
       <div className="w-1/2 p-2">
         <Image
@@ -24,15 +32,18 @@ export default function CardProject({
           layout="responsive" // Zajišťuje responzivní zobrazení
           width={300} // Šířka pro Next.js
           height={300} // Výška pro Next.js
-          className="rounded" // Ověření správného stylu
+          className="rounded " // Ověření správného stylu
         />
       </div>
 
       {/* Polovina pro text */}
-      <div className="w-1/2 p-2 flex flex-col space-y-4 ">
+      <div className="w-1/2 py-10 flex flex-col space-y-6 justify-start">
+        {" "}
+        {/* Posunutí textu výše */}
         <h2 className="text-4xl font-bold">{title}</h2>{" "}
-        <span className="text-xl text-gray-500 mt-2">{date}</span>
-        <p className="text-sm white opacity-75">{description}</p>
+        <span className="text-xl text-gray-300 mt-2">{date}</span>{" "}
+        {/* Mírně snížená intenzita šedé */}
+        <p className="text-lg text-white opacity-80">{description}</p>
       </div>
     </div>
   );

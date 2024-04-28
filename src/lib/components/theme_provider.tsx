@@ -1,9 +1,7 @@
-"use client";
-import { useState, useEffect, ReactElement } from "react";
-import { createContext } from "react";
+import { createContext, ReactElement, useEffect, useState } from "react";
 
-const ThemeProvider = createContext({
-  isPaintingTheme: true,
+const MyThemeContext = createContext({
+  isDarkTheme: true,
   toggleThemeHandler: () => {},
 });
 
@@ -14,34 +12,34 @@ interface ThemePropsInterface {
 export function MyThemeContextProvider(
   props: ThemePropsInterface
 ): ReactElement {
-  const [isPaintingTheme, setIsDarkTheme] = useState(true);
+  const [isDarkTheme, setIsDarkTheme] = useState(true);
   useEffect(() => initialThemeHandler());
 
   function isLocalStorageEmpty(): boolean {
-    return !localStorage.getItem("isPaintingTheme");
+    return !localStorage.getItem("isDarkTheme");
   }
 
   function initialThemeHandler(): void {
     if (isLocalStorageEmpty()) {
-      localStorage.setItem("isPaintingTheme", `true`);
+      localStorage.setItem("isDarkTheme", `true`);
       document!.querySelector("body")!.classList.add("dark");
       setIsDarkTheme(true);
     } else {
-      const isPaintingTheme: boolean = JSON.parse(
-        localStorage.getItem("isPaintingTheme")!
+      const isDarkTheme: boolean = JSON.parse(
+        localStorage.getItem("isDarkTheme")!
       );
-      isPaintingTheme && document!.querySelector("body")!.classList.add("dark");
+      isDarkTheme && document!.querySelector("body")!.classList.add("dark");
       setIsDarkTheme(() => {
-        return isPaintingTheme;
+        return isDarkTheme;
       });
     }
   }
 
   function toggleThemeHandler(): void {
-    const isPaintingTheme: boolean = JSON.parse(
-      localStorage.getItem("isPaintingTheme")!
+    const isDarkTheme: boolean = JSON.parse(
+      localStorage.getItem("isDarkTheme")!
     );
-    setIsDarkTheme(!isPaintingTheme);
+    setIsDarkTheme(!isDarkTheme);
     toggleDarkClassToBody();
     setValueToLocalStorage();
   }
@@ -51,16 +49,14 @@ export function MyThemeContextProvider(
   }
 
   function setValueToLocalStorage(): void {
-    localStorage.setItem("isPaintingTheme", `${!isPaintingTheme}`);
+    localStorage.setItem("isDarkTheme", `${!isDarkTheme}`);
   }
 
   return (
-    <ThemeProvider.Provider
-      value={{ isPaintingTheme: true, toggleThemeHandler }}
-    >
+    <MyThemeContext.Provider value={{ isDarkTheme: true, toggleThemeHandler }}>
       {props.children}
-    </ThemeProvider.Provider>
+    </MyThemeContext.Provider>
   );
 }
 
-export default ThemeProvider;
+export default MyThemeContext;
