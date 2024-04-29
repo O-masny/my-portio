@@ -67,11 +67,7 @@ export default function Slider() {
       <motion.div style={{ x: x1 }} className={styles.slider}>
         {slider1.map((project, index) => {
           return (
-            <div
-              key={`${project.src}+${index}`}
-              className={styles.project}
-              style={{ backgroundColor: project.color }}
-            >
+            <div key={`${project.src}+${index}`} className={styles.project}>
               <div key={index} className={styles.imageContainer}>
                 <Image
                   fill={true}
@@ -86,11 +82,7 @@ export default function Slider() {
       <motion.div style={{ x: x2 }} className={styles.slider}>
         {slider2.map((project, index) => {
           return (
-            <div
-              key={`${project.src}+${index}`}
-              className={styles.project}
-              style={{ backgroundColor: project.color }}
-            >
+            <div key={`${project.src}+${index}`} className={styles.project}>
               <div key={index} className={styles.imageContainer}>
                 <Image
                   fill={true}

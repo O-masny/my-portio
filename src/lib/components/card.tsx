@@ -15,15 +15,7 @@ export default function CardProject({
   date,
 }: CardProjectProps) {
   return (
-    <div
-      className="flex flex-row w-full p-6"
-      style={{
-        background: "radial-gradient(circle at center, #00000, #d7d4cf)", // Radialní gradient
-        borderRadius: "25px", // Zaoblené rohy
-        border: "1px solid rgba(0, 0, 0, 1)", // Tenká linka
-        color: "white",
-      }}
-    >
+    <div className="flex flex-row w-full p-6">
       {/* Polovina pro obrázek */}
       <div className="w-1/2 p-2">
         <Image

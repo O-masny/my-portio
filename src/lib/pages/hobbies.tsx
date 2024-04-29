@@ -14,7 +14,7 @@ export default function EducationAndHobbies() {
 
   const sectionStyle = contrastMode
     ? {
-        background: "radial-gradient(circle, white, lightgray)", // Kontrastní styl
+        background: "radial-gradient(circle, white, red)", // Kontrastní styl
         color: "black",
       }
     : {
@@ -23,7 +23,7 @@ export default function EducationAndHobbies() {
       };
 
   return (
-    <div style={sectionStyle} className="p-6 text-center">
+    <div className="p-20 text-center 100vh ">
       {" "}
       {/* Celkový styl */}
       {/* Sekce pro vzdělání */}
