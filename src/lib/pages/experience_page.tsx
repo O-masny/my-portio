@@ -11,15 +11,18 @@ interface WordData {
 
 // Data pro Word Cloud
 const skillData: WordData[] = [
-  { text: "React", value: 100 },
-  { text: "Next.js", value: 80 },
+  { text: "React", value: 60 },
+  { text: "Next.js", value: 75 },
   { text: "Tailwind CSS", value: 60 },
   { text: "Node.js", value: 40 },
   { text: "TypeScript", value: 30 },
   { text: "JavaScript", value: 70 },
-  { text: "Python", value: 50 },
-  { text: "Git", value: 35 },
-  { text: "Docker", value: 25 },
+  { text: "Python", value: 30 },
+  { text: "Git", value: 95 },
+  { text: "Mobile dev", value: 100 },
+  { text: "Chiller", value: 95 },
+
+  { text: "Flutter", value: 80 },
 ];
 
 // Konfigurace pro Word Cloud
