@@ -1,15 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useState, useContext } from "react";
 import { motion } from "framer-motion";
-import Image from "next/image"; // Import pro obrázky z Next.js
-import MyThemeContext from "../components/theme_provider";
+import Image from "next/image"; // Pro import obrázků z Next.js
 
 export default function EducationAndHobbies() {
   const [contrastMode, setContrastMode] = useState(false);
-  const themeCtx: { isDarkMode?: boolean; toggleThemeHandler: () => void } =
-    useContext(MyThemeContext);
-  const handlePaintingClick = () => {
-    setContrastMode(!contrastMode); // Přepínání kontrastního módu
-    themeCtx.toggleThemeHandler();
+
+  const handleToggleContrast = () => {
+    setContrastMode(!contrastMode);
   };
 
   const sectionStyle = contrastMode
@@ -18,42 +15,53 @@ export default function EducationAndHobbies() {
         color: "black",
       }
     : {
-        background: "radial-gradient(circle, #6C63FF, #3B82F6)", // Výchozí styl
+        background: "radial-gradient(circle, #1e3a8a, #3b82f6)", // Výchozí styl s tmavšími barvami
         color: "white",
       };
 
+  const educationVariants = {
+    hidden: { opacity: 0, y: 100 },
+    visible: { opacity: 1, y: 0 },
+  };
+
+  const hobbiesVariants = {
+    hidden: { opacity: 0, y: -100 },
+    visible: { opacity: 1, y: 0 },
+  };
+
   return (
-    <div className="p-20 text-center 100vh ">
-      {" "}
-      {/* Celkový styl */}
+    <div className="p-16 ">
       {/* Sekce pro vzdělání */}
       <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, ease: "easeOut" }}
+        initial="hidden"
+        animate="visible"
+        variants={educationVariants}
+        transition={{ duration: 1, ease: "easeOut" }} // Přechod a animace
       >
         <h2 className="text-4xl font-bold">Education</h2>
         <p className="text-xl">MSc in Computer Science - 2020</p>
         <p className="text-xl">BSc in Information Technology - 2017</p>
       </motion.div>
+
       {/* Sekce pro záliby */}
       <motion.div
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, ease: "easeOut", delay: 0.5 }}
-        className="mt-6"
+        initial="hidden"
+        animate="visible"
+        variants={hobbiesVariants}
+        transition={{ duration: 2, ease: "easeOut", delay: 0.5 }}
+        className="mt-8"
       >
         <h2 className="text-4xl font-bold">Hobbies</h2>
         <p className="text-xl">Photography, Painting, Hiking</p>
 
-        {/* Interaktivní prvek - malba */}
-        <button onClick={handlePaintingClick} className="mt-4">
+        {/* Interaktivní prvek */}
+        <button onClick={handleToggleContrast} className="mt-6">
           <Image
-            src="/pic1.jpg" // Ujistěte se, že cesta je správná
+            src="/images/painting.jpg" // Správná cesta k obrázku
             alt="Painting"
-            width={100}
-            height={100}
-            className="rounded"
+            width={120}
+            height={120}
+            className="rounded-full" // Použití rounded-full pro kruhový tvar
           />
         </button>
       </motion.div>
