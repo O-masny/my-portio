@@ -47,56 +47,60 @@ export default function Slider() {
     target: container,
     offset: ["start end", "end start"],
   });
+  const circleScale = useTransform(scrollYProgress, [0, 1], [1, 2]); // Zmenšuje se při skrolování
 
   const x1 = useTransform(scrollYProgress, [0, 1], [0, 150]);
   const x2 = useTransform(scrollYProgress, [0, 1], [0, -150]);
   const style = useTransform(scrollYProgress, [0, 1], [50, 0]);
-  const styley = useTransform(scrollYProgress, [1, 0], [-50, 0]);
+  const styley = useTransform(scrollYProgress, [0, 1], [0, 300]);
 
   return (
-    <div id="Carousel" ref={container} className={styles.slidingImages}>
+    <div className="">
       {" "}
-      <motion.div
-        style={{ scaleY: styley }}
-        className={styles.circleContainerUpper}
-      >
-        <div className={styles.circle}>
-          <div className={styles.circle}></div>
-        </div>
-      </motion.div>
-      <motion.div style={{ x: x1 }} className={styles.slider}>
-        {slider1.map((project, index) => {
-          return (
-            <div key={`${project.src}+${index}`} className={styles.project}>
-              <div key={index} className={styles.imageContainer}>
-                <Image
-                  fill={true}
-                  alt={"image"}
-                  src={`/images/${project.src}`}
-                />
+      <div className="h-32"></div>
+      <h1 className="text-5xl font-bold text-center">My artworks</h1>{" "}
+      <div id="Carousel" ref={container} className={styles.slidingImages}>
+        {" "}
+        <motion.div
+          style={{
+            scale: circleScale, // Používá transformaci z `useTransform`
+          }}
+          className="absolute inset-0 flex items-center justify-center z-0" // Umístění na pozadí
+        >
+          <div className="bg-blue-950 w-full h-full rounded-lg"></div>{" "}
+          {/* Základní kruh */}
+        </motion.div>
+        <motion.div style={{ x: x1 }} className={styles.slider}>
+          {slider1.map((project, index) => {
+            return (
+              <div key={`${project.src}+${index}`} className={styles.project}>
+                <div key={index} className={styles.imageContainer}>
+                  <Image
+                    fill={true}
+                    alt={"image"}
+                    src={`/images/${project.src}`}
+                  />
+                </div>
               </div>
-            </div>
-          );
-        })}
-      </motion.div>
-      <motion.div style={{ x: x2 }} className={styles.slider}>
-        {slider2.map((project, index) => {
-          return (
-            <div key={`${project.src}+${index}`} className={styles.project}>
-              <div key={index} className={styles.imageContainer}>
-                <Image
-                  fill={true}
-                  alt={"image"}
-                  src={`/images/${project.src}`}
-                />
+            );
+          })}
+        </motion.div>
+        <motion.div style={{ x: x2 }} className={styles.slider}>
+          {slider2.map((project, index) => {
+            return (
+              <div key={`${project.src}+${index}`} className={styles.project}>
+                <div key={index} className={styles.imageContainer}>
+                  <Image
+                    fill={true}
+                    alt={"image"}
+                    src={`/images/${project.src}`}
+                  />
+                </div>
               </div>
-            </div>
-          );
-        })}
-      </motion.div>
-      <motion.div style={{ scaleY: style }} className={styles.circleContainer}>
-        <div className={styles.circle}></div>
-      </motion.div>
+            );
+          })}
+        </motion.div>
+      </div>
     </div>
   );
 }
