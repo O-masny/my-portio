@@ -29,24 +29,24 @@ export default function Home() {
 const navItems: ILink[] = [
   {
     title: "Home",
-    href: "#",
+    href: "#home",
   },
 
   {
     title: "Projects",
 
-    href: "/Projects",
+    href: "#portfolio",
   },
 
   {
     title: "About",
 
-    href: "#Carousel",
+    href: "#experience",
   },
 
   {
     title: "Contact",
 
-    href: "#Contact",
+    href: "#contact",
   },
 ];
