@@ -1,14 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import LocomotiveScroll from "locomotive-scroll";
-import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 import MainPage from "./landing_page";
-import { motion } from "framer-motion";
 import ContactPage from "./contact_page";
 import ResponsiveWordcloud from "./experience_page";
 import EducationAndHobbies from "./hobbies";
 import PortfolioCardGrid from "./portfolio_page";
-
-// Definice sekcí a jejich identifikátorů
+import NavigationButton from "../components/buttons/navigation_button";
 const sections = [
   { name: "main", id: "main", Component: MainPage },
   { name: "experience", id: "experience", Component: ResponsiveWordcloud },
@@ -18,54 +15,53 @@ const sections = [
 ];
 
 export default function Home() {
-  const containerRef = useRef<HTMLDivElement>(null); // Reference na hlavní kontejner
-  const [currentSectionIndex, setCurrentSectionIndex] = useState(0); // Sleduje aktuální index sekce
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
 
   useEffect(() => {
     if (!containerRef.current) {
       return;
     }
 
-    // Inicializace LocomotiveScroll
     const scroll = new LocomotiveScroll({
-      el: containerRef.current, // Element, na který aplikujeme LocomotiveScroll
-      smooth: true, // Povolit plynulé skrolování
+      el: containerRef.current,
+      smooth: true,
     });
 
-    // Cleanup při demontáži komponenty
     return () => {
-      scroll.destroy(); // Zničení instance LocomotiveScroll
+      scroll.destroy();
     };
-  }, []); // Prázdný seznam závislostí pro zajištění, že se zavolá pouze jednou
+  }, []); // Spustí se pouze jednou
 
-  // Funkce pro navigaci na další sekci
-  const handleScrollToNextSection = () => {
-    const nextIndex = currentSectionIndex + 1;
-    const nextSection = sections[nextIndex];
-    if (nextSection) {
-      const targetElement = document.getElementById(nextSection.id);
-      if (targetElement) {
-        targetElement.scrollIntoView({ behavior: "smooth" }); // Plynulé skrolování
-        setCurrentSectionIndex(nextIndex); // Aktualizace indexu
+  const scrollToSection = (sectionIndex: number) => {
+    if (containerRef.current && sections[sectionIndex]) {
+      const sectionId = sections[sectionIndex].id;
+      const sectionElement = document.getElementById(sectionId);
+
+      if (sectionElement) {
+        sectionElement.scrollIntoView({ behavior: "smooth" });
+        setCurrentSectionIndex(sectionIndex); // Aktualizace indexu
       }
     }
   };
 
-  // Funkce pro navigaci na předchozí sekci nebo úplně nahoru, pokud je na poslední sekci
+  const handleScrollToNextSection = () => {
+    const nextIndex = currentSectionIndex + 1;
+    if (nextIndex < sections.length) {
+      scrollToSection(nextIndex);
+    }
+  };
+
   const handleScrollToPreviousSection = () => {
     if (currentSectionIndex === sections.length - 1) {
-      // Pokud jsme na poslední sekci, skrolujeme na úplný začátek
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      setCurrentSectionIndex(0); // Aktualizace indexu
+      if (typeof window !== "undefined") {
+        window.scrollTo({ top: 0, behavior: "smooth" }); // Skrolujeme nahoru
+      }
+      setCurrentSectionIndex(0); // Nastavíme index na začátek
     } else {
       const previousIndex = currentSectionIndex - 1;
-      const previousSection = sections[previousIndex];
-      if (previousSection) {
-        const targetElement = document.getElementById(previousSection.id);
-        if (targetElement) {
-          targetElement.scrollIntoView({ behavior: "smooth" }); // Plynulé skrolování
-          setCurrentSectionIndex(previousIndex); // Aktualizace indexu
-        }
+      if (previousIndex >= 0) {
+        scrollToSection(previousIndex); // Skrolujeme na předchozí sekci
       }
     }
   };
@@ -73,7 +69,7 @@ export default function Home() {
   return (
     <div ref={containerRef}>
       {" "}
-      {/* Hlavní kontejner pro LocomotiveScroll */}
+      {/* Kontejner pro LocomotiveScroll */}
       {sections.map((section) => {
         const { Component } = section;
         return (
@@ -82,38 +78,12 @@ export default function Home() {
           </div>
         );
       })}
-      <FloatingButton
+      <NavigationButton
         currentSectionIndex={currentSectionIndex}
         onClickNext={handleScrollToNextSection}
         onClickPrevious={handleScrollToPreviousSection}
+        totalSections={sections.length}
       />
-    </div>
-  );
-}
-
-// Plovoucí tlačítko pro navigaci nahoru/dolů
-function FloatingButton({
-  currentSectionIndex,
-  onClickNext,
-  onClickPrevious,
-}: {
-  currentSectionIndex: number;
-  onClickNext: () => void;
-  onClickPrevious: () => void;
-}) {
-  const isLastSection = currentSectionIndex === sections.length - 1;
-  const isFirst = currentSectionIndex === 0;
-
-  return (
-    <div>
-      {/* Tlačítko pro navigaci na předchozí sekci nebo úplně nahoru */}
-      <motion.button
-        className="fixed bottom-3 right-10 p-5 bg-blue-500 text-white rounded-full shadow-lg"
-        onClick={isLastSection ? onClickPrevious : onClickNext}
-      >
-        {isLastSection ? <FaArrowUp /> : <FaArrowDown />}{" "}
-        {/* Změníme ikonu podle stavu */}
-      </motion.button>
     </div>
   );
 }

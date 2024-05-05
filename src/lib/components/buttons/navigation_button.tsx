@@ -1,26 +1,40 @@
-import Link from "next/link";
+import { motion } from "framer-motion";
+import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 
 interface NavigationButtonProps {
-  title: string;
-  description: string;
+  currentSectionIndex: number;
+  totalSections: number; // Přidali jsme celkový počet sekcí
+  onClickNext: () => void;
+  onClickPrevious: () => void;
 }
+
 const NavigationButton: React.FC<NavigationButtonProps> = ({
-  title,
-  description,
+  currentSectionIndex,
+  totalSections, // Předáme celkový počet sekcí
+  onClickNext,
+  onClickPrevious,
 }) => {
+  const isLastSection = currentSectionIndex === totalSections - 1; // Ověříme, zda je poslední sekce
+
   return (
-    <div className="mt-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-      <Link
-        href={`#${title}`}
-        className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30 relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-black after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left text-white"
+    <div>
+      <motion.button
+        className="fixed bottom-20 right-10 p-5 bg-blue-500 text-white rounded-full shadow-lg"
+        onClick={onClickPrevious}
       >
-        <h2 className={`mb-3 text-2xl font-semibold`}>
-          {title}
-          <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none"></span>
-        </h2>
-        <p className={`m-0 max-w-[30ch] text-sm opacity-50`}> {description}</p>
-      </Link>
+        {<FaArrowUp />} {/* Změna ikony podle podmínek */}
+      </motion.button>
+
+      {!isLastSection && (
+        <motion.button
+          className="fixed bottom-10 right-10 p-5 bg-blue-500 text-white rounded-full shadow-lg"
+          onClick={onClickNext}
+        >
+          <FaArrowDown />
+        </motion.button>
+      )}
     </div>
   );
 };
+
 export default NavigationButton;

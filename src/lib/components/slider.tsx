@@ -1,103 +1,91 @@
 import { useRef } from "react";
 import { useScroll, useTransform, motion } from "framer-motion";
-import styles from "../../styles/image_slide.module.css";
 import Image from "next/image";
 
+// Původní definice sliderů
 const slider1 = [
-  {
-    color: "#e3e5e7",
-    src: "pic1.jpg",
-  },
-  {
-    color: "#d6d7dc",
-    src: "pic2.jpeg",
-  },
-  {
-    color: "#e3e3e3",
-    src: "pic3.jpeg",
-  },
-  {
-    color: "#21242b",
-    src: "pic4.jpeg",
-  },
+  { color: "#e3e5e7", src: "pic1.jpg" },
+  { color: "#d6d7dc", src: "pic2.jpeg" },
+  { color: "#e3e3e3", src: "pic3.jpeg" },
+  { color: "#21242b", src: "pic4.jpeg" },
 ];
 
 const slider2 = [
-  {
-    color: "#d4e3ec",
-    src: "pic4.jpeg",
-  },
-  {
-    color: "#e5e0e1",
-    src: "pic6.jpeg",
-  },
-  {
-    color: "#d7d4cf",
-    src: "pic5.jpeg",
-  },
-  {
-    color: "#e1dad6",
-    src: "pic2.jpeg",
-  },
+  { color: "#d4e3ec", src: "pic4.jpeg" },
+  { color: "#e5e0e1", src: "pic6.jpeg" },
+  { color: "#d7d4cf", src: "pic5.jpeg" },
+  { color: "#e1dad6", src: "pic2.jpeg" },
 ];
 
 export default function Slider() {
-  const container = useRef(null);
+  const container = useRef<HTMLDivElement | null>(null);
   const { scrollYProgress } = useScroll({
     target: container,
     offset: ["start end", "end start"],
   });
-  const circleScale = useTransform(scrollYProgress, [0, 1.5], [1, 2]); // Zmenšuje se při skrolování
 
+  // Transformace pro horizontální posuv
   const x1 = useTransform(scrollYProgress, [0, 1], [0, 150]);
   const x2 = useTransform(scrollYProgress, [0, 1], [0, -150]);
-  const style = useTransform(scrollYProgress, [0, 1], [0, 0]);
-  const styley = useTransform(scrollYProgress, [0, 1], [0, 300]);
 
   return (
-    <div className="">
-      {" "}
-      <div id="Carousel" ref={container} className={styles.slidingImages}>
-        {" "}
+    <div className="relative w-full h-full">
+      <div
+        id="Carousel"
+        ref={container}
+        className="flex flex-col space-y-10 overflow-hidden relative" // Styl posuvníku
+      >
+        {/* Základní kruh na pozadí */}
         <motion.div
           style={{
             opacity: scrollYProgress,
-            scale: circleScale, // Používá transformaci z `useTransform`
+            scale: useTransform(scrollYProgress, [0, 1.5], [1, 2]), // Dynamické škálování
           }}
-          className="absolute -z-10 aspect-square w-full  h-full border-r-8 rounded-full " // Umístění na pozadí
+          className="absolute top-0 left-0 z-[-1] aspect-square w-full h-full border-8 border-blue-950 rounded-full" // Styl pro pozadí
+        ></motion.div>
+
+        {/* První horizontální posuv */}
+        <motion.div
+          style={{ x: x1 }}
+          className="flex space-x-10 w-full" // Styl pro horizontální posuv
         >
-          <div className="bg-blue-950 w-full h-full rounded-lg"></div>{" "}
-          {/* Základní kruh */}
+          {slider1.map((project, index) => (
+            <div
+              key={index}
+              className="flex-none w-60 h-60 bg-gray-200 relative"
+            >
+              {" "}
+              {/* Styl pro jednotlivé prvky */}
+              <Image
+                src={`/images/${project.src}`}
+                alt="image"
+                layout="fill"
+                objectFit="cover"
+              />
+            </div>
+          ))}
         </motion.div>
-        <motion.div style={{ x: x1 }} className={styles.slider}>
-          {slider1.map((project, index) => {
-            return (
-              <div key={`${project.src}+${index}`} className={styles.project}>
-                <div key={index} className={styles.imageContainer}>
-                  <Image
-                    fill={true}
-                    alt={"image"}
-                    src={`/images/${project.src}`}
-                  />
-                </div>
-              </div>
-            );
-          })}
-        </motion.div>
-        <motion.div style={{ x: x2 }} className={styles.slider}>
-          {slider2.map((project, index) => {
-            return (
-              <div key={`${project.src}+${index}`} className={styles.project}>
-                <div key={index} className={styles.imageContainer}>
-                  <Image
-                    fill={true}
-                    alt={"image"}
-                    src={`/images/${project.src}`}
-                  />
-                </div>
-              </div>
-            );
-          })}
+
+        {/* Druhý horizontální posuv */}
+        <motion.div
+          style={{ x: x2 }}
+          className="flex space-x-10 w-full" // Styl pro horizontální posuv
+        >
+          {slider2.map((project, index) => (
+            <div
+              key={index}
+              className="flex-none w-60 h-60 bg-gray-300 relative"
+            >
+              {" "}
+              {/* Styl pro jednotlivé prvky */}
+              <Image
+                src={`/images/${project.src}`}
+                alt="image"
+                layout="fill"
+                objectFit="cover"
+              />
+            </div>
+          ))}
         </motion.div>
       </div>
     </div>

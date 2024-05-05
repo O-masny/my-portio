@@ -52,13 +52,10 @@ export default function EducationAndHobbies() {
         animate="visible"
         variants={hobbiesVariants}
         transition={{ duration: 2, ease: "easeOut", delay: 0.5 }}
-        className="mt-8"
+        className="mt-8 text-cyan-100"
       >
         <h2 className="text-4xl font-bold">Hobby</h2>
         <p className="text-xl">PAXINTXNG</p>
-
-        {/* Interaktivní prvek */}
-        <button onClick={handleToggleContrast} className="mt-6"></button>
       </motion.div>{" "}
       <Slider />
     </div>
