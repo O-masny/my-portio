@@ -29,11 +29,13 @@ export default function StickCursor({}) {
   };
 
   useEffect(() => {
-    window.addEventListener("mousemove", manageMouseMove);
+    if (typeof window !== "undefined") {
+      window.addEventListener("mousemove", manageMouseMove);
 
-    return () => {
-      window.removeEventListener("mousemove", manageMouseMove);
-    };
+      return () => {
+        window.removeEventListener("mousemove", manageMouseMove);
+      };
+    }
   });
 
   return (

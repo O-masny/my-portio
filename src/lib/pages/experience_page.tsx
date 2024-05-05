@@ -56,10 +56,12 @@ const ResponsiveWordcloud: React.FC = () => {
 
   useEffect(() => {
     updateDimensions(); // Aktualizace rozměrů
-    window.addEventListener("resize", updateDimensions); // Změna rozměrů při změně velikosti
-    return () => {
-      window.removeEventListener("resize", updateDimensions); // Odebrání posluchače při odmontování komponenty
-    };
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", updateDimensions); // Změna rozměrů při změně velikosti
+      return () => {
+        window.removeEventListener("resize", updateDimensions); // Odebrání posluchače při odmontování komponenty
+      };
+    }
   }, [updateDimensions]); // Přidejte `updateDimensions` jako závislost, aby nedocházelo k nadbytečnému rerenderování
 
   return (
