@@ -63,7 +63,10 @@ const ResponsiveWordcloud: React.FC = () => {
   }, [updateDimensions]); // Přidejte `updateDimensions` jako závislost, aby nedocházelo k nadbytečnému rerenderování
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen text-white">
+    <div
+      id="experience"
+      className="flex flex-col items-center justify-center min-h-screen text-white"
+    >
       <h1 className="text-5xl font-bold my-8 text-center">What I do?</h1>{" "}
       {/* Velký nadpis */}
       <div className="h-32"></div>

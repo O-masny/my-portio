@@ -6,19 +6,33 @@ import StickCursor from "@/lib/components/utils/cursor";
 import Homepage from "@/lib/pages/homepage";
 import WelcomePage from "@/lib/pages/welcome";
 import { AnimatePresence } from "framer-motion";
+import LocomotiveScroll from "locomotive-scroll";
 import { useRef } from "react";
 import { useEffect, useState } from "react";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
-  const stickyElement = useRef(null);
+  const containerRef = useRef<HTMLDivElement>(null); // Reference na hlavní kontejner
+
+  useEffect(() => {
+    if (!containerRef.current) {
+      return;
+    }
+
+    // Inicializace LocomotiveScroll
+    const scroll = new LocomotiveScroll({
+      el: containerRef.current, // Element, na který aplikujeme LocomotiveScroll
+      smooth: true, // Povolit plynulé skrolování
+    });
+
+    // Cleanup při demontáži komponenty
+    return () => {
+      scroll.destroy(); // Zničení instance LocomotiveScroll
+    };
+  }, []); // Prázdný seznam závislostí pro zajištění, že se zavolá pouze jednou
 
   useEffect(() => {
     (async () => {
-      const LocomotiveScroll = (await import("locomotive-scroll")).default;
-
-      const locomotiveScroll = new LocomotiveScroll();
-
       setTimeout(() => {
         setIsLoading(false);
 

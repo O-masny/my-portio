@@ -4,7 +4,7 @@ import { projectDetails } from "../constats/about_me"; // Seznam projektů s det
 
 export default function PortfolioCardGrid() {
   return (
-    <div className="flex flex-col items-center w-full h-full">
+    <div id="portfolio" className="flex flex-col items-center w-full h-full">
       {projectDetails.map((project, index) => (
         <CardProject
           key={index}

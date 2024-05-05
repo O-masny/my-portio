@@ -3,7 +3,7 @@
     flex-direction: column;
     gap: 3vw;
     position: relative;
-    margin-top: 100px;
+    margin-top: 10px;
     background-color: transparent;
     z-index: 1;
     margin-bottom: 25vh;
@@ -43,7 +43,7 @@
             left: -10%;
             border-radius: 0 0 50% 50%;
             background-color: slateblue;
-            z-index: 10;
+            z-index: 1;
             position: absolute;
         }
     }

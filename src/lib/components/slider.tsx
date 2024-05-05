@@ -47,25 +47,24 @@ export default function Slider() {
     target: container,
     offset: ["start end", "end start"],
   });
-  const circleScale = useTransform(scrollYProgress, [0, 1], [1, 2]); // Zmenšuje se při skrolování
+  const circleScale = useTransform(scrollYProgress, [0, 1.5], [1, 2]); // Zmenšuje se při skrolování
 
   const x1 = useTransform(scrollYProgress, [0, 1], [0, 150]);
   const x2 = useTransform(scrollYProgress, [0, 1], [0, -150]);
-  const style = useTransform(scrollYProgress, [0, 1], [50, 0]);
+  const style = useTransform(scrollYProgress, [0, 1], [0, 0]);
   const styley = useTransform(scrollYProgress, [0, 1], [0, 300]);
 
   return (
     <div className="">
       {" "}
-      <div className="h-32"></div>
-      <h1 className="text-5xl font-bold text-center">My artworks</h1>{" "}
       <div id="Carousel" ref={container} className={styles.slidingImages}>
         {" "}
         <motion.div
           style={{
+            opacity: scrollYProgress,
             scale: circleScale, // Používá transformaci z `useTransform`
           }}
-          className="absolute inset-0 flex items-center justify-center z-0" // Umístění na pozadí
+          className="absolute -z-10 aspect-square w-full  h-full border-r-8 rounded-full " // Umístění na pozadí
         >
           <div className="bg-blue-950 w-full h-full rounded-lg"></div>{" "}
           {/* Základní kruh */}

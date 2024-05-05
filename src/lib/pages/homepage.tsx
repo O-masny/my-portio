@@ -1,62 +1,119 @@
 import React, { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
+import LocomotiveScroll from "locomotive-scroll";
+import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 import MainPage from "./landing_page";
-import ExperiencePage from "./experience_page";
-import Slider from "../components/slider";
+import { motion } from "framer-motion";
+import ContactPage from "./contact_page";
+import ResponsiveWordcloud from "./experience_page";
 import EducationAndHobbies from "./hobbies";
 import PortfolioCardGrid from "./portfolio_page";
-import ContactPage from "./contact_page";
-import { FaArrowDown } from "react-icons/fa";
 
-// Definice animací pro přechody
-const variants = {
-  hidden: { opacity: 0, y: -50 },
-  visible: { opacity: 1, y: 0 },
-};
+// Definice sekcí a jejich identifikátorů
+const sections = [
+  { name: "main", id: "main", Component: MainPage },
+  { name: "experience", id: "experience", Component: ResponsiveWordcloud },
+  { name: "education", id: "education", Component: EducationAndHobbies },
+  { name: "portfolio", id: "portfolio", Component: PortfolioCardGrid },
+  { name: "contact", id: "contact", Component: ContactPage },
+];
 
 export default function Home() {
-  const nextSectionRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null); // Reference na hlavní kontejner
+  const [currentSectionIndex, setCurrentSectionIndex] = useState(0); // Sleduje aktuální index sekce
 
-  // Funkce pro scrollování na další sekci
+  useEffect(() => {
+    if (!containerRef.current) {
+      return;
+    }
+
+    // Inicializace LocomotiveScroll
+    const scroll = new LocomotiveScroll({
+      el: containerRef.current, // Element, na který aplikujeme LocomotiveScroll
+      smooth: true, // Povolit plynulé skrolování
+    });
+
+    // Cleanup při demontáži komponenty
+    return () => {
+      scroll.destroy(); // Zničení instance LocomotiveScroll
+    };
+  }, []); // Prázdný seznam závislostí pro zajištění, že se zavolá pouze jednou
+
+  // Funkce pro navigaci na další sekci
   const handleScrollToNextSection = () => {
-    if (nextSectionRef.current) {
-      nextSectionRef.current.scrollIntoView({ behavior: "smooth" });
+    const nextIndex = currentSectionIndex + 1;
+    const nextSection = sections[nextIndex];
+    if (nextSection) {
+      const targetElement = document.getElementById(nextSection.id);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: "smooth" }); // Plynulé skrolování
+        setCurrentSectionIndex(nextIndex); // Aktualizace indexu
+      }
     }
   };
 
-  // Jednorázová inicializace
-  useEffect(() => {
-    setTimeout(() => {
-      document.body.style.cursor = "default";
-      window.scrollTo(0, 0);
-    }, 4000);
-  }, []); // Prázdný seznam závislostí, aby se zabránilo přerenderování
-
-  const [experienceRef, inViewExperience] = useInView({
-    triggerOnce: true, // Aktivuje se pouze jednou
-    threshold: 0.5, // Vyšší prahová hodnota, aby se zabránilo častému přepínání
-  });
+  // Funkce pro navigaci na předchozí sekci nebo úplně nahoru, pokud je na poslední sekci
+  const handleScrollToPreviousSection = () => {
+    if (currentSectionIndex === sections.length - 1) {
+      // Pokud jsme na poslední sekci, skrolujeme na úplný začátek
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      setCurrentSectionIndex(0); // Aktualizace indexu
+    } else {
+      const previousIndex = currentSectionIndex - 1;
+      const previousSection = sections[previousIndex];
+      if (previousSection) {
+        const targetElement = document.getElementById(previousSection.id);
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: "smooth" }); // Plynulé skrolování
+          setCurrentSectionIndex(previousIndex); // Aktualizace indexu
+        }
+      }
+    }
+  };
 
   return (
-    <main>
+    <div ref={containerRef}>
+      {" "}
+      {/* Hlavní kontejner pro LocomotiveScroll */}
+      {sections.map((section) => {
+        const { Component } = section;
+        return (
+          <div key={section.name} id={section.id}>
+            <Component />
+          </div>
+        );
+      })}
+      <FloatingButton
+        currentSectionIndex={currentSectionIndex}
+        onClickNext={handleScrollToNextSection}
+        onClickPrevious={handleScrollToPreviousSection}
+      />
+    </div>
+  );
+}
+
+// Plovoucí tlačítko pro navigaci nahoru/dolů
+function FloatingButton({
+  currentSectionIndex,
+  onClickNext,
+  onClickPrevious,
+}: {
+  currentSectionIndex: number;
+  onClickNext: () => void;
+  onClickPrevious: () => void;
+}) {
+  const isLastSection = currentSectionIndex === sections.length - 1;
+  const isFirst = currentSectionIndex === 0;
+
+  return (
+    <div>
+      {/* Tlačítko pro navigaci na předchozí sekci nebo úplně nahoru */}
       <motion.button
-        onClick={handleScrollToNextSection}
-        initial={{ scale: 0.5 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 0.5, ease: "easeInOut" }}
-        className="fixed bottom-4 right-4 bg-blue-500 text-white p-4 rounded-full shadow-lg"
+        className="fixed bottom-3 right-10 p-5 bg-blue-500 text-white rounded-full shadow-lg"
+        onClick={isLastSection ? onClickPrevious : onClickNext}
       >
-        {" "}
-        <FaArrowDown />
+        {isLastSection ? <FaArrowUp /> : <FaArrowDown />}{" "}
+        {/* Změníme ikonu podle stavu */}
       </motion.button>
-      <MainPage></MainPage> <ExperiencePage />
-      {/* Další sekce */}
-      <Slider />
-      <EducationAndHobbies />
-      <PortfolioCardGrid />
-      {/* Zbytek stránky */}
-      <ContactPage />
-    </main>
+    </div>
   );
 }

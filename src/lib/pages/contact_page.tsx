@@ -3,7 +3,7 @@ import styles from "../../styles/contacts.module.css";
 
 export default function ContactPage() {
   return (
-    <div id="Contact" className={styles.contactContainer}>
+    <div id="contact" className={styles.contactContainer}>
       <h1 className={styles.contactHeading}>Get in Touch</h1>
 
       <form className={styles.contactForm}>

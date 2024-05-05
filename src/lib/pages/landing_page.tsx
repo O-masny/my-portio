@@ -55,7 +55,7 @@ export default function AnimatedShapes() {
   }, [controls]);
 
   return (
-    <div className="relative h-screen w-full bg-black">
+    <div id="home" className="relative h-screen w-full bg-black">
       {shapes.map((shape) => (
         <motion.div
           key={shape.key}
@@ -82,8 +82,9 @@ export default function AnimatedShapes() {
           transition={{ duration: 1, ease: "easeOut" }} // Přechod
           className="text-center"
         >
-          <h1 className="text-5xl font-bold">Welcome to my page!</h1>
-          <p className="mt-4 text-xl">My name is Ondřej Masný</p>
+          <h1 className="relative w-[max-content] font-mono text-2xl before:absolute before:inset-0 before:animate-typewriter before:bg-white after:absolute after:inset-0 after:w-[0.125em] after:animate-caret after:bg-black">
+            Hello World
+          </h1>
         </motion.div>
       </div>
     </div>

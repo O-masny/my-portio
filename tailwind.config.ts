@@ -2,8 +2,8 @@ import type { Config } from 'tailwindcss'
 
 const config: Config = {
   variants: {
-   animation: ['responsive', 'hover', 'focus'],
-    },
+    animation: ['responsive', 'hover', 'focus'],
+  },
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -19,17 +19,36 @@ const config: Config = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
-      keyframes: {
-       wiggle: {
-           '0%, 100%': { transform: 'rotate(-3deg)' },
-           '50%': { transform: 'rotate(3deg)' },
-         }
-      },
       animation: {
-       wiggle: 'wiggle 4s ease-in-out ',
-        }
+        typewriter: 'typewriter 2s steps(11) forwards',
+        caret: 'typewriter 2s steps(11) forwards, blink 1s steps(11) infinite 2s',
+      },
+      keyframes: {
+        typewriter: {
+          to: {
+            left: '100%',
+          },
+        },
+        blink: {
+          '0%': {
+            opacity: '0',
+          },
+          '0.1%': {
+            opacity: '1',
+          },
+          '50%': {
+            opacity: '1',
+          },
+          '50.1%': {
+            opacity: '0',
+          },
+          '100%': {
+            opacity: '0',
+          },
+        },
+      },
     },
-  },
-  plugins: [],
+    plugins: [],
+  }
 }
 export default config
