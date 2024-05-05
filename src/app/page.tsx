@@ -1,65 +1,56 @@
 "use client";
-import Footer from "@/lib/components/footer";
+
+import { useRef, useEffect, useState } from "react";
+import LocomotiveScroll from "locomotive-scroll";
 import Navbar from "@/lib/components/navabr/navbar";
+import Footer from "@/lib/components/footer";
+
+import { AnimatePresence } from "framer-motion";
 import { MyThemeContextProvider } from "@/lib/components/theme_provider";
 import StickCursor from "@/lib/components/utils/cursor";
 import Homepage from "@/lib/pages/homepage";
 import WelcomePage from "@/lib/pages/welcome";
-import { AnimatePresence } from "framer-motion";
-import LocomotiveScroll from "locomotive-scroll";
-import { useRef } from "react";
-import { useEffect, useState } from "react";
 
-export default function Home() {
+export default function ClientComponent() {
   const [isLoading, setIsLoading] = useState(true);
-  const containerRef = useRef<HTMLDivElement>(null); // Reference na hlavní kontejner
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!containerRef.current) {
-      return;
+    if (containerRef.current) {
+      const scroll = new LocomotiveScroll({
+        el: containerRef.current,
+        smooth: true,
+      });
+
+      return () => {
+        scroll.destroy();
+      };
     }
-
-    // Inicializace LocomotiveScroll
-    const scroll = new LocomotiveScroll({
-      el: containerRef.current, // Element, na který aplikujeme LocomotiveScroll
-      smooth: true, // Povolit plynulé skrolování
-    });
-
-    // Cleanup při demontáži komponenty
-    return () => {
-      scroll.destroy(); // Zničení instance LocomotiveScroll
-    };
-  }, []); // Prázdný seznam závislostí pro zajištění, že se zavolá pouze jednou
+  }, []); // Prázdný seznam závislostí, protože se provádí pouze jednou
 
   useEffect(() => {
-    (async () => {
-      setTimeout(() => {
-        setIsLoading(false);
+    setTimeout(() => {
+      setIsLoading(false);
 
-        window.scrollTo(0, 0);
-      }, 2000);
-    })();
-  }, []);
+      if (typeof window !== "undefined") {
+        window.scrollTo(0, 0); // Pouze pokud existuje `window`
+      }
+    }, 2000);
+  }, []); // Tento efekt běží pouze na klientské straně
+
   return (
-    <div>
+    <div ref={containerRef}>
       <AnimatePresence mode="wait">
-        {isLoading && <WelcomePage />}
+        {isLoading && <WelcomePage />} {/* Zobrazení stránky při načítání */}
       </AnimatePresence>
-      <Body isLoading={isLoading} />)
+      {!isLoading && (
+        <MyThemeContextProvider>
+          <Navbar />
+          <StickCursor />
+          <Homepage />
+          <Footer />
+        </MyThemeContextProvider>
+      )}
     </div>
   );
 }
-interface Load {
-  isLoading: boolean;
-}
-
-const Body = (props: Load) => {
-  return (
-    <MyThemeContextProvider>
-      <Navbar />
-      <StickCursor />
-      <Homepage />
-      <Footer />
-    </MyThemeContextProvider>
-  );
-};
