@@ -1,7 +1,5 @@
-import { useTheme } from "next-themes";
-
+"use client";
 const Footer = () => {
-  const { theme } = useTheme();
   return (
     <div className="h-center bottom-0 w-full">
       <footer className="bg-gray-800 p-4 flex left-0">

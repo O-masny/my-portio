@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import styles from "../../../styles/navbar.module.css";
-import { motion } from "framer-motion";
+"use client"; // Komponenta používá stavovou logiku a animace
 
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { FaBars, FaTimes } from "react-icons/fa"; // Ikony pro tlačítko přepínače
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 
@@ -9,66 +10,72 @@ export interface ILink {
   title: string;
   href: string;
 }
+
 export interface LinkArray {
   links: ILink[];
 }
-export default function Navbar(props: LinkArray) {
+
+export default function Navbar({ links }: LinkArray) {
   const pathname = usePathname();
   const router = useRouter();
+
+  const [isOpen, setIsOpen] = useState(true); // Stavová proměnná pro otevření/zavření navbaru
   const [selectedIndicator, setSelectedIndicator] = useState(pathname);
+
+  const toggleNavbar = () => {
+    setIsOpen((prev) => !prev); // Přepínač pro stav navbaru
+  };
+
   return (
-    <motion.div
-      variants={menuSlide}
-      initial="initial"
-      animate="enter"
-      exit="exit"
-      className={styles.menu}
-    >
-      <div className={styles.body}>
+    <div>
+      {/* Tlačítko pro přepínání navbaru */}
+      <button
+        onClick={toggleNavbar}
+        className="fixed top-4 right-4 z-50 p-2 bg-gray-800 text-white rounded-full"
+      >
+        {isOpen ? <FaTimes /> : <FaBars />} {/* Ikona pro otevření/zavření */}
+      </button>
+
+      <motion.div
+        variants={menuSlide} // Framer Motion animace
+        initial="initial"
+        animate={isOpen ? "enter" : "exit"} // Otevření/zavření podle stavu
+        className="absolute top-0 right-0 h-full w-64 bg-gray-900 text-white p-4"
+      >
         <div
           onMouseLeave={() => {
             setSelectedIndicator(pathname);
           }}
-          className={styles.nav}
         >
-          <div className={styles.header}>
-            <p>Navigation</p>
-          </div>
-
-          {props.links.map((data, index) => {
-            return (
-              <motion.a
-                title={data.title}
-                key={index}
-                href={data.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  router.push(data.href);
-                }}
-                className="flex h-[48px] py-35 hover:bg-slate-600 grow items-center justify-between gap-2 rounded-md p-3  md:flex-none md:justify-start md:p-2 md:px-3"
-              >
-                {data.title}
-              </motion.a>
-            );
-          })}
+          <h2 className="text-xl font-bold">Navigation</h2> {/* Název menu */}
+          {links.map((data, index) => (
+            <motion.a
+              key={index}
+              title={data.title}
+              href={data.href}
+              onClick={(e) => {
+                e.preventDefault();
+                router.push(data.href); // Navigace při kliknutí
+              }}
+              className="block p-2 rounded hover:bg-gray-700"
+            >
+              {data.title} {/* Název odkazu */}
+            </motion.a>
+          ))}
         </div>
 
-        <div className={styles.footer}>
-          <a>Instagram</a>
-
-          <a>LinkedIn</a>
+        <div className="mt-auto">
+          <a className="block p-2 rounded hover:bg-gray-700">Instagram</a>{" "}
+          {/* Sociální sítě */}
+          <a className="block p-2 rounded hover:bg-gray-700">LinkedIn</a>
         </div>
-      </div>
-    </motion.div>
+      </motion.div>
+    </div>
   );
 }
+
 export const menuSlide = {
-  initial: { x: "calc(100% + 100px)" },
-
-  enter: { x: "0", transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } },
-
-  exit: {
-    x: "calc(100% + 100px)",
-    transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] },
-  },
+  initial: { x: "100%" }, // Navbar je mimo obrazovku
+  enter: { x: "0", transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } }, // Přechod dovnitř
+  exit: { x: "100%", transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } }, // Přechod ven
 };
