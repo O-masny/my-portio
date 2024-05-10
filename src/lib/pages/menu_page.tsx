@@ -1,49 +1,96 @@
-"use client"; // Tato komponenta běží pouze na klientské straně
-import { useEffect, useState, useRef } from "react";
+"use client";
+import React, { useEffect, useRef, useState } from "react";
 import LocomotiveScroll from "locomotive-scroll";
-import { AnimatePresence } from "framer-motion";
-import { MyThemeContextProvider } from "../components/theme_provider";
-import Homepage from "./homepage";
-import WelcomePage from "./welcome";
+import MainPage from "./landing_page";
+import ContactPage from "./contact_page";
+import ResponsiveWordcloud from "./experience_page";
+import EducationAndHobbies from "./hobbies";
+import PortfolioCardGrid from "./portfolio_page";
+import NavigationButton from "../components/buttons/navigation_button";
 
-export function ClientComponent() {
-  const [isLoading, setIsLoading] = useState(true);
+const sections = [
+  { name: "main", id: "main", Component: MainPage },
+  { name: "experience", id: "experience", Component: ResponsiveWordcloud },
+  { name: "education", id: "education", Component: EducationAndHobbies },
+  { name: "portfolio", id: "portfolio", Component: PortfolioCardGrid },
+  { name: "contact", id: "contact", Component: ContactPage },
+];
+
+export default function ClientComponent() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
+  const [isLoading, setIsLoading] = useState(true); // Definice stavu načítání
 
   useEffect(() => {
-    if (containerRef.current) {
-      const scroll = new LocomotiveScroll({
-        el: containerRef.current,
-        smooth: true,
-      });
+    const scroll = containerRef.current
+      ? new LocomotiveScroll({
+          el: containerRef.current,
+          smooth: true,
+        })
+      : null;
 
-      return () => {
+    return () => {
+      if (scroll) {
         scroll.destroy();
-      };
-    }
-  }, []); // Provádí se pouze na klientské straně
+      }
+    };
+  }, [containerRef]); // Trigger the effect when containerRef changes
 
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
 
-      if (typeof window !== "undefined") {
-        window.scrollTo(0, 0); // Přístup k `window` pouze na klientské straně
+      if (containerRef.current) {
+        containerRef.current.scrollTop = 0; // Set scrollTop to 0
       }
     }, 2000);
   }, []); // Provádí se pouze na klientské straně
 
+  const scrollToSection = (sectionIndex: number) => {
+    const section = sections[sectionIndex];
+    const sectionElement = document.getElementById(section.id);
+
+    if (sectionElement) {
+      sectionElement.scrollIntoView({ behavior: "smooth" });
+      setCurrentSectionIndex(sectionIndex);
+    }
+  };
+
+  const handleScrollToNextSection = () => {
+    const nextIndex = currentSectionIndex + 1;
+    if (nextIndex < sections.length) {
+      scrollToSection(nextIndex);
+    }
+  };
+
+  const handleScrollToPreviousSection = () => {
+    const previousIndex = currentSectionIndex - 1;
+    if (previousIndex >= 0) {
+      scrollToSection(previousIndex);
+    } else {
+      if (containerRef.current) {
+        containerRef.current.scrollTop = 0; // Set scrollTop to 0
+        setCurrentSectionIndex(0);
+      }
+    }
+  };
+
   return (
     <div ref={containerRef}>
-      <AnimatePresence mode="wait">
-        {isLoading && <WelcomePage />} {/* Zobrazení při načítání */}
-      </AnimatePresence>
-
-      {!isLoading && (
-        <MyThemeContextProvider>
-          <Homepage />
-        </MyThemeContextProvider>
-      )}
+      {sections.map((section) => {
+        const { Component } = section;
+        return (
+          <div key={section.name} id={section.id}>
+            <Component />
+          </div>
+        );
+      })}
+      <NavigationButton
+        currentSectionIndex={currentSectionIndex}
+        onClickNext={handleScrollToNextSection}
+        onClickPrevious={handleScrollToPreviousSection}
+        totalSections={sections.length}
+      />
     </div>
   );
 }

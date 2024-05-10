@@ -44,7 +44,7 @@ export default function AnimatedShapes() {
 
     const handleScroll = (): void => {
       if (typeof window !== "undefined") {
-        const scrollPosition = window.scrollY; // Pozice scrollu
+        const scrollPosition = globalThis.window?.scrollY; // Pozice scrollu
         controls.start((i) => ({
           y: -scrollPosition * 0.5, // Pohyb nahoru při scrollování
           opacity: 1,
@@ -53,7 +53,7 @@ export default function AnimatedShapes() {
     };
 
     if (typeof window !== "undefined") {
-      window.addEventListener("scroll", handleScroll);
+      globalThis.window.addEventListener("scroll", handleScroll);
     }
 
     return () => {};
