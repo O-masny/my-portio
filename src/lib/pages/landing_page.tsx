@@ -56,11 +56,7 @@ export default function AnimatedShapes() {
       window.addEventListener("scroll", handleScroll);
     }
 
-    return () => {
-      if (typeof window !== "undefined") {
-        window.removeEventListener("scroll", handleScroll); // Odstranění event listeneru při odpojení
-      }
-    };
+    return () => {};
   }, [controls]);
 
   return (

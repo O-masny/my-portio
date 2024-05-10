@@ -3,7 +3,6 @@ import { useEffect, useState, useRef } from "react";
 import LocomotiveScroll from "locomotive-scroll";
 import { AnimatePresence } from "framer-motion";
 import { MyThemeContextProvider } from "../components/theme_provider";
-import StickCursor from "../components/utils/cursor";
 import Homepage from "./homepage";
 import WelcomePage from "./welcome";
 

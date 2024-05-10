@@ -30,9 +30,9 @@ export default function WelcomePage() {
 
     // Event listener for window resize
 
-    // Cleanup event listener on component unmount
     return () => {
-      window.removeEventListener("resize", updateDimensions);
+      if (typeof window !== "undefined")
+        window.removeEventListener("resize", updateDimensions);
     };
   }, []);
 
