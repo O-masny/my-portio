@@ -23,9 +23,11 @@ export default function StickCursor({}) {
   };
 
   const manageMouseMove = (e: { clientX: number; clientY: number }) => {
-    mouse.x.set(e.clientX - cursorSize / 2);
+    if (typeof window !== "undefined") {
+      mouse.x.set(e.clientX - cursorSize / 2);
 
-    mouse.y.set(e.clientY + window.scrollY - cursorSize / 2);
+      mouse.y.set(e.clientY + window.scrollY - cursorSize / 2);
+    }
   };
 
   useEffect(() => {
