@@ -21,14 +21,14 @@ export default function WelcomePage() {
 
   useEffect(() => {
     const updateDimensions = () => {
-      setDimension({ width: window.innerWidth, height: window.innerHeight });
+      if (typeof window !== "undefined")
+        setDimension({ width: window.innerWidth, height: window.innerHeight });
+      window.addEventListener("resize", updateDimensions);
     };
 
-    // Initial dimensions
     updateDimensions();
 
     // Event listener for window resize
-    window.addEventListener("resize", updateDimensions);
 
     // Cleanup event listener on component unmount
     return () => {
@@ -39,6 +39,8 @@ export default function WelcomePage() {
   useEffect(() => {
     if (index === words.length - 1) return;
     const timeout = setTimeout(
+      // Initial dimensions
+
       () => {
         setIndex(index + 1);
       },

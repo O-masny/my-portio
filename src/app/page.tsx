@@ -9,7 +9,9 @@ export default function Home() {
     <div>
       {" "}
       <StickCursor />
-      <ClientComponent /> <Footer /> {/* Zápatí */} <Navbar links={[]} /> {}
+      <ClientComponent />
+      <Footer /> {/* Zápatí */}
+      <Navbar links={[]} /> {}
     </div>
   );
 }

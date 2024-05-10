@@ -1,4 +1,4 @@
-"use client"; // Komponenta používá stavovou logiku a animace
+"use client";
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
@@ -19,7 +19,7 @@ export default function Navbar({ links }: LinkArray) {
   const pathname = usePathname();
   const router = useRouter();
 
-  const [isOpen, setIsOpen] = useState(true); // Stavová proměnná pro otevření/zavření navbaru
+  const [isOpen, setIsOpen] = useState(false); // Stavová proměnná pro otevření/zavření navbaru
   const [selectedIndicator, setSelectedIndicator] = useState(pathname);
 
   const toggleNavbar = () => {

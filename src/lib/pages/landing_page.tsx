@@ -22,7 +22,10 @@ export default function AnimatedShapes() {
         Math.random() * 50 + 50
       }, ${Math.random() * 50 + 50}, 0.7)`; // Tmavé barvy s vyšší průhledností
 
-      const initialX = Math.random() * window.innerWidth; // Náhodné umístění na šířku
+      let initialX = 0;
+      if (typeof window !== "undefined") {
+        initialX = Math.random() * window.innerWidth; // Náhodné umístění na šířku
+      }
       const initialY = 0; // Začínají zdola
 
       return {
@@ -40,17 +43,23 @@ export default function AnimatedShapes() {
     }, 1000); // Prodleva před zobrazením obrazců
 
     const handleScroll = (): void => {
-      const scrollPosition = window.scrollY; // Pozice scrollu
-      controls.start((i) => ({
-        y: -scrollPosition * 0.5, // Pohyb nahoru při scrollování
-        opacity: 1,
-      }));
+      if (typeof window !== "undefined") {
+        const scrollPosition = window.scrollY; // Pozice scrollu
+        controls.start((i) => ({
+          y: -scrollPosition * 0.5, // Pohyb nahoru při scrollování
+          opacity: 1,
+        }));
+      }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    if (typeof window !== "undefined") {
+      window.addEventListener("scroll", handleScroll);
+    }
 
     return () => {
-      window.removeEventListener("scroll", handleScroll); // Odstranění event listeneru při odpojení
+      if (typeof window !== "undefined") {
+        window.removeEventListener("scroll", handleScroll); // Odstranění event listeneru při odpojení
+      }
     };
   }, [controls]);
 
