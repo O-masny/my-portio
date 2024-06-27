@@ -7,8 +7,7 @@ export default function Home() {
   return (
     <div>
       <StickCursor />
-      {/* Hello World 
-      <HomepageScreen />*/}
+      <HomepageScreen />
       <Footer />
       <Navbar links={[]} /> {}
     </div>

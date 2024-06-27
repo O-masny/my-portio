@@ -10,8 +10,7 @@ import NavigationButton from "../components/buttons/navigation_button";
 
 const sections = [
   { name: "main", id: "main", Component: MainPage },
-  { name: "experience", id: "experience", Component: ResponsiveWordcloud },
-  { name: "education", id: "education", Component: EducationAndHobbies },
+
   { name: "portfolio", id: "portfolio", Component: PortfolioCardGrid },
   { name: "contact", id: "contact", Component: ContactPage },
 ];
