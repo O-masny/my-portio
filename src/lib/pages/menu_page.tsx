@@ -9,8 +9,6 @@ import PortfolioCardGrid from "./portfolio_page";
 import NavigationButton from "../components/buttons/navigation_button";
 
 const sections = [
-  { name: "main", id: "main", Component: MainPage },
-
   { name: "portfolio", id: "portfolio", Component: PortfolioCardGrid },
   { name: "contact", id: "contact", Component: ContactPage },
 ];
