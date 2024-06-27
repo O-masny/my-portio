@@ -1,16 +1,14 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import LocomotiveScroll from "locomotive-scroll";
-import MainPage from "./landing_page";
 import ContactPage from "./contact_page";
-import ResponsiveWordcloud from "./experience_page";
-import EducationAndHobbies from "./hobbies";
+
 import PortfolioCardGrid from "./portfolio_page";
 import NavigationButton from "../components/buttons/navigation_button";
+import EducationAndHobbies from "./hobbies";
 
 const sections = [
-  { name: "portfolio", id: "portfolio", Component: PortfolioCardGrid },
-  { name: "contact", id: "contact", Component: ContactPage },
+  { name: "hobbies", id: "hobbies", Component: EducationAndHobbies },
 ];
 
 export default function HomepageScreen() {
