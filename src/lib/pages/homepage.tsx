@@ -55,9 +55,9 @@ export default function Home() {
   const handleScrollToPreviousSection = () => {
     if (currentSectionIndex === sections.length - 1) {
       if (typeof window !== "undefined") {
-        window.scrollTo({ top: 0, behavior: "smooth" }); // Skrolujeme nahoru
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        setCurrentSectionIndex(0);
       }
-      setCurrentSectionIndex(0); // Nastavíme index na začátek
     } else {
       const previousIndex = currentSectionIndex - 1;
       if (previousIndex >= 0) {

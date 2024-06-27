@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image"; // Pro import obrázků z Next.js
 import Slider from "../components/slider";
@@ -11,14 +11,10 @@ export default function EducationAndHobbies() {
   };
 
   const sectionStyle = contrastMode
-    ? {
-        background: "radial-gradient(circle, white, red)", // Kontrastní styl
-        color: "black",
-      }
-    : {
-        background: "radial-gradient(circle, #1e3a8a, #3b82f6)", // Výchozí styl s tmavšími barvami
-        color: "white",
-      };
+    ? "radial-gradient(circle, white, red)" // Kontrastní styl
+    : "radial-gradient(circle, #1e3a8a, #3b82f6)"; // Výchozí styl s tmavšími barvami
+
+  const textColor = contrastMode ? "text-black" : "text-white";
 
   const educationVariants = {
     hidden: { opacity: 0, y: 100 },
@@ -33,30 +29,42 @@ export default function EducationAndHobbies() {
   return (
     <div
       id="education"
-      className="p-16 items-center justify-center flex flex-col "
+      className={`p-16 items-center justify-center flex flex-col min-h-screen ${textColor}`}
+      style={{ background: sectionStyle }}
     >
+      {/* Tlačítko pro přepínání kontrastního režimu */}
+      <button
+        onClick={handleToggleContrast}
+        className="mb-8 px-4 py-2 bg-gray-800 text-white rounded"
+      >
+        Toggle Contrast Mode
+      </button>
+
       {/* Sekce pro vzdělání */}
       <motion.div
         initial="hidden"
         animate="visible"
         variants={educationVariants}
         transition={{ duration: 1, ease: "easeOut" }} // Přechod a animace
+        className="text-center"
       >
         <h2 className="text-4xl font-bold">Education</h2>
         <p className="text-xl">Bachelors degree at UTB FAI</p>
       </motion.div>
       <div className="h-32"></div>
+
       {/* Sekce pro záliby */}
       <motion.div
         initial="hidden"
         animate="visible"
         variants={hobbiesVariants}
         transition={{ duration: 2, ease: "easeOut", delay: 0.5 }}
-        className="mt-8 text-cyan-100"
+        className="mt-8 text-center"
       >
         <h2 className="text-4xl font-bold">Hobby</h2>
         <p className="text-xl">PAXINTXNG</p>
-      </motion.div>{" "}
+      </motion.div>
+
       <Slider />
     </div>
   );

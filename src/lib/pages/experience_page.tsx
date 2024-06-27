@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, useMemo } from "react";
-import { useTransform, useScroll, motion } from "framer-motion";
+import { motion } from "framer-motion"; // Import pouze toho, co je potřeba z framer-motion
 import { scaleLog } from "@visx/scale";
 import { Wordcloud } from "@visx/wordcloud";
 
@@ -25,7 +25,6 @@ const skillData: WordData[] = [
 ];
 
 // Konfigurace pro Word Cloud
-
 const getRotationDegree = () => (Math.random() > 0.5 ? 90 : 0); // Náhodná rotace
 
 const ResponsiveWordcloud: React.FC = () => {
@@ -55,8 +54,8 @@ const ResponsiveWordcloud: React.FC = () => {
   );
 
   useEffect(() => {
-    updateDimensions(); // Aktualizace rozměrů
     if (typeof window !== "undefined") {
+      updateDimensions(); // Aktualizace rozměrů
       window.addEventListener("resize", updateDimensions); // Změna rozměrů při změně velikosti
       return () => {
         window.removeEventListener("resize", updateDimensions); // Odebrání posluchače při odmontování komponenty
