@@ -16,7 +16,7 @@ const sections = [
   { name: "contact", id: "contact", Component: ContactPage },
 ];
 
-export default function ClientComponent() {
+export default function HomepageScreen() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(true); // Definice stavu načítání

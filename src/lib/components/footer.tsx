@@ -1,4 +1,3 @@
-"use client";
 const Footer = () => {
   return (
     <div className="h-center bottom-0 w-full">
