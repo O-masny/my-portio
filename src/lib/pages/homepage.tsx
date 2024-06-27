@@ -35,7 +35,11 @@ export default function Home() {
   }, []); // Spustí se pouze jednou
 
   const scrollToSection = (sectionIndex: number) => {
-    if (containerRef.current && sections[sectionIndex]) {
+    if (
+      typeof window !== "undefined" &&
+      containerRef.current &&
+      sections[sectionIndex]
+    ) {
       const sectionId = sections[sectionIndex].id;
       const sectionElement = document.getElementById(sectionId);
 
