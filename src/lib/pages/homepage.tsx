@@ -6,6 +6,7 @@ import ResponsiveWordcloud from "./experience_page";
 import EducationAndHobbies from "./hobbies";
 import PortfolioCardGrid from "./portfolio_page";
 import NavigationButton from "../components/buttons/navigation_button";
+
 const sections = [
   { name: "main", id: "main", Component: MainPage },
   { name: "experience", id: "experience", Component: ResponsiveWordcloud },
@@ -19,7 +20,7 @@ export default function Home() {
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
 
   useEffect(() => {
-    if (!containerRef.current) {
+    if (!containerRef.current || typeof window === "undefined") {
       return;
     }
 
@@ -29,7 +30,7 @@ export default function Home() {
     });
 
     return () => {
-      scroll.destroy();
+      if (scroll) scroll.destroy();
     };
   }, []); // Spustí se pouze jednou
 
@@ -53,27 +54,21 @@ export default function Home() {
   };
 
   const handleScrollToPreviousSection = () => {
-    if (currentSectionIndex === sections.length - 1) {
-      if (typeof window !== "undefined") {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-        setCurrentSectionIndex(0);
-      }
-    } else {
-      const previousIndex = currentSectionIndex - 1;
-      if (previousIndex >= 0) {
-        scrollToSection(previousIndex); // Skrolujeme na předchozí sekci
-      }
+    const previousIndex = currentSectionIndex - 1;
+    if (previousIndex >= 0) {
+      scrollToSection(previousIndex); // Skrolujeme na předchozí sekci
+    } else if (typeof window !== "undefined") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      setCurrentSectionIndex(0);
     }
   };
 
   return (
-    <div ref={containerRef}>
-      {" "}
-      {/* Kontejner pro LocomotiveScroll */}
+    <div ref={containerRef} data-scroll-container>
       {sections.map((section) => {
         const { Component } = section;
         return (
-          <div key={section.name} id={section.id}>
+          <div key={section.name} id={section.id} data-scroll-section>
             <Component />
           </div>
         );
