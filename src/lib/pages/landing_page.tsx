@@ -9,7 +9,7 @@ interface Shape {
   initial: { opacity: number; x: number; y: number };
 }
 
-export default function AnimatedShapes() {
+export default function LandingScreen() {
   const [shapes, setShapes] = useState<Shape[]>([]);
   const controls = useAnimation(); // Ovládání animací
 

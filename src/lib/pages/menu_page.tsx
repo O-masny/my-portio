@@ -6,9 +6,16 @@ import ContactPage from "./contact_page";
 import PortfolioCardGrid from "./portfolio_page";
 import NavigationButton from "../components/buttons/navigation_button";
 import EducationAndHobbies from "./hobbies";
+import ResponsiveWordcloud from "./experience_page";
+import LandingScreen from "./landing_page";
 
 const sections = [
+  { name: "home", id: "home", Component: LandingScreen },
+  { name: "experience", id: "experience", Component: ResponsiveWordcloud },
+
   { name: "hobbies", id: "hobbies", Component: EducationAndHobbies },
+  { name: "contact", id: "contact", Component: ContactPage },
+  { name: "portfolio", id: "portfolio", Component: PortfolioCardGrid },
 ];
 
 export default function HomepageScreen() {
