@@ -1,7 +1,4 @@
-import React, { useEffect, useState, useRef, useMemo } from "react";
-import { motion } from "framer-motion";
-import { scaleLog } from "@visx/scale";
-import { Wordcloud } from "@visx/wordcloud";
+import React from "react";
 
 // Datový typ pro Word Cloud
 interface WordData {
@@ -28,80 +25,34 @@ const skillData: WordData[] = [
 // Konfigurace pro Word Cloud
 const getRotationDegree = () => 0; // Náhodná rotace
 
-const ResponsiveWordcloud: React.FC = () => {
-  const colors = useMemo(() => ["#143059", "#2F6B9A", "#82a6c2"], []);
-  const fontScale = useMemo(
-    () =>
-      scaleLog({
-        domain: [
-          Math.min(...skillData.map((w) => w.value)),
-          Math.max(...skillData.map((w) => w.value)),
-        ],
-        range: [10, 100],
-      }),
-    []
-  );
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [dimensions, setDimensions] = useState({ width: 500, height: 500 });
-
-  const updateDimensions = useMemo(
-    () => () => {
-      if (containerRef.current) {
-        const { clientWidth, clientHeight } = containerRef.current;
-        setDimensions({ width: clientWidth, height: clientHeight });
-      }
-    },
-    []
-  );
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      updateDimensions();
-      window.addEventListener("resize", updateDimensions);
-      return () => {
-        window.removeEventListener("resize", updateDimensions);
-      };
-    }
-  }, [updateDimensions]);
-
+const ServerSideWordcloud: React.FC = () => {
   return (
     <div
       id="experience"
-      ref={containerRef}
       className="flex flex-col items-center justify-center min-h-screen text-white"
     >
       <h1 className="text-xl font-bold my-8 text-center">
         Im <span className="text-5xl">mobile dev</span> that likes to work with
       </h1>
       <div className="w-full h-full flex items-center justify-center">
-        {/* Responzivní kontejner */}
-        <Wordcloud
-          words={skillData}
-          width={500} // Dynamická šířka
-          height={500} // Dynamická výška
-          fontSize={(datum) => fontScale(datum.value)}
-          font={"Impact"}
-          spiral={"archimedean"}
-          rotate={getRotationDegree} // Náhodná rotace
-        >
-          {(cloudWords) =>
-            cloudWords.map((w, i) => (
-              <motion.text
-                key={w.text}
-                fill={colors[i % colors.length]} // Použití memorovaných barev
-                textAnchor={"middle"}
-                transform={`translate(${w.x}, ${w.y}) rotate(${w.rotate})`} // Pozice a rotace
-                fontSize={w.size} // Velikost písma
-                fontFamily={w.font} // Rodina písem
-              >
-                {w.text}
-              </motion.text>
-            ))
-          }
-        </Wordcloud>
+        {/* Statické vykreslení */}
+        {skillData.map((w, i) => (
+          <div
+            key={w.text}
+            style={{
+              fontSize: `${10 + (w.value / 100) * 90}px`,
+              fontFamily: "Impact",
+              transform: `rotate(${getRotationDegree()}deg)`,
+              color: ["#143059", "#2F6B9A", "#82a6c2"][i % 3],
+              margin: "5px",
+            }}
+          >
+            {w.text}
+          </div>
+        ))}
       </div>
     </div>
   );
 };
 
-export default ResponsiveWordcloud;
+export default ServerSideWordcloud;
