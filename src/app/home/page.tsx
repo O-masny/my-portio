@@ -20,7 +20,6 @@ const sections = [
 export default function HomepageScreen() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
-  const [isLoading, setIsLoading] = useState(true); // Definice stavu načítání
 
   useEffect(() => {
     const scroll = containerRef.current
