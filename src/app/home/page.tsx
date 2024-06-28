@@ -1,86 +1,12 @@
-"use client";
-import React, { useEffect, useRef, useState } from "react";
-import LocomotiveScroll from "locomotive-scroll";
+import ClientSideHomepage from "@/lib/pages/_home";
+import React from "react";
 
-import NavigationButton from "../../lib/components/buttons/navigation_button";
-import EducationAndHobbies from "../../lib/pages/hobbies";
-import ResponsiveWordcloud from "../experience/page";
-import LandingScreen from "../../lib/pages/landing_page";
-import PortfolioCardGrid from "../projects/page";
-import ContactPage from "../contact/page";
-
-const sections = [
-  { name: "home", id: "home", Component: LandingScreen },
-  { name: "experience", id: "experience", Component: ResponsiveWordcloud },
-  { name: "hobbies", id: "hobbies", Component: EducationAndHobbies },
-  { name: "portfolio", id: "portfolio", Component: PortfolioCardGrid },
-  { name: "contact", id: "contact", Component: ContactPage },
-];
-
-export default function HomepageScreen() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
-
-  useEffect(() => {
-    const scroll = containerRef.current
-      ? new LocomotiveScroll({
-          el: containerRef.current,
-          smooth: true,
-        })
-      : null;
-
-    return () => {
-      if (scroll) {
-        scroll.destroy();
-      }
-    };
-  }, [containerRef]); // Trigger the effect when containerRef changes
-
-  const scrollToSection = (sectionIndex: number) => {
-    const section = sections[sectionIndex];
-    const sectionElement = document.getElementById(section.id);
-
-    if (sectionElement) {
-      sectionElement.scrollIntoView({ behavior: "smooth" });
-      setCurrentSectionIndex(sectionIndex);
-    }
-  };
-
-  const handleScrollToNextSection = () => {
-    const nextIndex = currentSectionIndex + 1;
-    if (nextIndex < sections.length) {
-      scrollToSection(nextIndex);
-    }
-  };
-
-  const handleScrollToPreviousSection = () => {
-    const previousIndex = currentSectionIndex - 1;
-    if (previousIndex >= 0) {
-      scrollToSection(previousIndex);
-    } else {
-      if (containerRef.current) {
-        containerRef.current.scrollTop = 0; // Set scrollTop to 0
-        setCurrentSectionIndex(0);
-      }
-    }
-  };
-
+const Homepage = () => {
   return (
-    <div ref={containerRef}>
-      {sections.map((section) => {
-        const { Component } = section;
-        return (
-          <div key={section.name} id={section.id}>
-            <Component />
-          </div>
-        );
-      })}
-      <NavigationButton
-        currentSectionIndex={currentSectionIndex}
-        onClickNext={handleScrollToNextSection}
-        onClickPrevious={handleScrollToPreviousSection}
-        totalSections={sections.length}
-      />
+    <div>
+      <ClientSideHomepage />
     </div>
   );
-}
+};
+
+export default Homepage;
