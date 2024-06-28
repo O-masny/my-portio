@@ -1,3 +1,4 @@
+import ClientSideWordcloud from "@/lib/pages/_wordcloud";
 import React from "react";
 
 // Datový typ pro Word Cloud
@@ -35,21 +36,7 @@ const ServerSideWordcloud: React.FC = () => {
         Im <span className="text-5xl">mobile dev</span> that likes to work with
       </h1>
       <div className="w-full h-full flex items-center justify-center">
-        {/* Statické vykreslení */}
-        {skillData.map((w, i) => (
-          <div
-            key={w.text}
-            style={{
-              fontSize: `${10 + (w.value / 100) * 90}px`,
-              fontFamily: "Impact",
-              transform: `rotate(${getRotationDegree()}deg)`,
-              color: ["#143059", "#2F6B9A", "#82a6c2"][i % 3],
-              margin: "5px",
-            }}
-          >
-            {w.text}
-          </div>
-        ))}
+        <ClientSideWordcloud />
       </div>
     </div>
   );

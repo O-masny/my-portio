@@ -71,36 +71,31 @@ const ClientSideWordcloud: React.FC = () => {
       ref={containerRef}
       className="flex flex-col items-center justify-center min-h-screen text-white"
     >
-      <h1 className="text-xl font-bold my-8 text-center">
-        Im <span className="text-5xl">mobile dev</span> that likes to work with
-      </h1>
-      <div className="w-full h-full flex items-center justify-center">
-        {/* Responzivní kontejner */}
-        <Wordcloud
-          words={skillData}
-          width={dimensions.width} // Dynamická šířka
-          height={dimensions.height} // Dynamická výška
-          fontSize={(datum) => fontScale(datum.value)}
-          font={"Impact"}
-          spiral={"archimedean"}
-          rotate={getRotationDegree} // Náhodná rotace
-        >
-          {(cloudWords) =>
-            cloudWords.map((w, i) => (
-              <motion.text
-                key={w.text}
-                fill={colors[i % colors.length]} // Použití memorovaných barev
-                textAnchor={"middle"}
-                transform={`translate(${w.x}, ${w.y}) rotate(${w.rotate})`} // Pozice a rotace
-                fontSize={w.size} // Velikost písma
-                fontFamily={w.font} // Rodina písem
-              >
-                {w.text}
-              </motion.text>
-            ))
-          }
-        </Wordcloud>
-      </div>
+      {/* Responzivní kontejner */}
+      <Wordcloud
+        words={skillData}
+        width={dimensions.width} // Dynamická šířka
+        height={dimensions.height} // Dynamická výška
+        fontSize={(datum) => fontScale(datum.value)}
+        font={"Impact"}
+        spiral={"archimedean"}
+        rotate={getRotationDegree} // Náhodná rotace
+      >
+        {(cloudWords) =>
+          cloudWords.map((w, i) => (
+            <motion.text
+              key={w.text}
+              fill={colors[i % colors.length]} // Použití memorovaných barev
+              textAnchor={"middle"}
+              transform={`translate(${w.x}, ${w.y}) rotate(${w.rotate})`} // Pozice a rotace
+              fontSize={w.size} // Velikost písma
+              fontFamily={w.font} // Rodina písem
+            >
+              {w.text}
+            </motion.text>
+          ))
+        }
+      </Wordcloud>
     </div>
   );
 };
