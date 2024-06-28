@@ -15,65 +15,53 @@ export default function LandingScreen() {
 
   useEffect(() => {
     const shapeCount = 16; // Počet obrazců
+    const windowHeight = typeof window !== "undefined" ? window.innerHeight : 0;
+    const windowWidth = typeof window !== "undefined" ? window.innerWidth : 0;
+
     const generatedShapes = Array.from({ length: shapeCount }, (_, index) => {
-      const width = 100; // Užší šířka
-      const height = 700; // Výška pro vertikální obrazce
+      const width = windowWidth / shapeCount; // Šířka rovnoměrně po celé obrazovce
+      const height = windowHeight; // Výška obrazovky
       const color = `rgba(${Math.random() * 50 + 50}, ${
         Math.random() * 50 + 50
       }, ${Math.random() * 50 + 50}, 0.7)`; // Tmavé barvy s vyšší průhledností
-
-      let initialX = 0;
-      if (typeof window !== "undefined") {
-        initialX = Math.random() * window.innerWidth; // Náhodné umístění na šířku
-      }
-      const initialY = 0; // Začínají zdola
 
       return {
         key: index,
         color,
         width,
         height,
-        initial: { opacity: 0, x: initialX, y: initialY },
+        initial: { opacity: 0, x: index * width, y: -windowHeight }, // Umístění nad obrazovkou
       };
     });
 
+    setShapes(generatedShapes);
+
     setTimeout(() => {
-      setShapes(generatedShapes);
-      controls.start({ opacity: 1 });
-    }, 1000); // Prodleva před zobrazením obrazců
-
-    const handleScroll = (): void => {
-      if (typeof window !== "undefined") {
-        const scrollPosition = globalThis.window?.scrollY; // Pozice scrollu
-        controls.start((i) => ({
-          y: -scrollPosition * 0.5, // Pohyb nahoru při scrollování
-          opacity: 1,
-        }));
-      }
-    };
-
-    if (typeof window !== "undefined") {
-      globalThis.window.addEventListener("scroll", handleScroll);
-    }
-
-    return () => {};
+      controls.start({
+        opacity: 1,
+        y: 0,
+        transition: { duration: 7, ease: "easeOut" },
+      });
+    }, 500); // Zpoždění před spuštěním animace
   }, [controls]);
 
   return (
-    <div id="home" className="relative h-screen w-full bg-black">
+    <div
+      id="home"
+      className="relative h-screen w-full bg-black overflow-hidden"
+    >
       {shapes.map((shape) => (
         <motion.div
           key={shape.key}
           initial={shape.initial}
           animate={controls}
           transition={{ duration: 1, ease: "easeOut" }} // Přechod
-          className={`absolute ${shape.color}`}
+          className="absolute"
           style={{
             backgroundColor: shape.color,
-            top: shape.initial.y, // Začíná zdola
-            left: 0,
-            right: 0,
-            width: shape.width,
+            top: 0,
+            left: shape.initial.x,
+            width: shape.width + 35,
             height: shape.height,
             opacity: 0.7,
           }}
@@ -84,7 +72,7 @@ export default function LandingScreen() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, ease: "easeOut" }} // Přechod
+          transition={{ duration: 7, ease: "easeOut" }} // Přechod
           className="text-center"
         >
           <h1 className="relative w-[max-content] font-mono text-2xl before:absolute before:inset-0 before:animate-typewriter before:bg-white after:absolute after:inset-0 after:w-[0.125em] after:animate-caret after:bg-black">

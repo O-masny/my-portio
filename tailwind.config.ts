@@ -14,11 +14,27 @@ const config: Config = {
   darkMode: 'class',
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      slidein: {
+        from: {
+          opacity: "0",
+          transform: "translateY(-10px)",
+        },
+        to: {
+          opacity: "1",
+          transform: "translateY(0)",
+        },
       },
+    },
+    animation2: {
+      slidein: "slidein 1s ease 300ms",
+    },
+
+    backgroundImage: {
+      'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+      'gradient-conic':
+        'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+    },
+
       animation: {
         typewriter: 'typewriter 2s steps(11) forwards',
         caret: 'typewriter 2s steps(11) forwards, blink 1s steps(11) infinite 2s',
@@ -47,8 +63,8 @@ const config: Config = {
           },
         },
       },
-    },
+  
     plugins: [],
   }
-}
+} 
 export default config
