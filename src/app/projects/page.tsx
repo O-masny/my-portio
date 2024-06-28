@@ -1,6 +1,6 @@
+import CardProject from "@/lib/components/card";
+import { projectDetails } from "@/lib/constats/about_me";
 import React from "react";
-import CardProject from "../components/card";
-import { projectDetails } from "../constats/about_me"; // Seznam projektů s detaily
 
 export default function PortfolioCardGrid() {
   return (

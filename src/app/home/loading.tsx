@@ -1,8 +1,8 @@
+"use client";
 import "../../styles/portfolio.css";
-
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { opacity, slideUp } from "../anim/anim";
+import { opacity, slideUp } from "@/lib/anim/anim";
 
 const words = [
   "Ahoj",
@@ -18,6 +18,7 @@ const words = [
 export default function WelcomePage() {
   const [index, setIndex] = useState(0);
   const [dimension, setDimension] = useState({ width: 0, height: 0 });
+  const [show, setShow] = useState(true);
 
   useEffect(() => {
     const updateDimensions = () => {
@@ -29,13 +30,19 @@ export default function WelcomePage() {
     updateDimensions();
 
     return () => {
-      if (typeof window !== "undefined")
+      if (typeof window !== "undefined") {
         window.removeEventListener("resize", updateDimensions);
+      }
     };
   }, []);
 
   useEffect(() => {
-    if (index === words.length - 1) return;
+    if (index === words.length - 1) {
+      setTimeout(() => {
+        setShow(false);
+      }, 1000); // Delay before hiding the splash screen
+      return;
+    }
     const timeout = setTimeout(
       () => {
         setIndex(index + 1);
@@ -43,7 +50,6 @@ export default function WelcomePage() {
       index === 0 ? 1000 : 150
     );
 
-    // Cleanup timeout on component unmount or index change
     return () => clearTimeout(timeout);
   }, [index]);
 
@@ -66,6 +72,8 @@ export default function WelcomePage() {
       transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1], delay: 0.3 },
     },
   };
+
+  if (!show) return null;
 
   return (
     <motion.div

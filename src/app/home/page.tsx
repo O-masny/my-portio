@@ -1,21 +1,20 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import LocomotiveScroll from "locomotive-scroll";
-import ContactPage from "./contact_page";
 
-import PortfolioCardGrid from "./portfolio_page";
-import NavigationButton from "../components/buttons/navigation_button";
-import EducationAndHobbies from "./hobbies";
-import ResponsiveWordcloud from "./experience_page";
-import LandingScreen from "./landing_page";
+import NavigationButton from "../../lib/components/buttons/navigation_button";
+import EducationAndHobbies from "../../lib/pages/hobbies";
+import ResponsiveWordcloud from "../experience/page";
+import LandingScreen from "../../lib/pages/landing_page";
+import PortfolioCardGrid from "../projects/page";
+import ContactPage from "../contact/page";
 
 const sections = [
   { name: "home", id: "home", Component: LandingScreen },
   { name: "experience", id: "experience", Component: ResponsiveWordcloud },
-
   { name: "hobbies", id: "hobbies", Component: EducationAndHobbies },
-  { name: "contact", id: "contact", Component: ContactPage },
   { name: "portfolio", id: "portfolio", Component: PortfolioCardGrid },
+  { name: "contact", id: "contact", Component: ContactPage },
 ];
 
 export default function HomepageScreen() {
@@ -37,16 +36,6 @@ export default function HomepageScreen() {
       }
     };
   }, [containerRef]); // Trigger the effect when containerRef changes
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-
-      if (containerRef.current) {
-        containerRef.current.scrollTop = 0; // Set scrollTop to 0
-      }
-    }, 2000);
-  }, []); // Provádí se pouze na klientské straně
 
   const scrollToSection = (sectionIndex: number) => {
     const section = sections[sectionIndex];

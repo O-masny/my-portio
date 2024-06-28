@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Bitter } from "next/font/google";
 import "../app/globals.css";
+import WelcomePage from "./home/loading";
+import SplashScreenProvider from "@/lib/anim/splash_screen_provider";
 const fonts = Bitter({
   subsets: ["latin"],
   display: "swap",
@@ -18,7 +20,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={fonts.className}>
-      <body>{children}</body>
+      <body className={fonts.className}>
+        <SplashScreenProvider> {children}</SplashScreenProvider>
+      </body>
     </html>
   );
 }

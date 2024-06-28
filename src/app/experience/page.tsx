@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState, useRef, useMemo } from "react";
 import { motion } from "framer-motion"; // Import pouze toho, co je potřeba z framer-motion
 import { scaleLog } from "@visx/scale";
