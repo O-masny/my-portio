@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function EducationAndHobbies() {
   const [contrastMode, setContrastMode] = useState(false);
-  const [section, setSection] = useState("Education"); // Výchozí sekce je Education
+  const [section, setSection] = useState("Art"); // Výchozí sekce je Education
 
   const handleToggleContrast = () => {
     setContrastMode(!contrastMode);
@@ -104,22 +104,10 @@ export default function EducationAndHobbies() {
             transition={{ duration: 2, ease: "easeOut", delay: 0.5 }}
             className="mt-8 text-center"
           >
-            <h2 className="text-4xl font-bold">Art</h2>
-            <p className="text-xl">PAXINTXNG</p>
+            <p className="text-4xl">PAXNTXNGS</p> <Slider />
           </motion.div>
         )}
       </div>
-      {section === "Art" && (
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={educationVariants}
-          transition={{ duration: 2, ease: "easeOut" }}
-          className="mt-8 text-center "
-        >
-          <Slider />
-        </motion.div>
-      )}
     </div>
   );
 }
