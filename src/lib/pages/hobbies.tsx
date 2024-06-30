@@ -39,6 +39,7 @@ export default function EducationAndHobbies() {
       id="education"
       className={`flex flex-col items-start justify-center ${sectionStyle} ${textColor}`}
     >
+      <div className="h-64"></div>
       <div className="relative text-5xl mb-8 px-4 py-2 flex justify-around w-full items-center">
         {/* Background Circles */}
         <div className="absolute w-full h-full flex justify-around items-center">

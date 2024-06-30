@@ -7,8 +7,8 @@ import PaintingCard from "@/lib/components/cards/painting_card";
 const PaintingsPage = () => {
   return (
     <div className="container mx-auto px-4 py-8">
-      <Link href="/">
-        <div className="absolute top-2 left-2 cursor-pointer">
+      <Link href="/" shallow={true}>
+        <div className="fixed top-2 left-2 cursor-pointer">
           <FiArrowLeft className="text-gray-500 w-6 h-6" />
         </div>
       </Link>
