@@ -17,9 +17,7 @@ const ResponsiveWordcloud = dynamic(() => import("../../app/experience/page"), {
 const LandingScreen = dynamic(() => import("../../lib/pages/landing_page"), {
   ssr: false,
 });
-const PortfolioCardGrid = dynamic(() => import("../../app/projects/page"), {
-  ssr: false,
-});
+
 const ContactPage = dynamic(() => import("../../app/contact/page"), {
   ssr: false,
 });
@@ -28,7 +26,6 @@ const sections = [
   { name: "home", id: "home", Component: LandingScreen },
   { name: "experience", id: "experience", Component: ResponsiveWordcloud },
   { name: "hobbies", id: "hobbies", Component: EducationAndHobbies },
-  { name: "portfolio", id: "portfolio", Component: PortfolioCardGrid },
   { name: "contact", id: "contact", Component: ContactPage },
 ];
 
@@ -87,7 +84,7 @@ const ClientSideHomepage = () => {
   };
 
   return (
-    <div ref={containerRef}>
+    <div className="space-y-12" ref={containerRef}>
       {sections.map((section) => {
         const { Component } = section;
         return (

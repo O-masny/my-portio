@@ -3,6 +3,7 @@ import { Bitter } from "next/font/google";
 import "../app/globals.css";
 import SplashScreenProvider from "@/lib/anim/splash_screen_provider";
 import WelcomePage from "@/lib/pages/welcome_page";
+import ScrollAnimation from "@/lib/components/utils/square_scroll";
 const fonts = Bitter({
   subsets: ["latin"],
   display: "swap",
@@ -21,7 +22,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={fonts.className}>
       <body className={fonts.className}>
-        {/*<WelcomePage />*/} {children}
+        <WelcomePage /> {children}
+        <ScrollAnimation />
       </body>
     </html>
   );

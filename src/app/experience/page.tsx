@@ -30,10 +30,13 @@ const ServerSideWordcloud: React.FC = () => {
   return (
     <div
       id="experience"
-      className="flex flex-col items-center justify-center min-h-screen text-white"
+      className="flex flex-col items-center justify-end min-h-screen text-white"
     >
-      <h1 className="text-xl font-bold my-8 text-center">
-        Im <span className="text-5xl">mobile dev</span> that likes to work with
+      <h1
+        className="text-xl font-bold my-8 space-y-6
+        text-center"
+      >
+        Im <span className="text-5xl ">mobile dev</span> that likes to work with
       </h1>
       <div className="w-full h-full flex items-center justify-center">
         <ClientSideWordcloud />

@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -41,9 +42,11 @@ const itemVariants = {
 
 export default function Achievements() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-blue-800 to-blue-500 text-white p-8">
+    <div className="flex flex-col  items-center justify-center min-h-screen bg-gradient-to-r from-blue-800 to-blue-500 text-white p-8">
+      <h1 className="text-4xl font-bold mb-8">My suffered achievements</h1>
+
       <motion.div
-        className="w-full max-w-4xl mb-16"
+        className="max-w-4xl mb-16"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -52,12 +55,24 @@ export default function Achievements() {
         {completedAchievements.map((achievement, index) => (
           <motion.div
             key={index}
-            className="p-4 mb-4 bg-white text-black rounded-lg shadow-lg flex flex-col sm:flex-row justify-between items-center"
+            className="p-4 mb-4 bg-white   min-w-full text-black rounded-lgshadow-lg flex flex-col sm:flex-row justify-between items-center"
             variants={itemVariants}
           >
-            <div className="text-center sm:text-left">
-              <h2 className="text-2xl font-semibold">{achievement.title}</h2>
-              <p className="text-lg">{achievement.institution}</p>
+            <div className="flex items-center">
+              <div className="text-center sm:text-left">
+                <h2 className="text-2xl font-semibold">{achievement.title}</h2>
+                <p className="text-lg flex items-center">
+                  {achievement.institution}
+                  <div className="ml-4 relative w-12 h-12 sm:w-16 sm:h-16">
+                    <Image
+                      src={`/images/fai.png`}
+                      alt="FAI Logo"
+                      layout="fill"
+                      objectFit="contain"
+                    />
+                  </div>
+                </p>
+              </div>
             </div>
             <p className="text-lg mt-2 sm:mt-0 sm:ml-4">{achievement.year}</p>
           </motion.div>
@@ -70,16 +85,28 @@ export default function Achievements() {
         initial="hidden"
         animate="visible"
       >
-        <h2 className="text-3xl font-semibold mb-4">Ongoing Achievements</h2>
+        <h2 className="text-3xl font-semibold mb-4">Ongoing</h2>
         {ongoingAchievements.map((achievement, index) => (
           <motion.div
             key={index}
             className="p-4 mb-4 bg-white text-black rounded-lg shadow-lg flex flex-col sm:flex-row justify-between items-center"
             variants={itemVariants}
           >
-            <div className="text-center sm:text-left">
-              <h2 className="text-2xl font-semibold">{achievement.title}</h2>
-              <p className="text-lg">{achievement.institution}</p>
+            <div className="flex items-center">
+              <div className="text-center sm:text-left">
+                <h2 className="text-2xl font-semibold">{achievement.title}</h2>
+                <p className="text-lg flex items-center">
+                  {achievement.institution}
+                  <div className="ml-4 relative w-12 h-12 sm:w-16 sm:h-16">
+                    <Image
+                      src={`/images/fai.png`}
+                      alt="FAI Logo"
+                      layout="fill"
+                      objectFit="contain"
+                    />
+                  </div>
+                </p>
+              </div>
             </div>
             <p className="text-lg mt-2 sm:mt-0 sm:ml-4">{achievement.year}</p>
           </motion.div>

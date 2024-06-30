@@ -1,16 +1,14 @@
 "use client";
-
 import { useEffect } from "react";
 import styles from "../../../styles/image_slide.module.css";
 
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
-export default function StickCursor({}) {
+export default function StickCursor() {
   const cursorSize = 15;
 
   const mouse = {
     x: useMotionValue(0),
-
     y: useMotionValue(0),
   };
 
@@ -18,14 +16,12 @@ export default function StickCursor({}) {
 
   const smoothMouse = {
     x: useSpring(mouse.x, smoothOptions),
-
     y: useSpring(mouse.y, smoothOptions),
   };
 
   const manageMouseMove = (e: { clientX: number; clientY: number }) => {
     if (typeof window !== "undefined") {
       mouse.x.set(e.clientX - cursorSize / 2);
-
       mouse.y.set(e.clientY + window.scrollY - cursorSize / 2);
     }
   };
@@ -38,7 +34,7 @@ export default function StickCursor({}) {
         window.removeEventListener("mousemove", manageMouseMove);
       };
     }
-  });
+  }, []);
 
   return (
     <div className={styles.cursorContainer}>
