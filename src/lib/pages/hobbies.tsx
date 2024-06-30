@@ -41,38 +41,38 @@ export default function EducationAndHobbies() {
         {/* Background Circles */}
         <div className="absolute w-full h-full flex justify-around items-center">
           <div
-            className={`absolute w-40 h-40 rounded-full flex items-center justify-center ${
+            className={`absolute w-40 h-40 rounded-full flex items-center justify-center cursor-pointer ${
               section === "Education" ? "bg-white" : "border-2 border-white"
             }`}
             style={{ left: "20%", transform: "translate(-50%, -50%)" }}
+            onClick={() => handleSectionChange("Education")}
           >
-            <button
-              onClick={() => handleSectionChange("Education")}
-              className={`text-xl font-bold hover:text-yellow-400 relative z-20 ${
+            <span
+              className={`text-xl font-bold relative z-20 ${
                 section === "Education"
                   ? "text-black"
                   : "text-white border-2 border-black"
               }`}
             >
               Education
-            </button>
+            </span>
           </div>
           <div
-            className={`absolute w-32 h-32 rounded-full flex items-center justify-center ${
+            className={`absolute w-32 h-32 rounded-full flex items-center justify-center cursor-pointer ${
               section === "Art" ? "bg-white" : "border-2 border-white"
             }`}
             style={{ left: "80%", transform: "translate(-50%, -50%)" }}
+            onClick={() => handleSectionChange("Art")}
           >
-            <button
-              onClick={() => handleSectionChange("Art")}
-              className={`text-xl font-bold hover:text-red-700 relative z-20 ${
+            <span
+              className={`text-xl font-bold relative z-20 ${
                 section === "Art"
                   ? "text-black"
                   : "text-white border-2 border-black"
               }`}
             >
               Art
-            </button>
+            </span>
           </div>
         </div>
       </div>
