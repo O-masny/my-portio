@@ -42,8 +42,6 @@ const itemVariants = {
 export default function Achievements() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-blue-800 to-blue-500 text-white p-8">
-      <h1 className="text-4xl font-bold mb-8">My Academic Achievements</h1>
-
       <motion.div
         className="w-full max-w-4xl mb-16"
         variants={containerVariants}
