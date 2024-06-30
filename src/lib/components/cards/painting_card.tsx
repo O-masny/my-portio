@@ -14,8 +14,8 @@ const PaintingCard: React.FC<PaintingCardProps> = ({ painting }) => {
   return (
     <div className="relative">
       <Link href={`/paintings/${painting.id}`}>
-        <div className="block p-4 border border-gray-300 rounded-lg hover:shadow-lg transition-shadow duration-200">
-          <div className="relative w-full h-40 mb-2">
+        <div className="block p-4  rounded-lg hover:shadow-lg transition-shadow duration-200">
+          <div className="relative w-full h-80 mb-2">
             <Image
               src={painting.imageUrl}
               alt={painting.title}

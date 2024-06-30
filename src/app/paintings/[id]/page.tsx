@@ -12,10 +12,11 @@ export default function Page({ params }: { params: Painting }) {
     return <div>Painting not found</div>;
   }
   return (
-    <div className="container mx-auto px-4 py-8 relative bg-gradient-to-b from-gray-800 to-gray-900 text-white">
-      <Link href="/paintings">
-        <div className="fixed top-2 left-2 bg-gray-700 p-2 rounded-full">
-          <FiArrowLeft className="text-gray-300 w-6 h-6" />
+    <div className="container mx-auto px-4 py-8 relative  text-white">
+      <Link href="/paintings" shallow={true}>
+        <div className="fixed flex-row flex top-4 left-2 px-4 cursor-pointer">
+          <FiArrowLeft className="text-white w-6 h-6" />{" "}
+          <p className="ml-4">Paintings</p>
         </div>
       </Link>
       <div className="relative w-full h-96 mb-8">

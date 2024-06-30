@@ -3,17 +3,19 @@ import Link from "next/link";
 import { FiArrowLeft } from "react-icons/fi"; // Import ikony šipky zpět
 import { paintingsData } from "@/lib/data/data";
 import PaintingCard from "@/lib/components/cards/painting_card";
+import Footer from "@/lib/components/footer";
 
 const PaintingsPage = () => {
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4">
       <Link href="/" shallow={true}>
-        <div className="fixed top-2 left-2 cursor-pointer">
-          <FiArrowLeft className="text-gray-500 w-6 h-6" />
+        <div className="fixed flex-row flex top-4 left-2 px-4 cursor-pointer">
+          <FiArrowLeft className="text-white w-6 h-6" />{" "}
+          <p className="ml-4">Homepage</p>
         </div>
       </Link>
-      <h1 className="text-3xl font-bold mb-6">Paintings</h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <h1 className="text-3xl font-bold pt-16">Paintings</h1>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6  py-8">
         {paintingsData.map((painting) => (
           <div key={painting.id}>
             <Link href={"/paintings/" + painting.id}>
@@ -22,6 +24,7 @@ const PaintingsPage = () => {
           </div>
         ))}
       </div>
+      <Footer />
     </div>
   );
 };
