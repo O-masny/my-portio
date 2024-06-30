@@ -1,5 +1,7 @@
+"use client";
 import { useEffect, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
+import CrissCrossText from "../components/utils/criss_cross";
 
 interface Shape {
   key: number;
@@ -60,25 +62,27 @@ export default function LandingScreen() {
       id="home"
       className="relative h-screen w-full bg-black overflow-hidden"
     >
-      {shapes.map((shape) => (
-        <motion.div
-          key={shape.key}
-          initial={shape.initial}
-          animate={controls}
-          transition={{ duration: 1, ease: "easeOut" }} // Přechod
-          className="absolute"
-          style={{
-            backgroundColor: shape.color,
-            top: 0,
-            left: shape.initial.x,
-            width: shape.width + 35,
-            height: shape.height,
-            opacity: 0.7,
-          }}
-        />
-      ))}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
+        {shapes.map((shape) => (
+          <motion.div
+            key={shape.key}
+            initial={shape.initial}
+            animate={controls}
+            transition={{ duration: 1, ease: "easeOut" }} // Přechod
+            className="absolute"
+            style={{
+              backgroundColor: shape.color,
+              top: 0,
+              left: shape.initial.x,
+              width: shape.width,
+              height: shape.height,
+              opacity: 0.7,
+            }}
+          />
+        ))}
+      </div>
 
-      <div className="relative h-screen flex justify-center items-center text-white">
+      <div className="relative h-full flex justify-center items-center text-white">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

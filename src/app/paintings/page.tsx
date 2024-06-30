@@ -9,7 +9,7 @@ const PaintingsPage = () => {
   return (
     <div className="container mx-auto px-4">
       <Link href="/" shallow={true}>
-        <div className="fixed flex-row flex top-4 left-2 px-4 cursor-pointer">
+        <div className="fixed z-10 flex-row flex top-4 left-2 px-4 cursor-pointer">
           <FiArrowLeft className="text-white w-6 h-6" />{" "}
           <p className="ml-4">Homepage</p>
         </div>

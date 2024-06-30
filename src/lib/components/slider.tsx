@@ -64,12 +64,11 @@ export default function Slider() {
   const { scrollYProgress } = useScroll({
     target: container,
     offset: ["start end", "end start"],
-  }); // Transformace pro horizontální posuv
+  });
 
-  const x1 = useTransform(scrollYProgress, [0, 1], [0, -300]);
-  const x2 = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  const x1 = useTransform(scrollYProgress, [0, 1], [0, -150]);
+  const x2 = useTransform(scrollYProgress, [0, 1], [-150, 50]);
 
-  // State pro sledování zobrazení full-screen obrázku
   const [fullScreenImage, setFullScreenImage] = useState<string | null>(null);
 
   const openFullScreen = (src: string) => {
@@ -85,62 +84,55 @@ export default function Slider() {
       <div
         id="Carousel"
         ref={container}
-        className="flex flex-col space-y-10 overflow-hidden relative" // Styl posuvníku
+        className="flex flex-col space-y-10 overflow-hidden relative"
       >
-        {/* První horizontální posuv */}
-        <motion.div
-          style={{ x: x1 }}
-          className="flex space-x-10 w-full" // Styl pro horizontální posuv
-        >
+        <motion.div style={{ x: x1 }} className="flex space-x-4 w-full">
           {slider1.map((project, index) => (
             <div
               key={index}
-              className="bg-gray-200 relative cursor-pointer"
-              style={{ width: 400, height: 300 }}
+              className="relative cursor-pointer flex-shrink-0"
+              style={{ width: "calc(100vw / 4)", height: "50vh" }}
               onClick={() => openFullScreen(`/images/${project.src}`)}
             >
               <Image
                 src={`/images/${project.src}`}
                 alt="image"
                 layout="fill"
-                objectFit="cover" // Udržuje konzistenci velikosti a zobrazení
+                objectFit="cover"
+                className="rounded-lg"
               />
             </div>
           ))}
         </motion.div>
 
-        {/* Druhý horizontální posuv */}
-        <motion.div
-          style={{ x: x2 }}
-          className="flex space-x-10 w-full" // Styl pro horizontální posuv
-        >
+        <motion.div style={{ x: x2 }} className="flex space-x-4 ">
           {slider2.map((project, index) => (
             <div
               key={index}
-              className="flex-none w-60 h-60 bg-gray-300 relative cursor-pointer"
-              style={{ width: 400, height: 300 }}
+              className="relative cursor-pointer flex-shrink-0"
+              style={{ width: "calc(100vw / 4.5)", height: "50vh" }}
               onClick={() => openFullScreen(`/images/${project.src}`)}
             >
               <Image
                 src={`/images/${project.src}`}
                 alt="image"
                 layout="fill"
-                objectFit="cover" // Udržuje konzistenci velikosti a zobrazení
+                objectFit="cover"
+                className="rounded-lg"
               />
             </div>
           ))}
         </motion.div>
       </div>
 
-      {/* Full-screen zobrazení obrázku */}
       {fullScreenImage && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="fixed top-0 left-0 w-full h-full flex justify-center items-center z-50 bg-black bg-opacity-100 overflow-auto"
-          onClick={closeFullScreen} // Zavření full-screen po kliknutí mimo obrázek
+          className="fixed top-0 left-0 w-full h-full flex justify-center items-center z-50 bg-black bg-opacity-75 overflow-auto"
+          onClick={closeFullScreen}
         >
-          <div className="relative h-screen max-w-screen-lg w-full p-15">
+          <div className="relative max-w-full h-full">
             <button
               className="absolute top-4 right-4 text-white"
               onClick={closeFullScreen}
@@ -152,17 +144,8 @@ export default function Slider() {
                 src={fullScreenImage}
                 alt="image"
                 layout="fill"
-                objectFit="contain" // Udržuje konzistenci velikosti a zobrazení
+                objectFit="contain"
               />
-              <div
-                className="absolute inset-x-0 bottom-0 p-4 bg-black bg-opacity-50 overflow-y-auto"
-                onClick={(e) => e.stopPropagation()} // Zabránění šíření kliknutí na rodičovské prvky
-              >
-                <h2 className="text-2xl">{slider1.concat(slider2)[0].title}</h2>
-                <p className="text-lg">
-                  {slider1.concat(slider2)[0].description}
-                </p>
-              </div>
             </div>
           </div>
         </motion.div>
