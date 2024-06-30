@@ -17,9 +17,7 @@ const PaintingsPage = () => {
         {paintingsData.map((painting) => (
           <div key={painting.id}>
             <Link href={"/paintings/" + painting.id}>
-              <div className="block p-4 border border-gray-300 rounded-lg hover:shadow-lg transition-shadow duration-200">
-                <PaintingCard painting={painting} />
-              </div>
+              <PaintingCard painting={painting} />
             </Link>
           </div>
         ))}

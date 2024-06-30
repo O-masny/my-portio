@@ -5,6 +5,10 @@ import React from "react";
 export default function PortfolioCardGrid() {
   return (
     <div id="portfolio" className="flex flex-col items-center w-full h-full">
+      <div className="h-32"></div>{" "}
+      <div className="py-6 text-3xl">
+        <p> My projects</p>
+      </div>
       {projectDetails.map((project, index) => (
         <CardProject
           key={index}

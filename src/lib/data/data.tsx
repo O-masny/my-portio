@@ -39,4 +39,46 @@ export const paintingsData = [
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     imageUrl: "/images/pic6.jpeg",
   },
+  {
+    id: "7",
+    title: "Title ",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    imageUrl: "/images/compare_now.jpeg",
+  },
+  {
+    id: "8",
+    title: "Title 6",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    imageUrl: "/images/corona.jpeg",
+  },
+  {
+    id: "9",
+    title: "Title 6",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    imageUrl: "/images/godness_fert.jpeg",
+  },
+  {
+    id: "10",
+    title: "Title 6",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    imageUrl: "/images/oc_II.jpeg",
+  },
+  {
+    id: "11",
+    title: "Title 6",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    imageUrl: "/images/white_moon.jpeg",
+  },
+  {
+    id: "12",
+    title: "Title 6",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    imageUrl: "/images/primitives.jpeg",
+  },
+  {
+    id: "10",
+    title: "Title 6",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    imageUrl: "/images/wall.jpeg",
+  },
 ];

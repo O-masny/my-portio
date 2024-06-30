@@ -8,7 +8,7 @@ import Link from "next/link";
 
 export default function EducationAndHobbies() {
   const [contrastMode, setContrastMode] = useState(false);
-  const [section, setSection] = useState("Art"); // Výchozí sekce je Art
+  const [section, setSection] = useState("Art");
 
   const handleToggleContrast = () => {
     setContrastMode(!contrastMode);
@@ -19,8 +19,8 @@ export default function EducationAndHobbies() {
   };
 
   const sectionStyle = contrastMode
-    ? "bg-gradient-to-r from-white to-red-500" // Kontrastní styl
-    : "bg-gradient-to-r from-blue-800 to-blue-500"; // Výchozí styl s tmavšími barvami
+    ? "bg-gradient-to-r from-white to-red-500"
+    : "bg-gradient-to-r from-blue-800 to-blue-500";
 
   const textColor = contrastMode ? "text-black" : "text-white";
 
@@ -37,14 +37,13 @@ export default function EducationAndHobbies() {
   return (
     <div
       id="education"
-      className={`flex flex-col items-start justify-center ${sectionStyle} ${textColor}`}
+      className={`flex flex-col items-start justify-center min-h-screen ${sectionStyle} ${textColor}`}
     >
       <div className="h-64"></div>
       <div className="relative text-5xl mb-8 px-4 py-2 flex justify-around w-full items-center">
-        {/* Background Circles */}
         <div className="absolute w-full h-full flex justify-around items-center">
           <div
-            className={`absolute w-40 h-40 rounded-full flex items-center justify-center cursor-pointer ${
+            className={`absolute w-32 h-32 md:w-40 md:h-40 rounded-full flex items-center justify-center cursor-pointer ${
               section === "Education" ? "bg-white" : "border-2 border-white"
             }`}
             style={{ left: "20%", transform: "translate(-50%, -50%)" }}
@@ -61,7 +60,7 @@ export default function EducationAndHobbies() {
             </span>
           </div>
           <div
-            className={`absolute w-32 h-32 rounded-full flex items-center justify-center cursor-pointer ${
+            className={`absolute w-32 h-32 md:w-40 md:h-40 rounded-full flex items-center justify-center cursor-pointer ${
               section === "Art" ? "bg-white" : "border-2 border-white"
             }`}
             style={{ left: "80%", transform: "translate(-50%, -50%)" }}
@@ -80,7 +79,6 @@ export default function EducationAndHobbies() {
         </div>
       </div>
       <div className="flex flex-col items-center w-full">
-        {/* Obsah podle vybrané sekce */}
         {section === "Education" && (
           <motion.div
             initial="hidden"
@@ -89,10 +87,9 @@ export default function EducationAndHobbies() {
             transition={{ duration: 2, ease: "easeOut" }}
             className="mt-8 text-center"
           >
-            <Achievements />
+            <Achievements /> <PortfolioCardGrid />
           </motion.div>
         )}
-
         {section === "Art" && (
           <motion.div
             initial="hidden"
@@ -102,18 +99,17 @@ export default function EducationAndHobbies() {
             className="mt-8 text-center"
           >
             <h2 className="text-4xl font-bold mb-8">PAINTINGS</h2>
-            <Slider />{" "}
+            <Slider />
             <div className="container mx-auto px-4 py-8">
               <h1 className="text-3xl font-bold mb-6">Art Gallery</h1>
-              <Link href="/paintings">
+              <Link href="/paintings" shallow={true}>
                 <p className="text-blue-500 hover:underline">Go to Paintings</p>
               </Link>
             </div>
             <div className="h-32"></div>
-            <PortfolioCardGrid />
           </motion.div>
         )}
-      </div>{" "}
+      </div>
     </div>
   );
 }
