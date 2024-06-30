@@ -14,27 +14,33 @@ export default function LandingScreen() {
   const controls = useAnimation(); // Ovládání animací
 
   useEffect(() => {
-    const shapeCount = 16; // Počet obrazců
-    const windowHeight = typeof window !== "undefined" ? window.innerHeight : 0;
-    const windowWidth = typeof window !== "undefined" ? window.innerWidth : 0;
+    const generateShapes = () => {
+      const shapeCount = 16; // Počet obrazců
+      const windowHeight = window.innerHeight;
+      const windowWidth = window.innerWidth;
 
-    const generatedShapes = Array.from({ length: shapeCount }, (_, index) => {
-      const width = windowWidth / shapeCount; // Šířka rovnoměrně po celé obrazovce
-      const height = windowHeight; // Výška obrazovky
-      const color = `rgba(${Math.random() * 50 + 50}, ${
-        Math.random() * 50 + 50
-      }, ${Math.random() * 50 + 50}, 0.7)`; // Tmavé barvy s vyšší průhledností
+      const generatedShapes = Array.from({ length: shapeCount }, (_, index) => {
+        const width = windowWidth / shapeCount; // Šířka rovnoměrně po celé obrazovce
+        const height = windowHeight; // Výška obrazovky
+        const color = `rgba(${Math.random() * 50 + 50}, ${
+          Math.random() * 50 + 50
+        }, ${Math.random() * 50 + 50}, 0.7)`; // Tmavé barvy s vyšší průhledností
 
-      return {
-        key: index,
-        color,
-        width,
-        height,
-        initial: { opacity: 0, x: index * width, y: -windowHeight }, // Umístění nad obrazovkou
-      };
-    });
+        return {
+          key: index,
+          color,
+          width,
+          height,
+          initial: { opacity: 0, x: index * width, y: -windowHeight }, // Umístění nad obrazovkou
+        };
+      });
 
-    setShapes(generatedShapes);
+      setShapes(generatedShapes);
+    };
+
+    generateShapes();
+
+    window.addEventListener("resize", generateShapes);
 
     setTimeout(() => {
       controls.start({
@@ -43,6 +49,10 @@ export default function LandingScreen() {
         transition: { duration: 7, ease: "easeOut" },
       });
     }, 500); // Zpoždění před spuštěním animace
+
+    return () => {
+      window.removeEventListener("resize", generateShapes);
+    };
   }, [controls]);
 
   return (

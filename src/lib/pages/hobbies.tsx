@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Slider from "../components/slider";
 import Image from "next/image";
+import Achievements from "../components/achievements";
 
 export default function EducationAndHobbies() {
   const [contrastMode, setContrastMode] = useState(false);
@@ -16,10 +17,13 @@ export default function EducationAndHobbies() {
   };
 
   const sectionStyle = contrastMode
-    ? "radial-gradient(circle, white, red)" // Kontrastní styl
-    : "radial-gradient(circle, #1e3a8a, #3b82f6)"; // Výchozí styl s tmavšími barvami
+    ? "bg-gradient-to-r from-white to-red-500" // Kontrastní styl
+    : "bg-gradient-to-r from-blue-800 to-blue-500"; // Výchozí styl s tmavšími barvami
 
   const textColor = contrastMode ? "text-black" : "text-white";
+
+  const circlePosition =
+    section === "Education" ? { left: "0%" } : { left: "50%" };
 
   const educationVariants = {
     hidden: { opacity: 0, y: 100 },
@@ -31,33 +35,15 @@ export default function EducationAndHobbies() {
     visible: { opacity: 1, y: 0 },
   };
 
-  const circlePosition =
-    section === "Education" ? { left: "0%" } : { left: "50%" };
-
   return (
     <div
       id="education"
-      className={`p-16  items-center text-5xl justify-center flex flex-col min-h-screen ${textColor}`}
+      className={`flex flex-col items-center justify-center  ${sectionStyle} ${textColor}`}
     >
-      <div className="relative  mb-8 px-4 py-2 justify-between bg-slate-700 w-screen items-center flex row-auto">
-        <motion.div
-          className="absolute top-0 bottom-0 w-1/2 h-full rounded-full"
-          initial={circlePosition}
-          animate={circlePosition}
-          color="white"
-          transition={{ type: "spring", stiffness: 300, damping: 30 }}
-          style={{
-            width: "100vh",
-            height: "100vw",
-            borderRadius: "50%",
-            zIndex: 10,
-          }}
-        />
-        <div className="h-16" />
-
+      <div className="relative text-5xl mb-8 px-4 py-2 flex justify-between bg-slate-800 w-full items-center">
         <button
           onClick={() => handleSectionChange("Education")}
-          className={`hover:text-yellow-400 px-4 py-2 relative z-10 ${
+          className={`hover:text-yellow-400 px-4 py-2 relative z-20 ${
             section === "Education" ? "text-white" : "text-black"
           }`}
         >
@@ -65,34 +51,34 @@ export default function EducationAndHobbies() {
         </button>
         <button
           onClick={() => handleSectionChange("Art")}
-          className={`hover:text-red-700 px-4 py-2 relative z-10 ${
+          className={`hover:text-red-700 px-4 py-2 relative z-20 ${
             section === "Art" ? "text-white" : "text-black"
           }`}
         >
           Art
         </button>
       </div>
-      <div className="flex flex-col    h-screen">
+
+      <div className="flex flex-col items-center justify-center w-full h-full">
         {/* Obsah podle vybrané sekce */}
         {section === "Education" && (
           <motion.div
             initial="hidden"
             animate="visible"
             variants={educationVariants}
-            transition={{ duration: 1, ease: "easeOut" }} // Přechod a animace
-            className="text-center"
+            transition={{ duration: 2, ease: "easeOut" }}
+            className="mt-8 text-center"
           >
-            <h2 className="text-4xl font-bold space-y-16">Education</h2>
-            <p className="text-xl">Bachelors degree at UTB FAI</p>{" "}
-            <div className="bg-white relative w-screen my-4">
-              {" "}
+            {" "}
+            <div className="relative w-full my-4 flex justify-center bg-slate-400">
               <Image
                 src={`/images/fai.png`}
-                alt="image"
-                height={200}
+                alt="FAI Logo"
+                height={400}
                 width={600}
-              />{" "}
-            </div>{" "}
+              />
+            </div>
+            <Achievements />
           </motion.div>
         )}
 
@@ -101,10 +87,11 @@ export default function EducationAndHobbies() {
             initial="hidden"
             animate="visible"
             variants={educationVariants}
-            transition={{ duration: 2, ease: "easeOut", delay: 0.5 }}
+            transition={{ duration: 2, ease: "easeOut" }}
             className="mt-8 text-center"
           >
-            <p className="text-4xl">PAXNTXNGS</p> <Slider />
+            <h2 className="text-4xl font-bold mb-8">PAXNTXNGS</h2>
+            <Slider />
           </motion.div>
         )}
       </div>

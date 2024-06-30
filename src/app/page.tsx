@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 import Footer from "@/lib/components/footer";
-import Navbar from "@/lib/components/navabr/navbar_body";
 import StickCursor from "@/lib/components/utils/cursor";
+import NavbarComponent from "@/lib/components/navabr/navbar";
 
 // Dynamicky importujeme WelcomePage, která je klientskou komponentou
 const WelcomePage = dynamic(() => import("../lib/pages/welcome_page"), {
@@ -20,7 +20,6 @@ export default function Home() {
       <StickCursor />
       <HomepageScreen />
       <Footer />
-      <Navbar links={[]} />
     </div>
   );
 }

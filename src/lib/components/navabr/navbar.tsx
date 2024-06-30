@@ -4,7 +4,7 @@ import styles from "../../../styles/navbar.module.css";
 import { useState } from "react";
 import Navbar, { ILink, LinkArray } from "./navbar_body";
 
-export default function Home() {
+export default function NavbarComponent() {
   const [isActive, setIsActive] = useState(false);
 
   return (

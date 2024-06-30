@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={fonts.className}>
       <body className={fonts.className}>
-        <WelcomePage /> {children}
+        {/*<WelcomePage />*/} {children}
       </body>
     </html>
   );
