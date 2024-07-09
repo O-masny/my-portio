@@ -14,28 +14,32 @@ const NavigationButton: React.FC<NavigationButtonProps> = ({
   onClickNext,
   onClickPrevious,
 }) => {
+  const isFirstSection = currentSectionIndex === 0;
   const isLastSection = currentSectionIndex === totalSections - 1;
 
   return (
     <div>
-      {/* Zobrazí tlačítko pro navigaci nahoru, pouze pokud není na první sekci */}
-      {currentSectionIndex > 0 && (
+      {/* Display up arrow button only if not on the first section */}
+      {!isFirstSection && (
         <motion.button
-          className="fixed bottom-20 right-10 p-5 bg-blue-500 text-white rounded-full shadow-lg"
+          className="fixed bottom-20 right-10 p-5 opacity-75 bg-white border-black text-white rounded-full shadow-lg"
           onClick={onClickPrevious}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
         >
-          {currentSectionIndex !== 0 && <FaArrowUp />}{" "}
-          {/* Změna ikony podle podmínek */}
+          <FaArrowUp color="black" />
         </motion.button>
       )}
 
-      {/* Zobrazí tlačítko pro navigaci dolů, pokud není na poslední sekci */}
+      {/* Display down arrow button only if not on the last section */}
       {!isLastSection && (
         <motion.button
-          className="fixed bottom-10 right-10 p-5 bg-blue-500 text-white rounded-full shadow-lg"
+          className="fixed bottom-10 right-10 p-5 bg-white  border-white border text-white rounded-full shadow-lg"
           onClick={onClickNext}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
         >
-          <FaArrowDown /> {/* Ikona pro skrolování dolů */}
+          <FaArrowDown color="black" />
         </motion.button>
       )}
     </div>

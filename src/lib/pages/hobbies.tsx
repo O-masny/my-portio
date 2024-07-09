@@ -100,15 +100,22 @@ export default function EducationAndHobbies() {
           >
             <h2 className="text-4xl font-bold mb-8">PAINTINGS</h2>
             <Slider />
-            <div className="container mx-auto px-4 py-8">
-              <h1 className="text-3xl font-bold mb-6">Art Gallery</h1>
+            <div className="h-32"></div>
+
+            <div className="container mx-auto ">
+              <h1 className="text-3xl font-bold mb-6">
+                Check out more of my paintings!
+              </h1>
               <Link href="/paintings" shallow={true}>
-                <p className="text-blue-500 hover:underline">Go to Paintings</p>
+                <p className="text-yellow-500 hover:underline">
+                  Go to Paintings
+                </p>
               </Link>
             </div>
             <div className="h-32"></div>
           </motion.div>
         )}
+        <div className="h-1 w-full bg-white opacity-30"></div>
       </div>
     </div>
   );
