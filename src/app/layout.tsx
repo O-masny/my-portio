@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Bitter } from "next/font/google";
 import "../app/globals.css";
-import SplashScreenProvider from "@/lib/anim/splash_screen_provider";
-import WelcomePage from "@/lib/pages/welcome_page";
+import WelcomePage from "@/lib/screens/welcome_page";
 import ScrollAnimation from "@/lib/components/utils/square_scroll";
+import Transition from "@/lib/components/utils/transition";
+import React from "react";
 const fonts = Bitter({
   subsets: ["latin"],
   display: "swap",
@@ -22,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={fonts.className}>
       <body className={fonts.className}>
-        <WelcomePage /> {children}
+        <WelcomePage /> <Transition>{children}</Transition>
         <ScrollAnimation />
       </body>
     </html>

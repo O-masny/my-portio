@@ -1,4 +1,4 @@
-import ClientSideWordcloud from "@/lib/pages/_wordcloud";
+import ClientSideWordcloud from "@/lib/screens/_wordcloud";
 import React from "react";
 
 // Datový typ pro Word Cloud

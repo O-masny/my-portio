@@ -1,63 +1,10 @@
+"use client";
 import * as React from "react";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useScroll, useTransform, motion } from "framer-motion";
 import Image from "next/image";
 import { XCircleIcon } from "@heroicons/react/24/outline";
-
-// Původní definice sliderů
-const slider1 = [
-  {
-    color: "#e3e5e7",
-    src: "pic1.jpg",
-    title: "Title 1",
-    description: "Description 1",
-  },
-  {
-    color: "#d6d7dc",
-    src: "pic2.jpeg",
-    title: "Title 2",
-    description: "Description 2",
-  },
-  {
-    color: "#e3e3e3",
-    src: "pic3.jpeg",
-    title: "Title 3",
-    description: "Description 3",
-  },
-  {
-    color: "#21242b",
-    src: "pic4.jpeg",
-    title: "Title 4",
-    description: "Description 4",
-  },
-];
-
-const slider2 = [
-  {
-    color: "#d4e3ec",
-    src: "pic4.jpeg",
-    title: "Title 5",
-    description: "Description 5",
-  },
-  {
-    color: "#e5e0e1",
-    src: "pic6.jpeg",
-    title: "Title 6",
-    description: "Description 6",
-  },
-  {
-    color: "#d7d4cf",
-    src: "pic5.jpeg",
-    title: "Title 7",
-    description: "Description 7",
-  },
-  {
-    color: "#e1dad6",
-    src: "pic2.jpeg",
-    title: "Title 8",
-    description: "Description 8",
-  },
-];
+import { paintingsData } from "@/app/data/data";
 
 export default function Slider() {
   const container = useRef<HTMLDivElement | null>(null);
@@ -79,6 +26,10 @@ export default function Slider() {
     setFullScreenImage(null);
   };
 
+  // Rozdělte načtená data do dvou různých sliderů (toto je pouze příklad, můžete si to upravit dle potřeby)
+  const slider1 = paintingsData.slice(0, Math.ceil(paintingsData.length / 2));
+  const slider2 = paintingsData.slice(Math.ceil(paintingsData.length / 2));
+
   return (
     <div className="relative w-full h-full">
       <div
@@ -89,14 +40,14 @@ export default function Slider() {
         <motion.div style={{ x: x1 }} className="flex space-x-4 w-full">
           {slider1.map((project, index) => (
             <div
-              key={index}
+              key={project.id}
               className="relative cursor-pointer flex-shrink-0"
               style={{ width: "calc(100vw / 4)", height: "50vh" }}
-              onClick={() => openFullScreen(`/images/${project.src}`)}
+              onClick={() => openFullScreen(project.imageUrl.src)}
             >
               <Image
-                src={`/images/${project.src}`}
-                alt="image"
+                src={project.imageUrl}
+                alt={project.title}
                 layout="fill"
                 objectFit="cover"
                 className="rounded-lg"
@@ -108,14 +59,14 @@ export default function Slider() {
         <motion.div style={{ x: x2 }} className="flex space-x-4 ">
           {slider2.map((project, index) => (
             <div
-              key={index}
+              key={project.id}
               className="relative cursor-pointer flex-shrink-0"
               style={{ width: "calc(100vw / 4.5)", height: "50vh" }}
-              onClick={() => openFullScreen(`/images/${project.src}`)}
+              onClick={() => openFullScreen(project.imageUrl.src)}
             >
               <Image
-                src={`/images/${project.src}`}
-                alt="image"
+                src={project.imageUrl}
+                alt={project.title}
                 layout="fill"
                 objectFit="cover"
                 className="rounded-lg"

@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import WelcomePage from "../pages/welcome_page";
+import WelcomePage from "../screens/welcome_page";
 const SplashScreenProvider = ({
   children,
 }: Readonly<{ children: React.ReactNode }>) => {

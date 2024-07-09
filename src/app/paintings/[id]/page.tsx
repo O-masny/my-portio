@@ -2,8 +2,8 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FiArrowLeft } from "react-icons/fi";
-import { Painting } from "@/lib/pages/_paintings_page";
-import { paintingsData } from "@/lib/data/data";
+import { Painting } from "@/lib/screens/_paintings_page";
+import { paintingsData } from "../../data/data";
 
 export default function Page({ params }: { params: Painting }) {
   const painting = paintingsData.find((p) => p.id === params.id);
@@ -13,7 +13,7 @@ export default function Page({ params }: { params: Painting }) {
   }
   return (
     <div className="container mx-auto px-4 py-8 relative  text-white">
-      <Link href="/paintings" shallow={true}>
+      <Link scroll={false} href="/paintings" shallow={true}>
         <div className="fixed z-10  flex-row flex top-4 left-2 px-4 cursor-pointer">
           <FiArrowLeft className="text-white w-6 h-6" />{" "}
           <p className="ml-4">Paintings</p>

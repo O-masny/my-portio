@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Slider from "../components/slider";
 import Achievements from "../components/achievements";
-import SliderPaintings from "../components/utils/slider_paintings";
 import PortfolioCardGrid from "@/app/projects/page";
 import Link from "next/link";
 
