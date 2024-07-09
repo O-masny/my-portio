@@ -1,12 +1,10 @@
 const Footer = () => {
   return (
-    <div className="h-center bottom-0 w-full">
-      <footer className="bg-gray-800 p-4 flex left-0">
-        <div className="container mx-auto text-center">
-          <p className="text-white text-2xl">©2024 Ondřej Masný</p>
-        </div>
-      </footer>
-    </div>
+    <footer className="bg-blue-950 text-center dark:bg-neutral-700 lg:text-left">
+      <div className="bg-black/5 p-4 text-center text-surface dark:text-white">
+        <a href="/home"> © 2024 Copyright Ondřej Masný</a>
+      </div>
+    </footer>
   );
 };
 
