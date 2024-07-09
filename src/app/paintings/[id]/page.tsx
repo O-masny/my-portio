@@ -4,6 +4,7 @@ import Link from "next/link";
 import { FiArrowLeft } from "react-icons/fi";
 import { Painting } from "@/lib/pages/_paintings_page";
 import { paintingsData } from "@/lib/data/data";
+import dynamic from "next/dynamic";
 
 export default function Page({ params }: { params: Painting }) {
   const painting = paintingsData.find((p) => p.id === params.id);
@@ -11,28 +12,33 @@ export default function Page({ params }: { params: Painting }) {
   if (!painting) {
     return <div>Painting not found</div>;
   }
+
   return (
-    <div className="container mx-auto px-4 py-8 relative  text-white">
+    <div>
       <Link href="/paintings" shallow={true}>
-        <div className="fixed z-10  flex-row flex top-4 left-2 px-4 cursor-pointer">
-          <FiArrowLeft className="text-white w-6 h-6" />{" "}
-          <p className="ml-4">Paintings</p>
+        <div className="fixed z-10 flex items-center top-0 left-0 right-0 bg-black px-4 py-4 cursor-pointer">
+          <FiArrowLeft className="text-white w-6 h-6" />
+          <p className="ml-4 text-white">Paintings</p>
         </div>
       </Link>
-      <div className="relative w-full h-96 mb-8">
-        <Image
-          src={painting.imageUrl}
-          alt="Painting image"
-          layout="fill"
-          objectFit="contain"
-          className="rounded-lg shadow-lg"
-        />
-      </div>
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">{painting.title}</h1>
-        <p className="text-lg mb-2">Date Created: 2023-06-30</p>{" "}
-        {/* Replace with actual date if available */}
-        <p className="text-lg mb-8">{painting.description}</p>
+      <h1 className="text-3xl text-center font-bold py-4">{painting.title}</h1>
+      <div className="flex flex-col md:flex-row lg:flex-row items-center lg:items-start px-4 py-8 text-white">
+        <div className="w-full  lg:h-1/2 mb-8  relative">
+          <Image
+            src={painting.imageUrl}
+            alt="Painting image"
+            width={300}
+            height={300}
+            layout="responsive"
+            className="shadow-2xl rounded-lg shadow-red-800"
+          />
+        </div>
+        <div className="w-full lg:w-1/2 lg:pl-8">
+          <div className="text-start space-y-4 my-auto">
+            <p className="text-lg mb-2">Date Created: {painting.title}</p>
+            <p className="text-lg mb-8">{painting.description}</p>
+          </div>
+        </div>
       </div>
     </div>
   );
