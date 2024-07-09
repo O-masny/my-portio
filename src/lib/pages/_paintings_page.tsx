@@ -7,6 +7,7 @@ export interface Painting {
   title: string;
   description: string;
   imageUrl: string;
+  date: string;
 }
 interface Props {
   paintings: Painting[];

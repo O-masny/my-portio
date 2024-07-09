@@ -22,7 +22,7 @@ export default function Page({ params }: { params: Painting }) {
         </div>
       </Link>
       <h1 className="text-3xl text-center font-bold py-4">{painting.title}</h1>
-      <div className="flex flex-col md:flex-row lg:flex-row items-center lg:items-start px-4 py-8 text-white">
+      <div className="flex flex-col  md:flex-row lg:flex-row items-center px-4 py-8 text-white">
         <div className="w-full  lg:h-1/2 mb-8  relative">
           <Image
             src={painting.imageUrl}
@@ -33,7 +33,7 @@ export default function Page({ params }: { params: Painting }) {
             className="shadow-2xl rounded-lg shadow-red-800"
           />
         </div>
-        <div className="w-full lg:w-1/2 lg:pl-8">
+        <div className="w-full lg:w-1/2 lg:pl-8 text-center items-center ">
           <div className="text-start space-y-4 my-auto">
             <p className="text-lg mb-2">Date Created: {painting.title}</p>
             <p className="text-lg mb-8">{painting.description}</p>

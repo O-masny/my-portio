@@ -2,9 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { FiArrowLeft } from "react-icons/fi"; // Import ikony šipky zpět
 import { Painting } from "@/lib/pages/_paintings_page";
-import { paintingsData } from "@/lib/data/data";
 
 interface PaintingCardProps {
   painting: Painting;
@@ -26,7 +24,10 @@ const PaintingCard: React.FC<PaintingCardProps> = ({ painting }) => {
               fill
             />
           </div>
-          <h3 className="text-lg font-semibold">{painting.title}</h3>
+          <div className="flex flex-row justify-between">
+            <h3 className="text-lg px-2 font-semibold">{painting.title}</h3>
+            <h3 className="text-lg px-2 font-semibold">{painting.date}</h3>
+          </div>
         </div>
       </Link>
     </div>

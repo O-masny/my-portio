@@ -1,9 +1,10 @@
 export const paintingsData = [
   {
     id: "1",
-    title: "Title1",
+    title: "Title 1",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     imageUrl: "/images/pic1.jpg",
+    date: "01/2020",
   },
   {
     id: "2",
@@ -11,6 +12,7 @@ export const paintingsData = [
     description:
       "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     imageUrl: "/images/pic2.jpeg",
+    date: "02/2020",
   },
   {
     id: "3",
@@ -18,6 +20,7 @@ export const paintingsData = [
     description:
       "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     imageUrl: "/images/pic3.jpeg",
+    date: "03/2020",
   },
   {
     id: "4",
@@ -25,6 +28,7 @@ export const paintingsData = [
     description:
       "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
     imageUrl: "/images/pic4.jpeg",
+    date: "04/2020",
   },
   {
     id: "5",
@@ -32,58 +36,58 @@ export const paintingsData = [
     description:
       "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     imageUrl: "/images/pic5.jpeg",
+    date: "05/2020",
   },
   {
     id: "6",
     title: "Title 6",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     imageUrl: "/images/pic6.jpeg",
+    date: "06/2020",
   },
   {
     id: "7",
-    title: "Title ",
+    title: "Title 7",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     imageUrl: "/images/compare_now.jpeg",
+    date: "07/2020",
   },
   {
     id: "8",
-    title: "Title 6",
+    title: "Title 8",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     imageUrl: "/images/corona.jpeg",
+    date: "08/2020",
   },
   {
     id: "9",
-    title: "Title 6",
+    title: "Title 9",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     imageUrl: "/images/godness_fert.jpeg",
+    date: "09/2020",
   },
   {
     id: "10",
-    title: "Title 6",
+    title: "Title 10",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     imageUrl: "/images/oc_II.jpeg",
+    date: "10/2020",
   },
   {
     id: "11",
-    title: "Title 6",
+    title: "Title 11",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     imageUrl: "/images/white_moon.jpeg",
+    date: "11/2020",
   },
   {
     id: "12",
-    title: "Title 6",
+    title: "Title 12",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     imageUrl: "/images/primitives.jpeg",
-  },
-  {
-    id: "10",
-    title: "Title 6",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    imageUrl: "/images/wall.jpeg",
+    date: "12/2020",
   },
 ];
-// imageData.ts
-
 export const slider1 = [
   {
     color: "#e3e5e7",
