@@ -4,7 +4,6 @@ import Link from "next/link";
 import { FiArrowLeft } from "react-icons/fi";
 import { Painting } from "@/lib/pages/_paintings_page";
 import { paintingsData } from "@/lib/data/data";
-import dynamic from "next/dynamic";
 
 export default function Page({ params }: { params: Painting }) {
   const painting = paintingsData.find((p) => p.id === params.id);

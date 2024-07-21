@@ -2,13 +2,11 @@
 import React, { useEffect } from "react";
 import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import "tailwindcss/tailwind.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const FlowerEffect: React.FC = () => {
   useEffect(() => {
-    // Select all circles and paths
     const circles =
       document.querySelectorAll<SVGCircleElement>(".flower circle");
     const paths = document.querySelectorAll<SVGPathElement>(".flower path");
