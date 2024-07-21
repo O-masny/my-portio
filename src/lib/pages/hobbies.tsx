@@ -103,17 +103,16 @@ export default function EducationAndHobbies() {
               <h1 className="text-3xl font-bold mb-6">
                 There are few more, check them out!
               </h1>{" "}
-              <div className="relative h-16 py-4 border-4 border-white bg-lightWhite animate-triangleTransform  -z-10"></div>
-              <Link href="/paintings" shallow={true}>
-                <p className="relative inline-block text-yellow-500 cursor-pointer">
-                  <span className="relative z-10">Go to Paintings</span>
-                </p>
-              </Link>
+              <div className="relative h-16 py-4 border-4 border-white bg-lightWhite animate-triangleTransform  ">
+                <Link href="/paintings" shallow={true}>
+                  <p className="relative inline-block hover:text-white text-yellow-500 cursor-pointer">
+                    <span className="relative z-10">Go to Paintings</span>
+                  </p>
+                </Link>
+              </div>
             </div>
-            <div className="h-32"></div>
           </motion.div>
         )}
-        <div className="h-1 w-full bg-white opacity-30"></div>
       </div>
     </div>
   );

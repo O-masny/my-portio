@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState, useRef, useMemo } from "react";
+import React, { useMemo } from "react";
 import { motion } from "framer-motion";
 import { scaleLog } from "@visx/scale";
 import { Wordcloud } from "@visx/wordcloud";
@@ -27,6 +27,7 @@ const skillData: WordData[] = [
   { text: "Scratch", value: 95 },
   { text: "Unreal engine", value: 40 },
   { text: "Flutter", value: 80 },
+  { text: "Godot engine", value: 80 },
 ];
 
 // Konfigurace pro Word Cloud
@@ -45,60 +46,40 @@ const ClientSideWordcloud: React.FC = () => {
       }),
     []
   );
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [dimensions, setDimensions] = useState({ width: 500, height: 500 });
-
-  const updateDimensions = useMemo(
-    () => () => {
-      if (containerRef.current) {
-        const { clientWidth, clientHeight } = containerRef.current;
-        setDimensions({ width: clientWidth, height: clientHeight });
-      }
-    },
-    []
-  );
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      updateDimensions();
-      window.addEventListener("resize", updateDimensions);
-      return () => {
-        window.removeEventListener("resize", updateDimensions);
-      };
-    }
-  }, [updateDimensions]);
 
   return (
     <div
       id="experience"
-      ref={containerRef}
-      className="flex flex-col items-center justify-center min-h-screen text-white"
+      className="flex flex-col items-center justify-center px-6 min-h-screen text-white"
+      style={{ maxWidth: "90%", maxHeight: "90%", overflow: "hidden" }}
     >
-      {/* Responzivní kontejner */}
-      <Wordcloud
-        words={skillData}
-        width={dimensions.width} // Dynamická šířka
-        height={dimensions.height} // Dynamická výška
-        fontSize={(datum) => fontScale(datum.value)}
-        font={"Impact"}
-        spiral={"archimedean"}
-        rotate={getRotationDegree} // Náhodná rotace
-      >
-        {(cloudWords) =>
-          cloudWords.map((w, i) => (
-            <motion.text
-              key={w.text}
-              fill={colors[i % colors.length]} // Použití memorovaných barev
-              textAnchor={"middle"}
-              transform={`translate(${w.x}, ${w.y}) rotate(${w.rotate})`} // Pozice a rotace
-              fontSize={w.size} // Velikost písma
-              fontFamily={w.font} // Rodina písem
-            >
-              {w.text}
-            </motion.text>
-          ))
-        }
-      </Wordcloud>
+      <div className="h-16"></div>
+      <div style={{ width: "100%", height: "100%" }}>
+        <Wordcloud
+          words={skillData}
+          width={window.innerWidth * 0.75} // Maximum 75% of viewport width
+          height={window.innerHeight * 0.75} // Maximum 75% of viewport height
+          fontSize={(datum) => fontScale(datum.value)}
+          font={"Impact"}
+          spiral={"archimedean"}
+          rotate={getRotationDegree}
+        >
+          {(cloudWords) =>
+            cloudWords.map((w, i) => (
+              <motion.text
+                key={w.text}
+                fill={colors[i % colors.length]}
+                textAnchor={"middle"}
+                transform={`translate(${w.x}, ${w.y}) rotate(${w.rotate})`}
+                fontSize={w.size}
+                fontFamily={w.font}
+              >
+                {w.text}
+              </motion.text>
+            ))
+          }
+        </Wordcloud>
+      </div>
     </div>
   );
 };

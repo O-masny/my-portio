@@ -1,3 +1,4 @@
+import Timeline from "@/lib/components/utils/flower";
 import ClientSideWordcloud from "@/lib/pages/_wordcloud";
 import React from "react";
 
@@ -24,14 +25,15 @@ const skillData: WordData[] = [
 ];
 
 // Konfigurace pro Word Cloud
-const getRotationDegree = () => 0; // Náhodná rotace
 
 const ServerSideWordcloud: React.FC = () => {
   return (
-    <div className="relative flex flex-col items-center justify-end min-h-screen text-white bg-gradient-to-r from-green-900 to-green-500 overflow-hidden">
+    <div className="relative flex flex-col items-center justify-end min-h-screen text-white bg-gradient-to-r from-white to-green-800 overflow-hidden">
+      <Timeline />
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-1/2 bg-black rounded-b-full"></div>
       </div>
+      <div className=""></div>
       <h1 className="text-xl font-bold my-8 space-y-6 text-center relative z-10">
         Im <span className="text-5xl">mobile dev</span> that likes to work with
       </h1>{" "}
@@ -45,6 +47,7 @@ const ServerSideWordcloud: React.FC = () => {
       <div className="w-full h-full flex items-center justify-center relative z-10">
         <ClientSideWordcloud />
       </div>{" "}
+      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black to-transparent opacity-85"></div>
     </div>
   );
 };

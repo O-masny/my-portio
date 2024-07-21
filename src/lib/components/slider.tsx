@@ -25,6 +25,10 @@ const Slider: React.FC<SliderProps> = ({
 
   const x = useTransform(scrollYProgress, [0, 1], xTransform);
 
+  if (!sliderData || sliderData.length === 0) {
+    return <div>No data available</div>;
+  }
+
   return (
     <div ref={containerRef} className="relative w-full overflow-hidden">
       <motion.div style={{ translateX: x }} className="flex space-x-4 w-full">
@@ -55,7 +59,8 @@ const SliderContainer: React.FC = () => {
     setFullScreenImage(src);
   };
 
-  const closeFullScreen = () => {
+  const closeFullScreen = (event: React.MouseEvent) => {
+    event.stopPropagation();
     setFullScreenImage(null);
   };
 
@@ -84,8 +89,9 @@ const SliderContainer: React.FC = () => {
               <Image
                 src={fullScreenImage}
                 alt="image"
-                layout="fill"
-                objectFit="contain"
+                width={600} // Adjust width as needed for responsiveness
+                height={600} // Adjust height as needed for responsiveness
+                layout="responsive"
                 className="rounded-lg"
               />
             </div>

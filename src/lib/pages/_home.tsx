@@ -84,7 +84,7 @@ const ClientSideHomepage = () => {
   };
 
   return (
-    <div className="space-y-12" ref={containerRef}>
+    <div ref={containerRef}>
       {sections.map((section) => {
         const { Component } = section;
         return (
