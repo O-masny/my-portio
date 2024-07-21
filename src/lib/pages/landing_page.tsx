@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
-import CrissCrossText from "../components/utils/criss_cross";
+import Image from "next/image";
 
 interface Shape {
   key: number;
@@ -13,27 +13,27 @@ interface Shape {
 
 export default function LandingScreen() {
   const [shapes, setShapes] = useState<Shape[]>([]);
-  const controls = useAnimation(); // Ovládání animací
+  const controls = useAnimation();
 
   useEffect(() => {
     const generateShapes = () => {
-      const shapeCount = 16; // Počet obrazců
+      const shapeCount = 16;
       const windowHeight = window.innerHeight;
       const windowWidth = window.innerWidth;
 
       const generatedShapes = Array.from({ length: shapeCount }, (_, index) => {
-        const width = windowWidth / shapeCount; // Šířka rovnoměrně po celé obrazovce
-        const height = windowHeight; // Výška obrazovky
+        const width = windowWidth / shapeCount;
+        const height = windowHeight;
         const color = `rgba(${Math.random() * 50 + 50}, ${
           Math.random() * 50 + 50
-        }, ${Math.random() * 50 + 50}, 0.7)`; // Tmavé barvy s vyšší průhledností
+        }, ${Math.random() * 50 + 50}, 0.7)`;
 
         return {
           key: index,
           color,
           width,
           height,
-          initial: { opacity: 0, x: index * width, y: -windowHeight }, // Umístění nad obrazovkou
+          initial: { opacity: 0, x: index * width, y: -windowHeight },
         };
       });
 
@@ -50,7 +50,7 @@ export default function LandingScreen() {
         y: 0,
         transition: { duration: 7, ease: "easeOut" },
       });
-    }, 500); // Zpoždění před spuštěním animace
+    }, 500);
 
     return () => {
       window.removeEventListener("resize", generateShapes);
@@ -58,41 +58,40 @@ export default function LandingScreen() {
   }, [controls]);
 
   return (
-    <div
-      id="home"
-      className="relative h-screen w-full bg-black overflow-hidden"
-    >
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
-        {shapes.map((shape) => (
-          <motion.div
-            key={shape.key}
-            initial={shape.initial}
-            animate={controls}
-            transition={{ duration: 1, ease: "easeOut" }} // Přechod
-            className="absolute"
-            style={{
-              backgroundColor: shape.color,
-              top: 0,
-              left: shape.initial.x,
-              width: shape.width,
-              height: shape.height,
-              opacity: 0.7,
-            }}
+    <div className="flex flex-col md:flex-row min-h-screen">
+      <div className="relative w-full h-screen md:h-auto md:w-1/2 flex items-center justify-center ">
+        <div className="absolute inset-0">
+          <Image
+            src="/images/pic1.jpg"
+            alt="Description of image"
+            layout="fill"
+            objectFit="cover"
+            objectPosition="center"
+            className="opacity-50"
           />
-        ))}
+        </div>
+        <div className="absolute inset-0 flex items-center justify-center md:hidden">
+          <div className="text-center p-4 bg-black bg-opacity-50 rounded">
+            <h1 className="text-2xl font-bold mb-4 text-white">
+              My name is{" "}
+              <span className="text-black text-4xl">Ondřej Masný</span>
+            </h1>
+            <p className="text-md text-white">
+              Welcome to my <span className="text-black text-2xl">WEB</span>!
+            </p>
+          </div>
+        </div>
       </div>
-
-      <div className="relative h-full flex justify-center items-center text-white">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 7, ease: "easeOut" }} // Přechod
-          className="text-center"
-        >
-          <h1 className="relative w-[max-content] font-mono text-2xl before:absolute before:inset-0 before:animate-typewriter before:bg-white after:absolute after:inset-0 after:w-[0.125em] after:animate-caret after:bg-black">
-            Hello World
+      <div className="hidden md:flex w-full md:w-1/2 flex items-center justify-center bg-gradient-to-bl from-green-500  to-black-500 to-70%  p-8">
+        {" "}
+        <div className="text-center">
+          <h1 className="text-2xl md:text-4xl font-bold mb-4 text-white">
+            My name is <span className="text-black text-4xl">Ondřej Masný</span>
           </h1>
-        </motion.div>
+          <p className="text-md md:text-lg text-white">
+            Welcome to my <span className="text-black text-2xl">WEB</span>!
+          </p>
+        </div>
       </div>
     </div>
   );

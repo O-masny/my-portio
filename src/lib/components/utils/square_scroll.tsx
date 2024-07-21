@@ -7,7 +7,7 @@ export default function ScrollAnimation() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollY = window.scrollY - 300 || window.pageYOffset;
+      const scrollY = window.scrollY + window.outerHeight;
       const scrollX = window.scrollX || window.pageXOffset;
 
       // Adjust 0.1 to control the scroll speed horizontally
