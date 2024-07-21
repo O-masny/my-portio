@@ -11,6 +11,34 @@ interface Shape {
   initial: { opacity: number; x: number; y: number };
 }
 
+const images = [
+  "/images/pic1.jpg",
+  "/images/pic2.jpeg",
+  "/images/pic3.jpeg",
+  "/images/pic4.jpeg",
+  "/images/pic5.jpeg",
+  // Přidejte další obrázky podle potřeby
+];
+
+const getGridItemClasses = (index: number) => {
+  switch (index % 6) {
+    case 0:
+      return "col-span-2 row-span-2";
+    case 1:
+      return "col-span-1 row-span-1";
+    case 2:
+      return "col-span-1 row-span-2";
+    case 3:
+      return "col-span-2 row-span-1";
+    case 4:
+      return "col-span-1 row-span-1";
+    case 5:
+      return "col-span-1 row-span-2";
+    default:
+      return "";
+  }
+};
+
 export default function LandingScreen() {
   const [shapes, setShapes] = useState<Shape[]>([]);
   const controls = useAnimation();
@@ -58,8 +86,9 @@ export default function LandingScreen() {
   }, [controls]);
 
   return (
-    <div className="flex flex-col md:flex-row min-h-screen">
-      <div className="relative w-full h-screen md:h-auto md:w-1/2 flex items-center justify-center ">
+    <div className="flex flex-col md:flex-row min-h-screen relative overflow-hidden">
+      {/* Levá polovina stránky */}
+      <div className="relative w-full h-screen md:h-auto md:w-1/2 flex items-center justify-center">
         <div className="absolute inset-0">
           <Image
             src="/images/pic1.jpg"
@@ -82,15 +111,34 @@ export default function LandingScreen() {
           </div>
         </div>
       </div>
-      <div className="hidden md:flex w-full md:w-1/2 flex items-center justify-center bg-gradient-to-bl from-green-500  to-black-500 to-70%  p-8">
-        {" "}
-        <div className="text-center">
-          <h1 className="text-2xl md:text-4xl font-bold mb-4 text-white">
-            My name is <span className="text-black text-4xl">Ondřej Masný</span>
-          </h1>
-          <p className="text-md md:text-lg text-white">
-            Welcome to my <span className="text-black text-2xl">WEB</span>!
-          </p>
+
+      {/* Pravá polovina stránky s nepravidelnou mřížkou obrázků */}
+      <div className="relative hidden md:flex w-full md:w-1/2 flex items-center justify-center p-8">
+        <div className="absolute inset-x-0 bottom-0 h-1/2">
+          <div
+            className="w-full h-full"
+            style={{
+              background:
+                "radial-gradient(circle, rgba(0, 255, 0, 0.7), rgba(0, 0, 0, 0.7))",
+              clipPath: "ellipse(100% 100% at 50% 100%)",
+            }}
+          ></div>
+        </div>
+        <div className="relative z-10 w-full h-full grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+          {images.map((src, index) => (
+            <div
+              key={index}
+              className={`relative ${getGridItemClasses(index)}`}
+            >
+              <Image
+                src={src}
+                alt={`Image ${index + 1}`}
+                layout="fill"
+                objectFit="cover"
+                className="rounded-lg shadow-lg"
+              />
+            </div>
+          ))}
         </div>
       </div>
     </div>

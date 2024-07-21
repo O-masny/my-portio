@@ -8,7 +8,7 @@ import Footer from "@/lib/components/footer";
 const PaintingsPage = () => {
   return (
     <div className="container mx-auto px-4">
-      <Link href="/" shallow={true}>
+      <Link href="/" shallow={true} scroll={true} >
         <div className="fixed z-10 flex items-center top-0 left-0 right-0 bg-black px-4 py-4 cursor-pointer">
           <FiArrowLeft className="text-white w-6 h-6" />{" "}
           <p className="ml-4">Homepage</p>

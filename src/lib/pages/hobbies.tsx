@@ -18,10 +18,6 @@ export default function EducationAndHobbies() {
     setSection(selectedSection);
   };
 
-  const sectionStyle = contrastMode
-    ? "bg-gradient-to-r from-white to-red-500"
-    : "bg-gradient-to-r from-blue-800 to-blue-500";
-
   const textColor = contrastMode ? "text-black" : "text-white";
 
   const educationVariants = {
@@ -37,7 +33,7 @@ export default function EducationAndHobbies() {
   return (
     <div
       id="education"
-      className={`flex flex-col items-start justify-center min-h-screen ${sectionStyle} ${textColor}`}
+      className={`flex flex-col items-start justify-center min-h-screen  ${textColor}`}
     >
       <div className="h-64"></div>
       <div className="relative text-5xl mb-8 px-4 py-2 flex justify-around w-full items-center">
@@ -96,7 +92,7 @@ export default function EducationAndHobbies() {
             animate="visible"
             variants={hobbiesVariants}
             transition={{ duration: 2, ease: "easeOut" }}
-            className="mt-8 text-center"
+            className="mt-8 text-center w-full"
           >
             <h2 className="text-4xl font-bold mb-8">PAINTINGS</h2>
             <Slider />

@@ -28,19 +28,23 @@ const getRotationDegree = () => 0; // Náhodná rotace
 
 const ServerSideWordcloud: React.FC = () => {
   return (
-    <div
-      id="experience"
-      className="flex flex-col items-center justify-end min-h-screen text-white"
-    >
-      <h1
-        className="text-xl font-bold my-8 space-y-6
-        text-center"
-      >
-        Im <span className="text-5xl ">mobile dev</span> that likes to work with
-      </h1>
-      <div className="w-full h-full flex items-center justify-center">
-        <ClientSideWordcloud />
+    <div className="relative flex flex-col items-center justify-end min-h-screen text-white bg-gradient-to-r from-green-900 to-green-500 overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-1/2 bg-black rounded-b-full"></div>
       </div>
+      <h1 className="text-xl font-bold my-8 space-y-6 text-center relative z-10">
+        Im <span className="text-5xl">mobile dev</span> that likes to work with
+      </h1>{" "}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%)",
+        }}
+      ></div>
+      <div className="w-full h-full flex items-center justify-center relative z-10">
+        <ClientSideWordcloud />
+      </div>{" "}
     </div>
   );
 };

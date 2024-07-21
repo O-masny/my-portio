@@ -26,16 +26,12 @@ const Slider: React.FC<SliderProps> = ({
   const x = useTransform(scrollYProgress, [0, 1], xTransform);
 
   return (
-    <div
-      ref={containerRef}
-      className="flex flex-col space-y-10 overflow-hidden relative w-full"
-    >
-      <motion.div style={{ x }} className="flex space-x-4 w-full">
+    <div ref={containerRef} className="relative w-full overflow-hidden">
+      <motion.div style={{ translateX: x }} className="flex space-x-4 w-full">
         {sliderData.map((project, index) => (
           <div
             key={index}
-            className="relative cursor-pointer flex-shrink-0"
-            style={{ width: "calc(100vw / 3)", height: "50vh" }}
+            className="relative cursor-pointer flex-shrink-0 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 h-64" // Responsive widths
             onClick={() => onImageClick(`/images/${project.src}`)}
           >
             <Image
@@ -43,7 +39,7 @@ const Slider: React.FC<SliderProps> = ({
               alt="image"
               layout="fill"
               objectFit="cover"
-              className="rounded-lg mt-2"
+              className="rounded-lg"
             />
           </div>
         ))}
@@ -80,17 +76,15 @@ const SliderContainer: React.FC = () => {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="fixed top-0 left-0 w-full h-full flex justify-center items-center z-50 bg-black bg-opacity-75 overflow-auto"
+          className="fixed top-0 left-0 w-full h-full flex justify-center items-center z-50 bg-black bg-opacity-75"
           onClick={closeFullScreen}
         >
-          <div className="relative max-w-full">
-            <div className="relative w-full h-3/4 items-center">
+          <div className="relative max-w-full max-h-full p-4">
+            <div className="relative w-full h-3/4">
               <Image
                 src={fullScreenImage}
                 alt="image"
-                layout="responsive"
-                width={600} // Adjust width as needed for responsiveness
-                height={600} // Adjust height as needed for responsiveness
+                layout="fill"
                 objectFit="contain"
                 className="rounded-lg"
               />
