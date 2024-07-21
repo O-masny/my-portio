@@ -92,13 +92,13 @@ export default function LandingScreen() {
         <div className="relative z-10 text-center">
           <h1 className="text-2xl md:text-4xl font-bold mb-4 text-white">
             My name is{" "}
-            <span className="[text-shadow:1px_1px_2px_var(--tw-shadow-color)] shadow-blue-500 bg-red-100 text-black text-4xl">
+            <span className="[text-shadow:1px_1px_2px_var(--tw-shadow-color)] shadow-green-500 bg-red-100 text-black text-4xl">
               Ondřej Masný
             </span>
           </h1>
           <p className="text-md md:text-lg text-white ">
             Welcome to my{" "}
-            <span className="text-black text-2xl [text-shadow:1px_1px_2px_var(--tw-shadow-color)] shadow-blue-500 bg-red-100">
+            <span className="text-black text-2xl [text-shadow:1px_1px_2px_var(--tw-shadow-color)] shadow-green-500 bg-red-100">
               WEB
             </span>
             !
