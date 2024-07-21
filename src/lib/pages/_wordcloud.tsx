@@ -1,5 +1,5 @@
 "use client";
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { scaleLog } from "@visx/scale";
 import { Wordcloud } from "@visx/wordcloud";
@@ -34,6 +34,30 @@ const skillData: WordData[] = [
 const getRotationDegree = () => 0; // Náhodná rotace
 
 const ClientSideWordcloud: React.FC = () => {
+  const [dimensions, setDimensions] = useState<{
+    width: number;
+    height: number;
+  } | null>(null);
+
+  useEffect(() => {
+    // Function to update dimensions
+    const updateDimensions = () => {
+      setDimensions({
+        width: window.innerWidth * 0.75, // Maximum 75% of viewport width
+        height: window.innerHeight * 0.75, // Maximum 75% of viewport height
+      });
+    };
+
+    // Initial dimensions
+    updateDimensions();
+
+    // Update dimensions on window resize
+    window.addEventListener("resize", updateDimensions);
+
+    // Clean up event listener
+    return () => window.removeEventListener("resize", updateDimensions);
+  }, []);
+
   const colors = useMemo(() => ["#143059", "#2F6B9A", "#82a6c2"], []);
   const fontScale = useMemo(
     () =>
@@ -47,6 +71,11 @@ const ClientSideWordcloud: React.FC = () => {
     []
   );
 
+  // If dimensions are not yet available, render a loading placeholder
+  if (!dimensions) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div
       id="experience"
@@ -57,8 +86,8 @@ const ClientSideWordcloud: React.FC = () => {
       <div style={{ width: "100%", height: "100%" }}>
         <Wordcloud
           words={skillData}
-          width={window.innerWidth * 0.75} // Maximum 75% of viewport width
-          height={window.innerHeight * 0.75} // Maximum 75% of viewport height
+          width={dimensions.width}
+          height={dimensions.height}
           fontSize={(datum) => fontScale(datum.value)}
           font={"Impact"}
           spiral={"archimedean"}
