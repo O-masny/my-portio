@@ -11,37 +11,38 @@ const config: Config = {
   theme: {
     extend: {
       keyframes: {
-        typing: {
+        triangleTransform: {
           '0%': {
-            width: '0%',
-            visibility: 'hidden',
+            clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)', // Initial triangle
+            opacity: '1',
           },
-          '100%': {
-            width: '100%',
+          '25%': {
+            clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)', // Remains as triangle
+            opacity: '1',
           },
-        },
-        blink: {
           '50%': {
-            borderColor: 'transparent',
+            clipPath: 'polygon(50% 100%, 0% 0%, 100% 0%)', // Inverted triangle
+            opacity: '0.5',
+          },
+          '75%': {
+            clipPath: 'polygon(50% 100%, 0% 0%, 100% 0%)', // Inverted triangle
+            opacity: '0.5',
           },
           '100%': {
-            borderColor: 'white',
-          },
-        },
-        moveDown: {
-          '0%': {
-            transform: 'translateY(0)',
-          },
-          '100%': {
-            transform: 'translateY(100px)', // Adjust the 100px to your desired amount
+            clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)', // Back to initial triangle
+            opacity: '1',
           },
         },
       },
       animation: {
-        typing: 'typing 4s steps(100) infinite alternate, blink 1s infinite, moveDown 4s forwards',
+        triangleTransform: 'triangleTransform 6s infinite', // 6s total duration
+      },
+      backgroundImage: {
+        gradientTriangle: 'linear-gradient(to right, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5))',
       },
     },
   },
   plugins: [],
 };
+
 export default config;

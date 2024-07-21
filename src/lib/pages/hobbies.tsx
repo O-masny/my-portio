@@ -86,6 +86,7 @@ export default function EducationAndHobbies() {
             <Achievements /> <PortfolioCardGrid />
           </motion.div>
         )}
+
         {section === "Art" && (
           <motion.div
             initial="hidden"
@@ -98,13 +99,14 @@ export default function EducationAndHobbies() {
             <Slider />
             <div className="h-32"></div>
 
-            <div className="container mx-auto ">
+            <div className="container mx-auto">
               <h1 className="text-3xl font-bold mb-6">
-                Check out more of my paintings!
-              </h1>
+                There are few more, check them out!
+              </h1>{" "}
+              <div className="relative h-16 py-4 border-4 border-white bg-lightWhite animate-triangleTransform  -z-10"></div>
               <Link href="/paintings" shallow={true}>
-                <p className="text-yellow-500 hover:underline">
-                  Go to Paintings
+                <p className="relative inline-block text-yellow-500 cursor-pointer">
+                  <span className="relative z-10">Go to Paintings</span>
                 </p>
               </Link>
             </div>
