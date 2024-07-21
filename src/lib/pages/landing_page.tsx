@@ -1,62 +1,8 @@
 "use client";
-import { useEffect, useState } from "react";
-import { motion, useAnimation } from "framer-motion";
+
 import Image from "next/image";
 
-interface Shape {
-  key: number;
-  color: string;
-  width: number;
-  height: number;
-  initial: { opacity: number; x: number; y: number };
-}
-
 export default function LandingScreen() {
-  const [shapes, setShapes] = useState<Shape[]>([]);
-  const controls = useAnimation();
-
-  useEffect(() => {
-    const generateShapes = () => {
-      const shapeCount = 16;
-      const windowHeight = window.innerHeight;
-      const windowWidth = window.innerWidth;
-
-      const generatedShapes = Array.from({ length: shapeCount }, (_, index) => {
-        const width = windowWidth / shapeCount;
-        const height = windowHeight;
-        const color = `rgba(${Math.random() * 50 + 50}, ${
-          Math.random() * 50 + 50
-        }, ${Math.random() * 50 + 50}, 0.7)`;
-
-        return {
-          key: index,
-          color,
-          width,
-          height,
-          initial: { opacity: 0, x: index * width, y: -windowHeight },
-        };
-      });
-
-      setShapes(generatedShapes);
-    };
-
-    generateShapes();
-
-    window.addEventListener("resize", generateShapes);
-
-    setTimeout(() => {
-      controls.start({
-        opacity: 1,
-        y: 0,
-        transition: { duration: 7, ease: "easeOut" },
-      });
-    }, 500);
-
-    return () => {
-      window.removeEventListener("resize", generateShapes);
-    };
-  }, [controls]);
-
   return (
     <div className="flex flex-col md:flex-row min-h-screen relative overflow-hidden">
       {/* Levá polovina stránky */}
