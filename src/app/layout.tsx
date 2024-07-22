@@ -1,10 +1,16 @@
 import type { Metadata } from "next";
-import { Bitter } from "next/font/google";
+import { Bitter, Bebas_Neue } from "next/font/google";
 import "../app/globals.css";
 import WelcomePage from "@/lib/pages/welcome_page";
-const fonts = Bitter({
+
+const bitter = Bitter({
   subsets: ["latin"],
   display: "swap",
+});
+const bebas = Bebas_Neue({
+  subsets: ["latin"],
+  display: "swap",
+  weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -18,8 +24,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={fonts.className}>
-      <body className={fonts.className}>
+    <html lang="en" className={bebas.className}>
+      <body className={bitter.className}>
         <WelcomePage /> {children}
       </body>
     </html>

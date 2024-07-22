@@ -1,8 +1,9 @@
 "use client";
-import React, { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { scaleLog } from "@visx/scale";
 import { Wordcloud } from "@visx/wordcloud";
+import BloomingFlower from "../components/utils/blooming_flower";
 
 // Datový typ pro Word Cloud
 interface WordData {
@@ -34,31 +35,9 @@ const skillData: WordData[] = [
 const getRotationDegree = () => 0; // Náhodná rotace
 
 const ClientSideWordcloud: React.FC = () => {
-  const [dimensions, setDimensions] = useState<{
-    width: number;
-    height: number;
-  } | null>(null);
+  // Kontrastní barvy k bílé a zelené
+  const colors = useMemo(() => ["#FF4500", " #E7DECD"], []);
 
-  useEffect(() => {
-    // Function to update dimensions
-    const updateDimensions = () => {
-      setDimensions({
-        width: window.innerWidth * 0.75, // Maximum 75% of viewport width
-        height: window.innerHeight * 0.75, // Maximum 75% of viewport height
-      });
-    };
-
-    // Initial dimensions
-    updateDimensions();
-
-    // Update dimensions on window resize
-    window.addEventListener("resize", updateDimensions);
-
-    // Clean up event listener
-    return () => window.removeEventListener("resize", updateDimensions);
-  }, []);
-
-  const colors = useMemo(() => ["#143059", "#2F6B9A", "#82a6c2"], []);
   const fontScale = useMemo(
     () =>
       scaleLog({
@@ -71,11 +50,6 @@ const ClientSideWordcloud: React.FC = () => {
     []
   );
 
-  // If dimensions are not yet available, render a loading placeholder
-  if (!dimensions) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <div
       id="experience"
@@ -86,8 +60,8 @@ const ClientSideWordcloud: React.FC = () => {
       <div style={{ width: "100%", height: "100%" }}>
         <Wordcloud
           words={skillData}
-          width={dimensions.width}
-          height={dimensions.height}
+          width={window.innerWidth * 0.75} // Maximum 75% of viewport width
+          height={window.innerHeight * 0.75} // Maximum 75% of viewport height
           fontSize={(datum) => fontScale(datum.value)}
           font={"Impact"}
           spiral={"archimedean"}
@@ -98,6 +72,9 @@ const ClientSideWordcloud: React.FC = () => {
               <motion.text
                 key={w.text}
                 fill={colors[i % colors.length]}
+                stroke="#000000" // Černý okraj
+                strokeWidth={0.5} // Šířka okraje
+                paintOrder="stroke"
                 textAnchor={"middle"}
                 transform={`translate(${w.x}, ${w.y}) rotate(${w.rotate})`}
                 fontSize={w.size}

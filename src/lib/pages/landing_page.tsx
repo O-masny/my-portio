@@ -1,5 +1,5 @@
 "use client";
-
+import { bitter, bebas, globalStyles } from "../../styles/global_styles";
 import Image from "next/image";
 
 export default function LandingScreen() {
@@ -36,18 +36,16 @@ export default function LandingScreen() {
       {/* Pravá polovina stránky */}
       <div className="relative flex w-full md:w-1/2 items-center justify-center p-8">
         <div className="relative z-10 text-center">
-          <h1 className="text-2xl md:text-4xl font-bold mb-4 text-white">
+          <h1
+            className={`${bebas.className} text-2xl md:text-4xl font-bold mb-4 text-white`}
+          >
             My name is{" "}
-            <span className="[text-shadow:1px_1px_2px_var(--tw-shadow-color)] shadow-green-500 bg-red-100 text-black text-4xl">
-              Ondřej Masný
-            </span>
+            <span className=" text-white text-4xl">Ondřej Masný</span>
           </h1>
-          <p className="text-md md:text-lg text-white ">
-            Welcome to my{" "}
-            <span className="text-black text-2xl [text-shadow:1px_1px_2px_var(--tw-shadow-color)] shadow-green-500 bg-red-100">
-              WEB
-            </span>
-            !
+          <p
+            className={`${bebas.className} text-3xl text-md md:text-lg text-white`}
+          >
+            Welcome to my <span className="text-white text-2xl">WEB</span>!
           </p>
         </div>
       </div>

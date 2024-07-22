@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Slider from "../components/slider";
 import Achievements from "../components/achievements";
-import SliderPaintings from "../components/utils/slider_paintings";
 import PortfolioCardGrid from "@/app/projects/page";
 import Link from "next/link";
+import BloomingFlower from "../components/utils/blooming_flower";
 
 export default function EducationAndHobbies() {
   const [contrastMode, setContrastMode] = useState(false);
@@ -35,6 +35,7 @@ export default function EducationAndHobbies() {
       id="education"
       className={`flex flex-col items-start justify-center min-h-screen  ${textColor}`}
     >
+      {" "}
       <div className="h-64"></div>
       <div className="relative text-5xl mb-8 px-4 py-2 flex justify-around w-full items-center">
         <div className="absolute w-full h-full flex justify-around items-center">
@@ -98,19 +99,43 @@ export default function EducationAndHobbies() {
             <h2 className="text-4xl font-bold mb-8">PAINTINGS</h2>
             <Slider />
             <div className="h-32"></div>
-
             <div className="container mx-auto">
+              {" "}
+              <div className="back">
+                {" "}
+                <BloomingFlower />
+              </div>
               <h1 className="text-3xl font-bold mb-6">
                 There are few more, check them out!
               </h1>{" "}
-              <div className="relative h-16 py-4 border-4 border-white bg-lightWhite animate-triangleTransform  ">
+              <div className="w-1/2 inline-block text-white cursor-pointer group h-16 py-4 border-4 border-white bg-lightWhite animate-triangleTransform  ">
                 <Link href="/paintings" shallow={true}>
-                  <p className="relative inline-block hover:text-white text-yellow-500 cursor-pointer">
-                    <span className="relative z-10">Go to Paintings</span>
+                  <p className="relative inline-block hover:text-white text-white cursor-pointer">
+                    <span className="relative z-10">Go to Paintings</span>{" "}
+                    <span
+                      className="absolute inset-0 rounded-full border-2 border-white opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out"
+                      style={{
+                        top: "50%",
+                        left: "50%",
+                        width: "120%",
+                        height: "120%",
+                        transform: "translate(-50%, -50%)",
+                      }}
+                    />
                   </p>
-                </Link>
-              </div>
-            </div>
+                </Link>{" "}
+              </div>{" "}
+              <span
+                className="absolute inset-0 rounded-full border-2 border-white opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out"
+                style={{
+                  top: "50%",
+                  left: "50%",
+                  width: "120%",
+                  height: "120%",
+                  transform: "translate(-50%, -50%)",
+                }}
+              />
+            </div>{" "}
           </motion.div>
         )}
       </div>
