@@ -93,12 +93,6 @@ const ClientSideHomepage = () => {
           </div>
         );
       })}
-      <NavigationButton
-        currentSectionIndex={currentSectionIndex}
-        onClickNext={handleScrollToNextSection}
-        onClickPrevious={handleScrollToPreviousSection}
-        totalSections={sections.length}
-      />
     </div>
   );
 };

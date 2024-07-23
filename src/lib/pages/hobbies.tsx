@@ -101,10 +101,6 @@ export default function EducationAndHobbies() {
             <div className="h-32"></div>
             <div className="container mx-auto">
               {" "}
-              <div className="back">
-                {" "}
-                <BloomingFlower />
-              </div>
               <h1 className="text-3xl font-bold mb-6">
                 There are few more, check them out!
               </h1>{" "}

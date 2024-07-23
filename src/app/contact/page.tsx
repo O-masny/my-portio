@@ -14,7 +14,6 @@ export default function ContactPage() {
         <h1 className="text-4xl md:text-5xl font-bold text-white mb-8">
           Get in Touch
         </h1>
-
         <form className="w-full">
           <div className="mb-4">
             <input
@@ -54,7 +53,11 @@ export default function ContactPage() {
           >
             Send Message
           </motion.button>
-        </form>
+        </form>{" "}
+        <div className="back">
+          {" "}
+          <BloomingWreath />
+        </div>
       </div>
     </div>
   );

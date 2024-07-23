@@ -14,8 +14,8 @@ const BloomingWreath: React.FC = () => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: ".wreath-container",
-        start: "top bottom", // Start animation when the wreath-container reaches the bottom of the viewport
-        end: "top top", // End animation when the wreath-container reaches the top of the viewport
+        start: "top top", // Start animation when the wreath-container reaches the bottom of the viewport
+        end: "top bottom", // End animation when the wreath-container reaches the top of the viewport
         scrub: true, // Smooth scroll effect
       },
     });
@@ -43,11 +43,9 @@ const BloomingWreath: React.FC = () => {
   }, []);
 
   return (
-    <div className="wreath-container min-h-screen w-screen flex items-center justify-center relative overflow-hidden">
+    <div className="wreath-container h-1/2 w-screen flex items-center justify-center relative overflow-hidden">
       <svg
         className="wreath-svg"
-        width="100vw"
-        height="100vh"
         viewBox="0 0 800 800"
         xmlns="http://www.w3.org/2000/svg"
       >

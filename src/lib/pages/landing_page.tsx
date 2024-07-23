@@ -6,18 +6,15 @@ export default function LandingScreen() {
   return (
     <div className="flex flex-col md:flex-row min-h-screen relative overflow-hidden">
       {/* Levá polovina stránky */}
-      <div className="relative w-full h-screen md:h-auto md:w-1/2 flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src="/images/white_moon.jpeg"
-            alt="Description of image"
-            layout="fill"
-            objectFit="cover"
-            objectPosition="center"
-            className="opacity-50"
-          />
-        </div>
-
+      <div className="relative w-full h-screen md:h-auto md:w-1/2 flex items-center justify-center mr-2 ">
+        <Image
+          src="/images/white_moon.jpeg"
+          alt="Description of image"
+          layout="fill"
+          objectFit="cover"
+          objectPosition="center"
+          className="opacity-50"
+        />
         {/* Polygon přes fotku */}
         <div className="absolute inset-0">
           <svg
