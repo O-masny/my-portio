@@ -14,7 +14,7 @@ export default function ContactPage() {
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center  p-8 text-center rounded-lg shadow-lg max-w-lg w-full bg-white bg-opacity-5">
-        <h1 className={`${globalStyles.heading} text-white opacity-50 mb-8`}>
+        <h1 className={`${globalStyles.heading} text-white  mb-8`}>
           Get in Touch
         </h1>
         <form className="w-full">

@@ -14,8 +14,10 @@ const BloomingWreath: React.FC = () => {
 
     // Create a GSAP timeline for each circle
     const tl = gsap.timeline({
+      yoyo: true,
       scrollTrigger: {
         trigger: ".wreath-container",
+
         scrub: true, // Smooth scroll effect
       },
     });
@@ -32,6 +34,7 @@ const BloomingWreath: React.FC = () => {
         {
           strokeDashoffset: 0,
           opacity: 1,
+          delay: 2,
           duration: 2,
           ease: "power1.out",
           stagger: {
