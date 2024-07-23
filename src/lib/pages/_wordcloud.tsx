@@ -1,5 +1,5 @@
 "use client";
-import { useMemo } from "react";
+import React, { useMemo, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { scaleLog } from "@visx/scale";
 import { Wordcloud } from "@visx/wordcloud";
@@ -35,6 +35,23 @@ const skillData: WordData[] = [
 const getRotationDegree = () => 0; // Náhodná rotace
 
 const ClientSideWordcloud: React.FC = () => {
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const handleResize = () => {
+        setDimensions({
+          width: window.innerWidth * 0.75,
+          height: window.innerHeight * 0.75,
+        });
+      };
+
+      handleResize();
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }
+  }, []);
+
   // Kontrastní barvy k bílé a zelené
   const colors = useMemo(() => ["#FF4500", " #E7DECD"], []);
 
@@ -50,6 +67,10 @@ const ClientSideWordcloud: React.FC = () => {
     []
   );
 
+  if (dimensions.width === 0 || dimensions.height === 0) {
+    return null; // Or a loading spinner
+  }
+
   return (
     <div
       id="experience"
@@ -60,8 +81,8 @@ const ClientSideWordcloud: React.FC = () => {
       <div style={{ width: "100%", height: "100%" }}>
         <Wordcloud
           words={skillData}
-          width={window.innerWidth * 0.75} // Maximum 75% of viewport width
-          height={window.innerHeight * 0.75} // Maximum 75% of viewport height
+          width={dimensions.width} // Maximum 75% of viewport width
+          height={dimensions.height} // Maximum 75% of viewport height
           fontSize={(datum) => fontScale(datum.value)}
           font={"Impact"}
           spiral={"archimedean"}
