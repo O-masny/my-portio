@@ -11,34 +11,27 @@ const config: Config = {
   theme: {
     extend: {
       keyframes: {
-        triangleTransform: {
-          '0%': {
-            clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)', // Initial triangle
-            opacity: '1',
+        shapeTransform: {
+          '0%, 100%': {
+            clipPath: 'circle(50% at 50% 50%)', // Circle
+            borderRadius: '50%',
           },
           '25%': {
-            clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)', // Remains as triangle
-            opacity: '1',
+            clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)', // Square
+            borderRadius: '0%',
           },
           '50%': {
-            clipPath: 'polygon(50% 100%, 0% 0%, 100% 0%)', // Inverted triangle
-            opacity: '0.5',
+            clipPath: 'circle(50% at 50% 50%)', // Circle
+            borderRadius: '0%',
           },
           '75%': {
-            clipPath: 'polygon(50% 100%, 0% 0%, 100% 0%)', // Inverted triangle
-            opacity: '0.5',
-          },
-          '100%': {
-            clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)', // Back to initial triangle
-            opacity: '1',
+            clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)', // Triangle
+            borderRadius: '0%',
           },
         },
       },
       animation: {
-        triangleTransform: 'triangleTransform 6s infinite', // 6s total duration
-      },
-      backgroundImage: {
-        gradientTriangle: 'linear-gradient(to right, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5))',
+        shapeTransform: 'shapeTransform 12s infinite', // Total duration
       },
     },
   },

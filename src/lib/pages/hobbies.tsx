@@ -98,40 +98,20 @@ export default function EducationAndHobbies() {
           >
             <h2 className="text-4xl font-bold mb-8">PAINTINGS</h2>
             <Slider />
-            <div className="h-32"></div>
-            <div className="container mx-auto">
-              {" "}
-              <h1 className="text-3xl font-bold mb-6">
+            <div className="h-32"></div>{" "}
+            <div className="relative group">
+              <div className="absolute -inset-5">
+                <div className="w-full h-full max-w-sm mx-auto lg:mx-0 opacity-30 blur-lg bg-gradient-to-r from-yellow-400 via-pink-500 to-green-600"></div>
+              </div>
+              <h1 className="text-3xl group-hover:text-black duration-500 font-bold mb-6 ">
                 There are few more, check them out!
               </h1>{" "}
-              <div className="w-1/2 inline-block text-white cursor-pointer group h-16 py-4 border-4 border-white bg-lightWhite animate-triangleTransform  ">
-                <Link href="/paintings" shallow={true}>
-                  <p className="relative inline-block hover:text-white text-white cursor-pointer">
-                    <span className="relative z-10">Go to Paintings</span>{" "}
-                    <span
-                      className="absolute inset-0 rounded-full border-2 border-white opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out"
-                      style={{
-                        top: "50%",
-                        left: "50%",
-                        width: "120%",
-                        height: "120%",
-                        transform: "translate(-50%, -50%)",
-                      }}
-                    />
-                  </p>
-                </Link>{" "}
-              </div>{" "}
-              <span
-                className="absolute inset-0 rounded-full border-2 border-white opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out"
-                style={{
-                  top: "50%",
-                  left: "50%",
-                  width: "120%",
-                  height: "120%",
-                  transform: "translate(-50%, -50%)",
-                }}
-              />
-            </div>{" "}
+              <Link href="/paintings" shallow={true}>
+                <p className="relative hover:shadow-white group-hover:scale-150 duration-300  ">
+                  <span className="relative z-10">Go to Paintings</span>{" "}
+                </p>
+              </Link>{" "}
+            </div>
           </motion.div>
         )}
       </div>

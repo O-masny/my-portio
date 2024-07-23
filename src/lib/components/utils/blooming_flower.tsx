@@ -6,6 +6,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
+
 const BloomingWreath: React.FC = () => {
   useEffect(() => {
     const circles =
@@ -15,8 +16,6 @@ const BloomingWreath: React.FC = () => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: ".wreath-container",
-        start: "top top", // Start animation when the wreath-container reaches the bottom of the viewport
-        end: "top bottom", // End animation when the wreath-container reaches the top of the viewport
         scrub: true, // Smooth scroll effect
       },
     });
@@ -26,9 +25,6 @@ const BloomingWreath: React.FC = () => {
       tl.fromTo(
         circle,
         {
-          scrollTrigger: {
-            trigger: circle,
-          },
           strokeDasharray: radius * Math.PI * 2, // Circumference
           strokeDashoffset: radius * Math.PI * 2,
           opacity: 0,
@@ -47,9 +43,9 @@ const BloomingWreath: React.FC = () => {
   }, []);
 
   return (
-    <div className="wreath-container h-1/2 w-screen flex items-center justify-center relative overflow-hidden">
+    <div className="wreath-container h-screen absolute inset-0 flex items-center justify-center overflow-hidden">
       <svg
-        className="wreath-svg"
+        className="w-full h-full object-cover"
         viewBox="0 0 800 800"
         xmlns="http://www.w3.org/2000/svg"
       >
