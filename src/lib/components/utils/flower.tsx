@@ -3,8 +3,9 @@ import React, { useEffect } from "react";
 import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
-
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 const FlowerEffect: React.FC = () => {
   useEffect(() => {
     const circles =
@@ -31,9 +32,6 @@ const FlowerEffect: React.FC = () => {
           strokeDashoffset: length,
         },
         {
-          start: "top 30%",
-          end: "center 20%",
-
           strokeDashoffset: 0,
           duration: 1,
           ease: "power1.out",
@@ -54,8 +52,6 @@ const FlowerEffect: React.FC = () => {
           strokeDashoffset: length,
         },
         {
-          end: "center 20%",
-
           strokeDashoffset: 0,
           duration: 0.5, // Shorten duration for faster animation
           ease: "power1.out",

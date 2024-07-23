@@ -11,7 +11,7 @@ export default function LandingScreen() {
           src="/images/white_moon.jpeg"
           alt="Description of image"
           layout="fill"
-          objectFit="cover"
+          style={{ objectFit: "cover" }}
           objectPosition="center"
           className="opacity-50"
         />
@@ -25,7 +25,7 @@ export default function LandingScreen() {
             }}
             className="absolute bottom-0 left-0 z-0"
           >
-            <polygon points="0,0 100,0 100,100 0,calc(100% )" fill="black" />
+            <polygon points="0,0 100,0 100,100" fill="black" />
           </svg>
         </div>
       </div>

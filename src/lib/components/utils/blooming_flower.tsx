@@ -3,8 +3,9 @@ import React, { useEffect } from "react";
 import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
-
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 const BloomingWreath: React.FC = () => {
   useEffect(() => {
     const circles =
@@ -25,6 +26,9 @@ const BloomingWreath: React.FC = () => {
       tl.fromTo(
         circle,
         {
+          scrollTrigger: {
+            trigger: circle,
+          },
           strokeDasharray: radius * Math.PI * 2, // Circumference
           strokeDashoffset: radius * Math.PI * 2,
           opacity: 0,

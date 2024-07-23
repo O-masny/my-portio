@@ -21,7 +21,7 @@ const PaintingCard: React.FC<PaintingCardProps> = ({ painting }) => {
               src={painting.imageUrl}
               alt={painting.title}
               layout="fill"
-              objectFit="cover"
+              style={{ objectFit: "cover" }}
               className="rounded-lg"
               loading="lazy"
               fill
