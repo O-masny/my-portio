@@ -5,7 +5,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { bitter, bebas, globalStyles } from "../../styles/global_styles";
 import Image from "next/image";
 
-// Registrace ScrollTrigger pluginu
 gsap.registerPlugin(ScrollTrigger);
 
 export default function LandingScreen() {
@@ -14,7 +13,6 @@ export default function LandingScreen() {
   const tl = useRef<gsap.core.Timeline>(gsap.timeline({ repeat: -1, yoyo: true })); // Typování pro GSAP Timeline
 
   useLayoutEffect(() => {
-    // Rozdělení textu nadpisu na jednotlivé znaky
     const title = titleRef.current;
     if (title) {
       const titleText = title.textContent || ""; // Ošetření prázdného textu
@@ -82,17 +80,6 @@ export default function LandingScreen() {
           >
             <circle cx="50" cy="50" r="50" fill="black" />
 
-            <text
-              x="50"
-              y="50"
-              textAnchor="middle"
-              dominantBaseline="middle"
-              fill="white"
-              fontSize="10"
-              className={`${bebas.className}`}
-            >
-              Vítejte
-            </text>
           </svg>
         </div>
       </div>
@@ -103,8 +90,8 @@ export default function LandingScreen() {
             ref={titleRef}
             className={`${bebas.className} title text-2xl md:text-4xl font-bold mb-4 text-white`}
           >
-            My name is{" "}
-            <span className=" text-white text-4xl">Ondřej Masný</span>
+         
+            <span className=" text-white text-4xl">    My name is{" "}Ondřej Masný</span>
           </h1>
           <p
             className={`${bebas.className} text-3xl text-md md:text-lg text-white`}

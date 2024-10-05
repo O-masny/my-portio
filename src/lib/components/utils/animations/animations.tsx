@@ -60,3 +60,20 @@ export const animatePageOut = (href: string, router: AppRouterInstance) => {
     router.push(href);
   }
 };
+// Vlastní animace pro navbar
+const customNavbarAnimation = (element: HTMLElement) => {
+  gsap.fromTo(
+    element,
+    { opacity: 0, y: -50 },
+    { opacity: 1, y: 0, duration: 1 }
+  );
+};
+
+// Vlastní animace pro footer
+const customFooterAnimation = (element: HTMLElement) => {
+  gsap.fromTo(
+    element,
+    { opacity: 0, y: 50 },
+    { opacity: 1, y: 0, duration: 1 }
+  );
+};

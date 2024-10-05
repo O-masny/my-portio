@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import BloomingWreath from "@/lib/components/utils/blooming_flower"; // Adjust the import path as needed
+import BloomingWreath from "@/lib/components/utils/components/blooming_flower"; // Adjust the import path as needed
 import { globalStyles } from "../../styles/global_styles"; // Adjust the import path as needed
 
 export default function ContactPage() {

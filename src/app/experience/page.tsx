@@ -1,4 +1,4 @@
-import Timeline from "@/lib/components/utils/flower";
+import Timeline from "@/lib/components/utils/components/flower";
 import ClientSideWordcloud from "@/lib/pages/_wordcloud";
 import React from "react";
 
@@ -33,10 +33,7 @@ const ServerSideWordcloud: React.FC = () => {
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-1/2 bg-black rounded-b-full"></div>
       </div>
-      <div className=""></div>
-      <h1 className="text-xl font-bold my-8 space-y-6 text-center relative z-10">
-        Im <span className="text-5xl">mobile dev</span> that likes to work with
-      </h1>{" "}
+
       <div
         className="absolute inset-0"
         style={{
