@@ -1,3 +1,4 @@
+import { gsap } from "gsap";
 export const opacity = {
 
     initial: {
@@ -35,3 +36,15 @@ export const slideUp = {
     }
 
 }
+gsap.to(".char", {
+    opacity: 1,
+    y: 0,
+    duration: 0.8,
+    stagger: 0.05,
+    ease: "back.out(1.7)",
+    scrollTrigger: {
+        trigger: ".title-section",
+        start: "top center",
+        toggleActions: "play none none reverse"
+    }
+});
