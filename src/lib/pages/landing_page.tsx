@@ -1,62 +1,19 @@
+// components/LandingScreen.tsx
 "use client";
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { bitter, bebas, globalStyles } from "../../styles/global_styles";
+import { bitter, bebas } from "../../styles/global_styles";
 import Image from "next/image";
+import { runTitleAnimation } from "../components/utils/animations/animations";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function LandingScreen() {
-  // Refy s typováním pro TSX
   const titleRef = useRef<HTMLHeadingElement | null>(null);
-  const tl = useRef<gsap.core.Timeline>(gsap.timeline({ repeat: -1, yoyo: true })); // Typování pro GSAP Timeline
 
-  useLayoutEffect(() => {
-    const title = titleRef.current;
-    if (title) {
-      const titleText = title.textContent || ""; // Ošetření prázdného textu
-      title.innerHTML = titleText
-        .split("")
-        .map(
-          (char, i) =>
-            `<span class="char" style="opacity:0; display:inline-block;">${char}</span>`
-        )
-        .join("");
-
-      // Definice animací pomocí GSAP Timeline
-      tl.current = gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: ".title-section",
-            start: "top center",
-            toggleActions: "play none none reverse",
-          },
-        })
-        .to(".char", {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          stagger: 0.05,
-          ease: "back.out(1.7)",
-        })
-        .to(".char", {
-          scale: 1.2,
-          rotation: 360,
-          duration: 0.5,
-          stagger: 0.05,
-        })
-        .to(".char", {
-          scale: 1,
-          rotation: 0,
-          duration: 0.5,
-          stagger: 0.05,
-        });
-    }
-
-    return () => {
-      if (tl.current) tl.current.kill(); // Zrušení timeline při unmount
-    };
+  useEffect(() => {
+    runTitleAnimation(titleRef); // Spustit animaci
   }, []);
 
   return (
@@ -79,7 +36,6 @@ export default function LandingScreen() {
             }}
           >
             <circle cx="50" cy="50" r="50" fill="black" />
-
           </svg>
         </div>
       </div>
@@ -90,8 +46,7 @@ export default function LandingScreen() {
             ref={titleRef}
             className={`${bebas.className} title text-2xl md:text-4xl font-bold mb-4 text-white`}
           >
-         
-            <span className=" text-white text-4xl">    My name is{" "}Ondřej Masný</span>
+            My name is{" "}Ondřej Masný
           </h1>
           <p
             className={`${bebas.className} text-3xl text-md md:text-lg text-white`}

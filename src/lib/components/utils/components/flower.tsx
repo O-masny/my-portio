@@ -8,7 +8,7 @@ if (typeof window !== "undefined") {
 }
 const FlowerEffect: React.FC = () => {
   useEffect(() => {
-    
+
     const circles =
       document.querySelectorAll<SVGCircleElement>(".flower circle");
     const paths = document.querySelectorAll<SVGPathElement>(".flower path");

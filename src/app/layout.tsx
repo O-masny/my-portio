@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={bebas.className}>
       <body className={bitter.className}>
-        <WelcomePage /> {children}
+        {children}
       </body>
     </html>
   );

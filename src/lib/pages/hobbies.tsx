@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import Slider from "../components/slider";
-import Achievements from "../components/achievements";
+
 import PortfolioCardGrid from "@/app/projects/page";
 import Link from "next/link";
 import BloomingFlower from "../components/utils/components/blooming_flower";
+import Achievements from "../components/utils/components/achievements";
+import Slider from "../components/utils/components/slider";
 
 export default function EducationAndHobbies() {
   const [contrastMode, setContrastMode] = useState(false);
@@ -47,8 +48,8 @@ export default function EducationAndHobbies() {
           >
             <span
               className={`text-xl font-bold relative z-20 ${section === "Education"
-                  ? "text-black"
-                  : "text-white border-2 border-black"
+                ? "text-black"
+                : "text-white border-2 border-black"
                 }`}
             >
               Education
@@ -62,8 +63,8 @@ export default function EducationAndHobbies() {
           >
             <span
               className={`text-xl font-bold relative z-20 ${section === "Art"
-                  ? "text-black"
-                  : "text-white border-2 border-black"
+                ? "text-black"
+                : "text-white border-2 border-black"
                 }`}
             >
               Art

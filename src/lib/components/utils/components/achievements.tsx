@@ -2,7 +2,7 @@
 import Image from "next/image";
 import React from "react";
 import { motion } from "framer-motion";
-import { bitter, bebas } from "../../styles/global_styles"; // Adjust the path to where your utils.tsx file is located
+import { bebas, bitter } from "@/styles/global_styles";
 
 const completedAchievements = [
   {
