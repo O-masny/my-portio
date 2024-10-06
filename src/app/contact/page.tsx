@@ -1,3 +1,4 @@
+"use client";
 import { motion } from "framer-motion";
 import { globalStyles } from "../../styles/global_styles";
 import BloomingWreath from "@/lib/components/utils/components/blooming_flower";
