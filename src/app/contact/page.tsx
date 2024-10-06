@@ -6,7 +6,6 @@ import BloomingWreath from "@/lib/components/utils/components/blooming_flower";
 const ContactPage = () => {
   return <div className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
     <div className="absolute inset-0 -z-10 overflow-hidden">
-      <BloomingWreath />
     </div>
 
     <div className="relative z-10 flex flex-col items-center  p-8 text-center rounded-lg shadow-lg max-w-lg w-full bg-white bg-opacity-5">
