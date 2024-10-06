@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 
 import PortfolioCardGrid from "@/app/projects/page";
 import Link from "next/link";
-import BloomingFlower from "../components/utils/components/blooming_flower";
 import Achievements from "../components/utils/components/achievements";
 import Slider from "../components/utils/components/slider";
 

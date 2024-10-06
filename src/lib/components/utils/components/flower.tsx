@@ -1,80 +1,21 @@
 "use client";
-import React, { useEffect } from "react";
-import { gsap } from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
+import React, { useEffect, useRef } from "react";
+import { flowerAnimation } from "../animations/animations";
 
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
 const FlowerEffect: React.FC = () => {
+  const flowerContainerRef = useRef<HTMLDivElement | null>(null); // Create a ref for the container
+
   useEffect(() => {
-
-    const circles =
-      document.querySelectorAll<SVGCircleElement>(".flower circle");
-    const paths = document.querySelectorAll<SVGPathElement>(".flower path");
-
-    // Create a GSAP timeline
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".flower-container",
-        end: "center 20%",
-
-        scrub: true,
-      },
-    });
-
-    // Animate circles
-    circles.forEach((circle) => {
-      const length = circle.getTotalLength();
-      tl.fromTo(
-        circle,
-        {
-          strokeDasharray: length,
-          strokeDashoffset: length,
-        },
-        {
-          strokeDashoffset: 0,
-          duration: 1,
-          ease: "power1.out",
-          stagger: {
-            amount: 0.2, // Adjust timing between each circle
-          },
-        }
-      );
-    });
-
-    // Animate paths
-    paths.forEach((path) => {
-      const length = path.getTotalLength();
-      tl.fromTo(
-        path,
-        {
-          strokeDasharray: length,
-          strokeDashoffset: length,
-        },
-        {
-          strokeDashoffset: 0,
-          duration: 0.5, // Shorten duration for faster animation
-          ease: "power1.out",
-          stagger: {
-            amount: 0.3, // Adjust timing between each path    ¨
-          },
-        },
-        "<" // Align with previous animation
-      );
-    });
-
-    // Final flower scale animation
-    tl.to(".flower", {
-      scale: 1.2, // Enlarge the flower
-      duration: 2, // Shorten duration for faster animation
-      ease: "power1.out",
-      y: +200,
-    });
+    if (flowerContainerRef.current) {
+      flowerAnimation(flowerContainerRef.current); // Trigger the animation when the component mounts
+    }
   }, []);
 
   return (
-    <div className="z-10 flower-container min-h-screen flex items-center justify-center">
+    <div
+      ref={flowerContainerRef} // Attach the ref to the container
+      className="z-10 flower-container min-h-screen flex items-center justify-center"
+    >
       <svg
         className="flower"
         width="300"

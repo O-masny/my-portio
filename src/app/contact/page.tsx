@@ -9,7 +9,8 @@ export default function ContactPage() {
     <div className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
       {/* Background Animation */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
-        <BloomingWreath />
+        {/*      <BloomingWreath />
+ */}
       </div>
 
       {/* Content */}

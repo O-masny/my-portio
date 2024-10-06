@@ -1,6 +1,10 @@
 import gsap from "gsap";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import ScrollTrigger from "gsap/ScrollTrigger";
 
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 export const animatePageIn = () => {
   const transitionElement = document.getElementById("transition-element");
 
@@ -170,3 +174,70 @@ gsap.to(".char", {
     toggleActions: "play none none reverse"
   }
 });
+
+export const flowerAnimation = (flowerContainer: HTMLElement | null) => {
+  if (!flowerContainer) return; // Safety check to ensure the container exists
+
+  const circles = flowerContainer.querySelectorAll<SVGCircleElement>(".flower circle");
+  const paths = flowerContainer.querySelectorAll<SVGPathElement>(".flower path");
+
+  if (circles.length === 0 || paths.length === 0) return; // Ensure SVG elements exist
+
+  // Create a GSAP timeline
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: flowerContainer,
+      end: "center 20%",
+      scrub: true,
+    },
+  });
+
+  // Animate circles
+  circles.forEach((circle) => {
+    const length = circle.getTotalLength();
+    tl.fromTo(
+      circle,
+      {
+        strokeDasharray: length,
+        strokeDashoffset: length,
+      },
+      {
+        strokeDashoffset: 0,
+        duration: 1,
+        ease: "power1.out",
+        stagger: {
+          amount: 0.2, // Adjust timing between each circle
+        },
+      }
+    );
+  });
+
+  // Animate paths
+  paths.forEach((path) => {
+    const length = path.getTotalLength();
+    tl.fromTo(
+      path,
+      {
+        strokeDasharray: length,
+        strokeDashoffset: length,
+      },
+      {
+        strokeDashoffset: 0,
+        duration: 0.5, // Shorten duration for faster animation
+        ease: "power1.out",
+        stagger: {
+          amount: 0.3, // Adjust timing between each path
+        },
+      },
+      "<" // Align with previous animation
+    );
+  });
+
+  // Final flower scale animation
+  tl.to(".flower", {
+    scale: 1.2, // Enlarge the flower
+    duration: 2, // Shorten duration for faster animation
+    ease: "power1.out",
+    y: +200,
+  });
+};
