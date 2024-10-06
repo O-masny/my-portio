@@ -5,10 +5,9 @@ import dynamic from "next/dynamic";
 const Flower = dynamic(
   () => import('@/lib/components/utils/components/flower'),
   { ssr: false }
-
 )
 
-const ExperiencePage: React.FC = () => {
+const ExperiencePage = () => {
   return (
     <div className="relative flex flex-col items-center justify-end min-h-screen text-white bg-gradient-to-r from-white to-green-800 overflow-hidden">
       <Flower />
