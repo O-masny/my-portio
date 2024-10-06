@@ -1,8 +1,8 @@
-import { useTheme } from "@/lib/services/theme/theme_provider";
+"use client"
 import React from "react";
 
 export default function ThemeToggle() {
-  const { theme, toggleTheme } = useTheme(); // Přístup k aktuálnímu tématu a přepínací funkci
+  const { theme, toggleTheme } = toggleThemeHandler(); // Přístup k aktuálnímu tématu a přepínací funkci
 
   return (
     <button onClick={toggleTheme} className="p-2 border rounded">
@@ -10,3 +10,7 @@ export default function ThemeToggle() {
     </button>
   );
 }
+function toggleThemeHandler(): { theme: any; toggleTheme: any; } {
+  throw new Error("Function not implemented.");
+}
+
