@@ -241,7 +241,7 @@ export const flowerAnimation = (flowerContainer: HTMLElement | null) => {
     y: +200,
   });
 };
-export const wreathAnimation = (wreathContainer: HTMLElement | null) => {
+  export const wreathAnimation = (wreathContainer: HTMLElement | null) => {
   if (!wreathContainer) return; // Safety check to ensure the container exists
 
   const circles = wreathContainer.querySelectorAll<SVGCircleElement>(".wreath-circle");

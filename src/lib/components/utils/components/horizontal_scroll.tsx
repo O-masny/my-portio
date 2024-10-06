@@ -2,12 +2,9 @@
 import { useEffect, ReactNode } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { HorizontalScrollProps } from '@/lib/interfaces';
 
-gsap.registerPlugin(ScrollTrigger);
 
-interface HorizontalScrollProps {
-  children: ReactNode;  // Typ pro children
-}
 
 const HorizontalScroll: React.FC<HorizontalScrollProps> = ({ children }) => {
   useEffect(() => {

@@ -6,7 +6,7 @@ const FlowerEffect: React.FC = () => {
   const flowerContainerRef = useRef<HTMLDivElement | null>(null); // Create a ref for the container
 
   useEffect(() => {
-    if (flowerContainerRef.current) {
+    if (typeof window !== "undefined" && flowerContainerRef.current) {
       flowerAnimation(flowerContainerRef.current); // Trigger the animation when the component mounts
     }
   }, []);

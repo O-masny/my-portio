@@ -7,3 +7,7 @@ export interface AnimatedSectionProps {
     triggerPoint?: string; // Výchozí bod pro spuštění animace
     customAnimation?: (element: HTMLElement) => void; // Možnost zadat vlastní animaci
 }
+
+export interface HorizontalScrollProps {
+    children: ReactNode;  // Typ pro children
+}

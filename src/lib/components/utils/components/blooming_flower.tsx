@@ -6,8 +6,8 @@ const BloomingWreath: React.FC = () => {
   const wreathContainerRef = useRef<HTMLDivElement | null>(null); // Create a ref for the container
 
   useEffect(() => {
-    if (wreathContainerRef.current) {
-      wreathAnimation(wreathContainerRef.current); // Trigger the animation when the component mounts
+    if (typeof window !== "undefined" && wreathContainerRef.current) {
+      wreathAnimation(wreathContainerRef.current); // Trigger the animation only on the client side
     }
   }, []);
 
