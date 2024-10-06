@@ -241,3 +241,40 @@ export const flowerAnimation = (flowerContainer: HTMLElement | null) => {
     y: +200,
   });
 };
+export const wreathAnimation = (wreathContainer: HTMLElement | null) => {
+  if (!wreathContainer) return; // Safety check to ensure the container exists
+
+  const circles = wreathContainer.querySelectorAll<SVGCircleElement>(".wreath-circle");
+
+  if (circles.length === 0) return; // Ensure SVG circles exist
+
+  // Create a GSAP timeline for each circle
+  const tl = gsap.timeline({
+    yoyo: true,
+    scrollTrigger: {
+      trigger: wreathContainer,
+      scrub: true, // Smooth scroll effect
+    },
+  });
+
+  circles.forEach((circle) => {
+    const radius = parseFloat(circle.getAttribute("r") || "0");
+    tl.fromTo(
+      circle,
+      {
+        strokeDasharray: radius * Math.PI * 2, // Circumference
+        strokeDashoffset: radius * Math.PI * 2,
+        opacity: 0,
+      },
+      {
+        strokeDashoffset: 0,
+        opacity: 1,
+        duration: 2,
+        ease: "power1.out",
+        stagger: {
+          amount: 0.3, // Adjust timing between each circle
+        },
+      }
+    );
+  });
+};

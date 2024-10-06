@@ -1,52 +1,21 @@
 "use client";
-import React, { useEffect } from "react";
-import { gsap } from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
+import React, { useEffect, useRef } from "react";
+import { wreathAnimation } from "../animations/animations";
 
 const BloomingWreath: React.FC = () => {
+  const wreathContainerRef = useRef<HTMLDivElement | null>(null); // Create a ref for the container
+
   useEffect(() => {
-    const circles =
-      document.querySelectorAll<SVGCircleElement>(".wreath-circle");
-
-    // Create a GSAP timeline for each circle
-    const tl = gsap.timeline({
-      yoyo: true,
-      scrollTrigger: {
-        trigger: ".wreath-container",
-
-        scrub: true, // Smooth scroll effect
-      },
-    });
-
-    circles.forEach((circle, index) => {
-      const radius = parseFloat(circle.getAttribute("r") || "0");
-      tl.fromTo(
-        circle,
-        {
-          strokeDasharray: radius * Math.PI * 2, // Circumference
-          strokeDashoffset: radius * Math.PI * 2,
-          opacity: 0,
-        },
-        {
-          strokeDashoffset: 0,
-          opacity: 1,
-          delay: 2,
-          duration: 2,
-          ease: "power1.out",
-          stagger: {
-            amount: 0.3, // Adjust timing between each circle
-          },
-        }
-      );
-    });
+    if (wreathContainerRef.current) {
+      wreathAnimation(wreathContainerRef.current); // Trigger the animation when the component mounts
+    }
   }, []);
 
   return (
-    <div className="wreath-container h-screen absolute inset-0 flex items-center justify-center overflow-hidden">
+    <div
+      ref={wreathContainerRef} // Attach the ref to the container
+      className="wreath-container h-screen absolute inset-0 flex items-center justify-center overflow-hidden"
+    >
       <svg
         className="w-full h-full object-cover"
         viewBox="0 0 800 800"

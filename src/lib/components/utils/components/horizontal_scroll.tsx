@@ -11,7 +11,6 @@ interface HorizontalScrollProps {
 
 const HorizontalScroll: React.FC<HorizontalScrollProps> = ({ children }) => {
   useEffect(() => {
-    // Zajistíme, že kód běží pouze na klientovi
     if (typeof window !== 'undefined') {
       const boxes = document.querySelectorAll('.box');
       const totalWidth = -100 * (boxes.length - 1);
