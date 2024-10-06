@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "framer-motion";
 import { globalStyles } from "../../styles/global_styles";
 import dynamic from "next/dynamic";
