@@ -1,16 +1,19 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import BloomingWreath from "@/lib/components/utils/components/blooming_flower"; // Adjust the import path as needed
-import { globalStyles } from "../../styles/global_styles"; // Adjust the import path as needed
+import { globalStyles } from "../../styles/global_styles";
+import dynamic from "next/dynamic";
 
+const BloomingWreath = dynamic(
+  () => import('@/lib/components/utils/components/blooming_flower'),
+  { ssr: false }
+)
 export default function ContactPage() {
   return (
     <div className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
       {/* Background Animation */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
-        {/*      <BloomingWreath />
- */}
+        <BloomingWreath />
       </div>
 
       {/* Content */}

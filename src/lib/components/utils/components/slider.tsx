@@ -3,7 +3,7 @@ import { useRef, useState } from "react";
 import { useScroll, useTransform, motion } from "framer-motion";
 import Image from "next/image";
 import { XCircleIcon } from "@heroicons/react/24/outline";
-import { slider1, slider2 } from "@/lib/data/data";
+import { slider1, slider2 } from "@/lib/constats/data";
 
 interface SliderProps {
   sliderData: { src: string }[];

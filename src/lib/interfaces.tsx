@@ -9,5 +9,9 @@ export interface AnimatedSectionProps {
 }
 
 export interface HorizontalScrollProps {
-    children: ReactNode;  // Typ pro children
+    children: ReactNode;  
+}
+export interface WordData {
+    text: string;
+    value: number;
 }
