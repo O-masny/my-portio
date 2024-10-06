@@ -3,7 +3,8 @@ import { globalStyles } from "../../styles/global_styles";
 import BloomingWreath from "@/lib/components/utils/components/blooming_flower";
 
 
-export default function ContactPage() {
+
+const ContactPage: React.FC = () => {
   return (
     <div className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
       <div className="absolute inset-0 -z-10 overflow-hidden">
@@ -58,3 +59,4 @@ export default function ContactPage() {
     </div>
   );
 }
+export default ContactPage
