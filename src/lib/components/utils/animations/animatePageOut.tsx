@@ -1,53 +1,44 @@
 // lib/animations/animatePageInOut.ts
 "use client"
 import gsap from "gsap";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation"; // Import správného hooku useRouter z next/navigation
+import { useEffect } from "react";
 
-export const animatePageIn = () => {
-    const transitionElement = document.getElementById("transition-element");
-
-    if (transitionElement) {
-        const tl = gsap.timeline();
-
-        tl.set(transitionElement, { xPercent: 0 })
-            .to(transitionElement, {
-                xPercent: 100,
-                duration: 0.8,
-            })
-            .to(transitionElement, {
-                borderTopLeftRadius: "50vh",
-                borderBottomLeftRadius: "50vh",
-                duration: 0.4,
-            }, "<");
-    }
-};
-
-export const animatePageOut = (href: string) => {
+// Přejmenujeme animaci do custom hooku s názvem useAnimatePageOut
+export const useAnimatePageOut = (href: string) => {
     const router = useRouter();
 
-    const animationWrapper = document.getElementById("transition-element");
+    useEffect(() => {
+        const animationWrapper = document.getElementById("transition-element");
 
-    if (animationWrapper) {
-        const tl = gsap.timeline();
+        if (animationWrapper) {
+            const tl = gsap.timeline();
 
-        tl.set(animationWrapper, {
-            xPercent: -100,
-            borderTopRightRadius: "50%",
-            borderBottomRightRadius: "50%",
-            borderTopLeftRadius: "0",
-            borderBottomLeftRadius: "0",
-        })
-            .to(animationWrapper, {
-                xPercent: 0,
-                duration: 0.8,
-                onComplete: () => router.push(href),
+            tl.set(animationWrapper, {
+                xPercent: -100,
+                borderTopRightRadius: "50%",
+                borderBottomRightRadius: "50%",
+                borderTopLeftRadius: "0",
+                borderBottomLeftRadius: "0",
             })
-            .to(animationWrapper, {
-                borderTopRightRadius: "0",
-                borderBottomRightRadius: "0",
-                duration: 0.4,
-            }, "<");
-    } else {
-        router.push(href);
-    }
+                .to(animationWrapper, {
+                    xPercent: 0,
+                    duration: 0.8,
+                    onComplete: () => {
+                        router.push(href); // Správné použití routeru
+                    },
+                })
+                .to(
+                    animationWrapper,
+                    {
+                        borderTopRightRadius: "0",
+                        borderBottomRightRadius: "0",
+                        duration: 0.4,
+                    },
+                    "<"
+                );
+        } else {
+            router.push(href);
+        }
+    }, [href, router]);
 };
