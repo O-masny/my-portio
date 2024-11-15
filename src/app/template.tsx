@@ -1,5 +1,4 @@
 "use client";
-
 import { animatePageIn } from "@/lib/components/utils/animations/animatePageIn";
 import { useEffect } from "react";
 
