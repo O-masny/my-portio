@@ -2,7 +2,7 @@
 import "../../styles/portfolio.css";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { opacity, slideUp } from "../components/utils/animations/animations";
+import { opacity, slideUp } from "../components/utils/animations/titleAnimation";
 
 const words = [
   "Ahoj",

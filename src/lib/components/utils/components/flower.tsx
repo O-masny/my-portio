@@ -1,109 +1,68 @@
-"use client";
-import React, { useEffect, useRef } from "react";
-import { flowerAnimation } from "../animations/animations";
-import gsap from "gsap";
+"use client"
+import { useEffect, useRef } from "react";
+import { flowerAnimation } from "../animations/flowerAnimation";
 
-import ScrollTrigger from "gsap/ScrollTrigger";
+const FlowerComponent = () => {
+  // Refs pro jednotlivé SVG elementy
+  const circlesRefs = useRef<(SVGCircleElement | null)[]>([]);
+  const pathsRefs = useRef<(SVGPathElement | null)[]>([]);
+  const flowerContainerRef = useRef<HTMLDivElement | null>(null);
 
-const FlowerEffect: React.FC = () => {
-  const flowerContainerRef = useRef<HTMLDivElement | null>(null); // Create a ref for the container
-
+  // Použití useEffect pro spuštění animace při načtení komponenty
   useEffect(() => {
-    if (typeof window !== "undefined" && flowerContainerRef.current) {
-      gsap.registerPlugin(ScrollTrigger);
+    // Filtrace validních elementů (nezahrnuje null hodnoty)
+    const circles = circlesRefs.current.filter(Boolean) as SVGCircleElement[];
+    const paths = pathsRefs.current.filter(Boolean) as SVGPathElement[];
 
-      flowerAnimation(flowerContainerRef.current); // Trigger the animation when the component mounts
+    // Zavolání animace, pokud existuje kontejner a elementy
+    if (flowerContainerRef.current) {
+      flowerAnimation({
+        container: flowerContainerRef.current,
+        circles,
+        paths,
+      });
     }
-  }, []);
+  }, []); // Tento efekt se spustí pouze při mountování komponenty
+
+  // Funkce pro správu ref pro jednotlivé kruhy
+  const setCircleRef = (index: number) => (el: SVGCircleElement | null) => {
+    circlesRefs.current[index] = el;
+  };
+
+  // Funkce pro správu ref pro jednotlivé cesty
+  const setPathRef = (index: number) => (el: SVGPathElement | null) => {
+    pathsRefs.current[index] = el;
+  };
 
   return (
-    <div
-      ref={flowerContainerRef} // Attach the ref to the container
-      className="z-10 flower-container min-h-screen flex items-center justify-center"
-    >
-      <svg
-        className="flower"
-        width="300"
-        height="600"
-        viewBox="0 0 300 600"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        {/* Stonky */}
-        <path
-          d="M150 550 C150 350, 120 300, 150 200 C180 150, 220 120, 200 90 C150 40, 200 0, 150 0 C100 0, 150 40, 120 90 C90 120, 120 150, 150 200 C180 250, 150 300, 150 550 Z"
-          fill="none"
-          stroke="#2d6a4f"
-          strokeWidth="8"
-        />
+    <div ref={flowerContainerRef} className="flower-container">
+      <svg className="flower">
+        {/* Kružnice */}
+        {Array(3)
+          .fill(null)
+          .map((_, i) => (
+            <circle
+              key={`circle-${i}`}
+              cx="50"
+              cy="50"
+              r={40 + i * 10}
+              ref={setCircleRef(i)} // Použití callback ref pro kruhy
+            />
+          ))}
 
-        {/* Květy */}
-        <circle
-          cx="150"
-          cy="90"
-          r="50"
-          fill="none"
-          stroke="#ff6f61"
-          strokeWidth="6"
-        />
-        <circle
-          cx="100"
-          cy="150"
-          r="40"
-          fill="none"
-          stroke="#ff6f61"
-          strokeWidth="6"
-        />
-        <circle
-          cx="200"
-          cy="150"
-          r="40"
-          fill="none"
-          stroke="#ff6f61"
-          strokeWidth="6"
-        />
-        <circle
-          cx="150"
-          cy="200"
-          r="40"
-          fill="none"
-          stroke="#ff6f61"
-          strokeWidth="6"
-        />
-        <circle
-          cx="130"
-          cy="60"
-          r="30"
-          fill="none"
-          stroke="#ff6f61"
-          strokeWidth="6"
-        />
-        <circle
-          cx="170"
-          cy="60"
-          r="30"
-          fill="none"
-          stroke="#ff6f61"
-          strokeWidth="6"
-        />
-        <circle
-          cx="80"
-          cy="120"
-          r="30"
-          fill="none"
-          stroke="#ff6f61"
-          strokeWidth="6"
-        />
-        <circle
-          cx="220"
-          cy="120"
-          r="30"
-          fill="none"
-          stroke="#ff6f61"
-          strokeWidth="6"
-        />
+        {/* Cesty */}
+        {Array(2)
+          .fill(null)
+          .map((_, i) => (
+            <path
+              key={`path-${i}`}
+              d={`M${50 + i * 10},10 L${90 + i * 10},50 L${50 + i * 10},90 L${10 + i * 10},50 Z`}
+              ref={setPathRef(i)} // Použití callback ref pro cesty
+            />
+          ))}
       </svg>
     </div>
   );
 };
 
-export default FlowerEffect;
+export default FlowerComponent;

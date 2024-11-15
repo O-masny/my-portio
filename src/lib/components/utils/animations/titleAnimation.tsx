@@ -1,87 +1,8 @@
 "use client"
 import gsap from "gsap";
-import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
-import ScrollTrigger from "gsap/ScrollTrigger";
+import { useRouter } from "next/navigation"; // Pro nové verze Next.js (app directory)
 
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
-export const animatePageIn = () => {
-  const transitionElement = document.getElementById("transition-element");
 
-  if (transitionElement) {
-    const tl = gsap.timeline();
-
-    tl.set(transitionElement, {
-      xPercent: 0,
-    })
-      .to(transitionElement, {
-        xPercent: 100,
-        duration: 0.8,
-      })
-      .to(
-        transitionElement,
-        {
-          borderTopLeftRadius: "50vh",
-          borderBottomLeftRadius: "50vh",
-          duration: 0.4,
-        },
-        "<"
-      );
-  }
-};
-
-export const animatePageOut = (href: string, router: AppRouterInstance) => {
-  const animationWrapper = document.getElementById("transition-element");
-
-  if (animationWrapper) {
-    const tl = gsap.timeline();
-
-    tl.set(animationWrapper, {
-      xPercent: -100,
-      borderTopRightRadius: "50%",
-      borderBottomRightRadius: "50%",
-      borderTopLeftRadius: "0",
-      borderBottomLeftRadius: "0",
-    })
-      .to(animationWrapper, {
-        xPercent: 0,
-        duration: 0.8,
-        onComplete: () => {
-          router.push(href);
-        },
-      })
-      .to(
-        animationWrapper,
-        {
-          borderTopRightRadius: "0",
-          borderBottomRightRadius: "0",
-          duration: 0.4,
-        },
-        "<"
-      );
-  } else {
-    // Fallback if the animation wrapper doesn't exist
-    router.push(href);
-  }
-};
-// Vlastní animace pro navbar
-const customNavbarAnimation = (element: HTMLElement) => {
-  gsap.fromTo(
-    element,
-    { opacity: 0, y: -50 },
-    { opacity: 1, y: 0, duration: 1 }
-  );
-};
-
-// Vlastní animace pro footer
-const customFooterAnimation = (element: HTMLElement) => {
-  gsap.fromTo(
-    element,
-    { opacity: 0, y: 50 },
-    { opacity: 1, y: 0, duration: 1 }
-  );
-};
 export const runTitleAnimation = (titleRef: React.RefObject<HTMLHeadingElement>) => {
   const title = titleRef.current;
   if (title) {
@@ -175,73 +96,70 @@ gsap.to(".char", {
     toggleActions: "play none none reverse"
   }
 });
+type FlowerAnimationParams = {
+  container: HTMLElement | null;
+  circles: SVGCircleElement[];
+  paths: SVGPathElement[];
+}; export const flowerAnimation = ({ container, circles, paths }: FlowerAnimationParams) => {
+  if (!container) return; // Kontrola existence kontejneru
 
-export const flowerAnimation = (flowerContainer: HTMLElement | null) => {
-  if (!flowerContainer) return; // Safety check to ensure the container exists
-
-  const circles = flowerContainer.querySelectorAll<SVGCircleElement>(".flower circle");
-  const paths = flowerContainer.querySelectorAll<SVGPathElement>(".flower path");
-
-  if (circles.length === 0 || paths.length === 0) return; // Ensure SVG elements exist
-
-  // Create a GSAP timeline
   const tl = gsap.timeline({
     scrollTrigger: {
-      trigger: flowerContainer,
-      end: "center 20%",
+      trigger: container,
+      start: "top center",
+      end: "bottom center",
       scrub: true,
     },
   });
 
-  // Animate circles
-  circles.forEach((circle) => {
+  // Animace kruhů
+  circles.forEach((circle, index) => {
     const length = circle.getTotalLength();
     tl.fromTo(
       circle,
       {
         strokeDasharray: length,
         strokeDashoffset: length,
+        opacity: 0,
       },
       {
         strokeDashoffset: 0,
+        opacity: 1,
         duration: 1,
         ease: "power1.out",
-        stagger: {
-          amount: 0.2, // Adjust timing between each circle
-        },
+        delay: index * 0.1,
       }
     );
   });
 
-  // Animate paths
-  paths.forEach((path) => {
+  // Animace cest
+  paths.forEach((path, index) => {
     const length = path.getTotalLength();
     tl.fromTo(
       path,
       {
         strokeDasharray: length,
         strokeDashoffset: length,
+        opacity: 0,
       },
       {
         strokeDashoffset: 0,
-        duration: 0.5, // Shorten duration for faster animation
+        opacity: 1,
+        duration: 0.8,
         ease: "power1.out",
-        stagger: {
-          amount: 0.3, // Adjust timing between each path
-        },
-      },
-      "<" // Align with previous animation
+        delay: index * 0.15,
+      }
     );
   });
 
-  // Final flower scale animation
-  tl.to(".flower", {
-    scale: 1.2, // Enlarge the flower
-    duration: 2, // Shorten duration for faster animation
-    ease: "power1.out",
-    y: +200,
+  // Finální zvětšení
+  tl.to(container, {
+    scale: 1.1,
+    duration: 1.5,
+    ease: "power2.out",
   });
 };
+
 export const wreathAnimation = (wreathContainer: HTMLElement | null) => {
   if (!wreathContainer) return; // Safety check to ensure the container exists
 

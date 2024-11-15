@@ -1,5 +1,5 @@
-// components/HorizontalScroll.tsx
-import { useEffect, ReactNode } from 'react';
+"use client"
+import { useEffect, ReactNode, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { HorizontalScrollProps } from '@/lib/interfaces';
@@ -7,31 +7,33 @@ import { HorizontalScrollProps } from '@/lib/interfaces';
 
 
 const HorizontalScroll: React.FC<HorizontalScrollProps> = ({ children }) => {
+  const scrollRef = useRef<HTMLDivElement>(null); // Reference pro obalovací element
+  const contentRef = useRef<HTMLDivElement>(null); // Reference pro horizontální obsah
+
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const boxes = document.querySelectorAll('.box');
+    if (scrollRef.current && contentRef.current) {
+      const boxes = contentRef.current.children; // Přímý přístup k dětem obsahu
       const totalWidth = -100 * (boxes.length - 1);
 
-      const animation = gsap.to('.horizontal-content', {
+      const animation = gsap.to(contentRef.current, {
         xPercent: totalWidth,
-        ease: 'none',
+        ease: "none",
         scrollTrigger: {
-          trigger: '.horizontal-scroll',
-          start: 'top top',
-          end: '+=2000',
+          trigger: scrollRef.current, // Použití `scrollRef` jako triggeru
+          start: "top top",
+          end: "+=2000",
           pin: true,
           scrub: true,
-        }
+        },
       });
 
-      // Cleanup
+      // Cleanup animací
       return () => {
         animation.kill();
         ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
       };
     }
   }, []);
-
   return (
     <div className="horizontal-scroll">
       <div className="horizontal-content">

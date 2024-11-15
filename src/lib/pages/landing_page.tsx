@@ -5,7 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { bitter, bebas } from "../../styles/global_styles";
 import Image from "next/image";
-import { runTitleAnimation } from "../components/utils/animations/animations";
+import { runTitleAnimation } from "../components/utils/animations/titleAnimation";
 
 gsap.registerPlugin(ScrollTrigger);
 

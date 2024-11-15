@@ -1,3 +1,4 @@
+"use client"
 import { ReactNode } from "react";
 
 export interface AnimatedSectionProps {
@@ -9,7 +10,7 @@ export interface AnimatedSectionProps {
 }
 
 export interface HorizontalScrollProps {
-    children: ReactNode;  
+    children: ReactNode;
 }
 export interface WordData {
     text: string;

@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useRef } from "react";
-import { wreathAnimation } from "../animations/animations";
+import { wreathAnimation } from "../animations/titleAnimation";
 
 const BloomingWreath: React.FC = () => {
   const wreathContainerRef = useRef<HTMLDivElement | null>(null); // Create a ref for the container
