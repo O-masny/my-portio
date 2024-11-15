@@ -1,5 +1,4 @@
 import ClientSideWordcloud from "@/lib/pages/_wordcloud";
-import React from "react";
 import dynamic from "next/dynamic";
 
 const Flower = dynamic(
