@@ -1,12 +1,17 @@
 "use client";
 import React, { useEffect, useRef } from "react";
 import { flowerAnimation } from "../animations/animations";
+import gsap from "gsap";
+
+import ScrollTrigger from "gsap/ScrollTrigger";
 
 const FlowerEffect: React.FC = () => {
   const flowerContainerRef = useRef<HTMLDivElement | null>(null); // Create a ref for the container
 
   useEffect(() => {
     if (typeof window !== "undefined" && flowerContainerRef.current) {
+      gsap.registerPlugin(ScrollTrigger);
+
       flowerAnimation(flowerContainerRef.current); // Trigger the animation when the component mounts
     }
   }, []);

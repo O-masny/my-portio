@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { globalStyles } from "../../styles/global_styles";
-import BloomingWreath from "@/lib/components/utils/components/blooming_flower";
 
 
 const ContactPage = () => {
@@ -19,7 +18,7 @@ const ContactPage = () => {
             placeholder="Name"
             className={`block w-full px-4 py-2 border border-gray-300 bg-transparent backdrop-blur-sm rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 ${globalStyles.text}`}
           />
-        </div>
+        </div>|
 
         <div className="mb-4">
           <input
