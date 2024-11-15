@@ -1,4 +1,4 @@
-// components/AnimatedSection.tsx
+"use client"
 import { useEffect, ReactNode } from 'react';
 import { gsap } from 'gsap';
 import { AnimatedSectionProps } from '@/lib/interfaces';
