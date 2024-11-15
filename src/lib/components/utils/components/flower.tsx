@@ -3,18 +3,15 @@ import { useEffect, useRef } from "react";
 import { flowerAnimation } from "../animations/flowerAnimation";
 
 const FlowerComponent = () => {
-  // Refs pro jednotlivé SVG elementy
   const circlesRefs = useRef<(SVGCircleElement | null)[]>([]);
   const pathsRefs = useRef<(SVGPathElement | null)[]>([]);
   const flowerContainerRef = useRef<HTMLDivElement | null>(null);
 
-  // Použití useEffect pro spuštění animace při načtení komponenty
   useEffect(() => {
     // Filtrace validních elementů (nezahrnuje null hodnoty)
     const circles = circlesRefs.current.filter(Boolean) as SVGCircleElement[];
     const paths = pathsRefs.current.filter(Boolean) as SVGPathElement[];
 
-    // Zavolání animace, pokud existuje kontejner a elementy
     if (flowerContainerRef.current) {
       flowerAnimation({
         container: flowerContainerRef.current,
