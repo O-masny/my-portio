@@ -1,6 +1,5 @@
 "use client"
 import gsap from "gsap";
-import { useRouter } from "next/navigation"; // Pro nové verze Next.js (app directory)
 
 
 export const runTitleAnimation = (titleRef: React.RefObject<HTMLHeadingElement>) => {

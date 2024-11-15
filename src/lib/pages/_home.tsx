@@ -1,11 +1,6 @@
-// components/ClientSideHomepage.tsx
-
 "use client";
-
 import React, { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
-
-import NavigationButton from "../../lib/components/buttons/navigation_button";
 
 const LocomotiveScroll = () => import("locomotive-scroll");
 const EducationAndHobbies = dynamic(() => import("../../lib/pages/hobbies"), {
