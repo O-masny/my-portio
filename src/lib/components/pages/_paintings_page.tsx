@@ -1,7 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import SkeletonLoader from "../components/cards/card_loader";
-import PaintingCard from "../components/cards/painting_card";
+import SkeletonLoader from "../cards/card_loader";
+import PaintingCard from "../cards/painting_card";
+
 export interface Painting {
   id: string;
   title: string;

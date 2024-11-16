@@ -10,6 +10,11 @@ const config: Config = {
   darkMode: 'class',
   theme: {
     extend: {
+      fontFamily: {
+        bitter: ['Bitter', 'serif'],
+        bebas: ['Bebas Neue', 'cursive'],
+        lora: ['Lora', 'serif'],
+      },
       keyframes: {
         shapeTransform: {
           '0%, 100%': {
