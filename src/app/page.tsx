@@ -8,6 +8,7 @@ const WelcomePage = dynamic(() => import("../lib/pages/welcome_page"), {
 
 const HomepageScreen = dynamic(() => import("./home/page"), {
   ssr: false,
+  loading: () => <WelcomePage />,
 });
 
 export default function Home() {

@@ -1,3 +1,4 @@
+"use client"
 import { motion } from "framer-motion";
 import { globalStyles } from "../../styles/global_styles";
 
