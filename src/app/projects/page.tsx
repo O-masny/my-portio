@@ -39,8 +39,9 @@ export default function PortfolioCardGrid() {
             image={project.image}
             title={project.title}
             description={project.description}
-            date="2024" // You can update the date dynamically if needed
-          />
+            githubLink={project.githubLink}
+            date="2024"
+            techstack={project.techstack} />
         </div>
       ))}
     </div>

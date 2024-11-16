@@ -1,41 +1,65 @@
 import React from "react";
 import Image from "next/image";
+import { CardProjectProps } from "../utils/interfaces";
 
-interface CardProjectProps {
-  image: string; // URL obrázku
-  title: string; // Název projektu
-  description: string; // Popis projektu
-  date: string; // Datum projektu
-}
+
 
 export default function CardProject({
   image,
   title,
   description,
   date,
+  techstack,
+  previewLink,
+  githubLink,
 }: CardProjectProps) {
   return (
-    <div className="flex flex-row w-full p-6">
+    <div className="flex flex-row w-full p-6 bg-gray-900 rounded-lg shadow-lg">
       {/* Polovina pro obrázek */}
       <div className="w-1/2 p-2">
         <Image
-          src={image} // Odkaz na obrázek
+          src={image}
           alt={title}
-          layout="responsive" // Zajišťuje responzivní zobrazení
-          width={300} // Šířka pro Next.js
-          height={300} // Výška pro Next.js
-          className="rounded " // Ověření správného stylu
+          layout="responsive"
+          width={300}
+          height={300}
+          className="rounded-lg"
         />
       </div>
 
       {/* Polovina pro text */}
-      <div className="w-1/2 py-10 flex flex-col space-y-6 justify-start">
-        {" "}
-        {/* Posunutí textu výše */}
-        <h2 className="text-4xl font-bold">{title}</h2>{" "}
-        <span className="text-xl text-gray-300 mt-2">{date}</span>{" "}
-        {/* Mírně snížená intenzita šedé */}
+      <div className="w-1/2 py-10 flex flex-col space-y-4 justify-between">
+        <h2 className="text-4xl font-bold text-white">{title}</h2>
+        {githubLink && (
+          <a
+            href={githubLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-green-500 underline"
+          >
+            GitHub Repository
+          </a>
+        )}
         <p className="text-lg text-white opacity-80">{description}</p>
+        <div>
+          <h3 className="text-lg font-semibold text-white">Tech Stack:</h3>
+          <p className="text-white opacity-80">{techstack}</p>
+        </div>
+        {date && <span className="text-xl text-gray-400">{date}</span>}
+
+        <div className="flex space-x-4 mt-4 ali">
+          {previewLink && (
+            <a
+              href={previewLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-500 underline"
+            >
+              Live Preview
+            </a>
+          )}
+
+        </div>
       </div>
     </div>
   );

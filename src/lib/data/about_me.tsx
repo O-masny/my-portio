@@ -1,12 +1,12 @@
 
 export const projectDetails = [
   {
-    title: "Projekt 1",
-    image: "/pic1.jpg",
-    description: `Lorem ipsum je označení pro standardní pseudolatinský text užívaný v grafickém designu a navrhování jako demonstrativní výplňový text při vytváření pracovních ukázek grafických návrhů`,
-    techstack: "HTML/CSS, JavaScript",
+    title: "MeteorAtlas",
+    image: "/images/meteoapp.png",
+    description: `Your mobile cloud and weather guide`,
+    techstack: "Flutter, Dart, PHP",
     previewLink: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    githubLink: "https://github.com",
+    githubLink: "https://github.com/O-masny/meteoapp",
   },
   {
     title: "Projekt 2",
