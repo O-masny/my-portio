@@ -23,3 +23,11 @@ body {
       transparent,
       rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 }
+.project-card {
+  opacity: 0; 
+}
+
+.project-list {
+  margin-top: 50px;
+  padding-bottom: 50px;
+}

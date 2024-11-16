@@ -1,22 +1,47 @@
 import CardProject from "@/lib/components/utils/components/card";
 import { projectDetails } from "@/lib/constats/about_me";
-import React from "react";
+import React, { useEffect } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function PortfolioCardGrid() {
+  gsap.registerPlugin(ScrollTrigger);
+
+  useEffect(() => {
+    // Animate the cards when they enter the viewport using ScrollTrigger
+    gsap.fromTo(
+      ".project-card",
+      {
+        opacity: 0,
+        y: 100, // Start from below
+      },
+      {
+        opacity: 1,
+        y: 0, // Move to original position
+        duration: 1,
+        stagger: 0.3, // Stagger the animations for each card
+        scrollTrigger: {
+          trigger: ".project-list", // Trigger when the list is in the viewport
+          start: "top 80%", // Start animation when the top of the card is 80% visible
+          end: "bottom 20%", // End when the bottom is 20% visible
+          scrub: true, // Smooth animation with scroll
+          once: true, // Animation happens only once
+        },
+      }
+    );
+  }, []);
+
   return (
-    <div id="portfolio" className="flex flex-col items-center w-full h-full">
-      <div className="h-32"></div>{" "}
-      <div className="py-6 text-3xl">
-        <p> My projects</p>
-      </div>
+    <div className="project-list flex flex-col gap-8 p-6">
       {projectDetails.map((project, index) => (
-        <CardProject
-          key={index}
-          image={project.image} // URL obrázku projektu
-          title={project.title} // Název projektu
-          description={project.description} // Popis projektu
-          date={"project.date"} // Datum projektu
-        />
+        <div key={index} className="project-card">
+          <CardProject
+            image={project.image}
+            title={project.title}
+            description={project.description}
+            date="2024" // You can update the date dynamically if needed
+          />
+        </div>
       ))}
     </div>
   );

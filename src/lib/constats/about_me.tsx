@@ -2,7 +2,7 @@
 export const projectDetails = [
   {
     title: "Projekt 1",
-    image: "/C:Usersmasnyportfolimy-portiopublicimagespic3.jpeg",
+    image: "/pic1.jpg",
     description: `Lorem ipsum je označení pro standardní pseudolatinský text užívaný v grafickém designu a navrhování jako demonstrativní výplňový text při vytváření pracovních ukázek grafických návrhů`,
     techstack: "HTML/CSS, JavaScript",
     previewLink: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",

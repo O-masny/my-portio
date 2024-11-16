@@ -52,7 +52,7 @@ export default function EducationAndHobbies() {
                 : "text-white border-2 border-black"
                 }`}
             >
-              Education
+              &ME
             </span>
           </div>
           <div
@@ -81,7 +81,8 @@ export default function EducationAndHobbies() {
             transition={{ duration: 2, ease: "easeOut" }}
             className="mt-8 text-center"
           >
-            <Achievements /> <PortfolioCardGrid />
+            <Achievements /> 
+            <PortfolioCardGrid />
           </motion.div>
         )}
 
