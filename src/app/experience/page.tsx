@@ -1,8 +1,8 @@
-import ClientSideWordcloud from "@/lib/pages/_wordcloud";
+import ClientSideWordcloud from "@/lib/components/pages/_wordcloud";
 import dynamic from "next/dynamic";
 
 const Flower = dynamic(
-  () => import('@/lib/components/utils/components/flower'),
+  () => import('@/lib/components//flower'),
   { ssr: false }
 )
 

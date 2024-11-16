@@ -4,8 +4,8 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import PortfolioCardGrid from "@/app/projects/page";
 import Link from "next/link";
-import Achievements from "../components/utils/components/achievements";
-import Slider from "../components/utils/components/slider";
+import Achievements from "../achievements";
+import Slider from "../slider";
 
 export default function EducationAndHobbies() {
   const [contrastMode, setContrastMode] = useState(false);
@@ -34,7 +34,7 @@ export default function EducationAndHobbies() {
   return (
     <div
       id="education"
-      className={`flex flex-col items-start justify-center min-h-screen  ${textColor}`}
+      className={`flex flex-col items-start justify-center min-h-screen ${textColor}`}
     >
       {" "}
       <div className="h-64"></div>
@@ -75,23 +75,25 @@ export default function EducationAndHobbies() {
       <div className="flex flex-col items-center w-full">
         {section === "Education" && (
           <motion.div
+            key="education"
             initial="hidden"
             animate="visible"
             variants={educationVariants}
-            transition={{ duration: 2, ease: "easeOut" }}
+            transition={{ duration: 1, ease: "easeOut" }}
             className="mt-8 text-center"
           >
-            <Achievements /> 
+            <Achievements />
             <PortfolioCardGrid />
           </motion.div>
         )}
 
         {section === "Art" && (
           <motion.div
+            key="art"
             initial="hidden"
             animate="visible"
             variants={hobbiesVariants}
-            transition={{ duration: 2, ease: "easeOut" }}
+            transition={{ duration: 1, ease: "easeOut" }}
             className="mt-8 text-center w-full"
           >
             <h2 className="text-4xl font-bold mb-8">PAINTINGS</h2>

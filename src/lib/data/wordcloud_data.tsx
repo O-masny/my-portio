@@ -1,4 +1,4 @@
-import { WordData } from "../interfaces";
+import { WordData } from "../utils/interfaces";
 
 export const skillData: WordData[] = [
     { text: "React", value: 60 },

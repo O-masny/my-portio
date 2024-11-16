@@ -2,7 +2,7 @@
 import { useEffect, ReactNode, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { HorizontalScrollProps } from '@/lib/interfaces';
+import { HorizontalScrollProps } from '@/lib/utils/interfaces';
 
 
 

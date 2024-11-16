@@ -4,6 +4,32 @@ import { globalStyles } from "../../styles/global_styles";
 
 
 const ContactPage = () => {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const formData = new FormData(event.target as HTMLFormElement);
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        console.log("Falling over");
+        throw new Error(`Response status: ${response.status}`);
+      }
+
+      const responseData: Response = await response.json();
+      console.log(responseData.text);
+
+      alert('Message successfully sent');
+    } catch (err) {
+      console.error(err);
+      alert("Error, please try resubmitting the form");
+    }
+  }
+
+
   return <div className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
     <div className="absolute inset-0 -z-10 overflow-hidden">
     </div>
@@ -12,7 +38,7 @@ const ContactPage = () => {
       <h1 className={`${globalStyles.heading} text-white  mb-8`}>
         Get in Touch
       </h1>
-      <form className="w-full">
+      <form onSubmit={handleSubmit} className="w-full">
         <div className="mb-4">
           <input
             type="text"

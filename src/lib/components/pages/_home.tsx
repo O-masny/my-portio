@@ -1,19 +1,20 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
+import Footer from "../footer";
 
 const LocomotiveScroll = () => import("locomotive-scroll");
-const EducationAndHobbies = dynamic(() => import("../../lib/pages/hobbies"), {
+const EducationAndHobbies = dynamic(() => import("./hobbies"), {
   ssr: false,
 });
-const ResponsiveWordcloud = dynamic(() => import("../../app/experience/page"), {
+const ResponsiveWordcloud = dynamic(() => import("../../../app/experience/page"), {
   ssr: false,
 });
-const LandingScreen = dynamic(() => import("../../lib/pages/landing_page"), {
+const LandingScreen = dynamic(() => import("./landing_page"), {
   ssr: false,
 });
 
-const ContactPage = dynamic(() => import("../../app/contact/page"), {
+const ContactPage = dynamic(() => import("../../../app/contact/page"), {
   ssr: false,
 });
 
@@ -88,6 +89,7 @@ const ClientSideHomepage = () => {
           </div>
         );
       })}
+      <Footer />
     </div>
   );
 };
