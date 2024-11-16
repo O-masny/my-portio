@@ -13,15 +13,12 @@ const LandingScreen = dynamic(() => import("../../lib/pages/landing_page"), {
   ssr: false,
 });
 
-const ContactPage = dynamic(() => import("../../app/contact/page"), {
-  ssr: false,
-});
+
 
 const sections = [
   { name: "home", id: "home", Component: LandingScreen },
   { name: "experience", id: "experience", Component: ResponsiveWordcloud },
   { name: "hobbies", id: "hobbies", Component: EducationAndHobbies },
-  { name: "contact", id: "contact", Component: ContactPage },
 ];
 
 const ClientSideHomepage = () => {
