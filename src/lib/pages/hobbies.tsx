@@ -1,6 +1,7 @@
+"use client";
+
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-
 import PortfolioCardGrid from "@/app/projects/page";
 import Link from "next/link";
 import Achievements from "../components/utils/components/achievements";

@@ -14,7 +14,7 @@ const LandingScreen = dynamic(() => import("../../lib/pages/landing_page"), {
 });
 
 const ContactPage = dynamic(() => import("../../app/contact/page"), {
-  ssr: true,
+  ssr: false,
 });
 
 const sections = [
