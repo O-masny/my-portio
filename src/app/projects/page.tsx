@@ -2,7 +2,7 @@ import { projectDetails } from "@/lib/data/about_me";
 import React, { useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import CardProject from "@/lib/components/card";
+import CardProject from "@/lib/components/cards/card";
 
 export default function PortfolioCardGrid() {
   gsap.registerPlugin(ScrollTrigger);

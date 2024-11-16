@@ -15,7 +15,33 @@
     --background-end-rgb: 0, 0, 0;
   }
 }
+@keyframes pulse-image {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.horizontal-scroll {
+  height: 400px; /* Fixní výška odpovídající kartám */
+  overflow: hidden; /* Skrytí přetečení */
+}
 
+.horizontal-content {
+  display: flex;
+  gap: 1.5rem; /* Rozestupy mezi kartami */
+}
+
+.box {
+  transition: transform 0.3s ease-in-out; /* Animace při změně velikosti */
+}
+.animate-pulse-image {
+  animation: pulse-image 2s infinite ease-in-out;
+}
 body {
   overflow: 'visible';
   color: rgb(var(--foreground-rgb));
