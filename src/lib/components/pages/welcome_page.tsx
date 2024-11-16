@@ -1,8 +1,8 @@
 "use client";
-import "../../styles/portfolio.css";
+import "../../../styles/portfolio.css";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { opacity, slideUp } from "../components/utils/animations/titleAnimation";
+import { opacity, slideUp } from "@/lib/utils/animations/titleAnimation";
 
 const words = [
   "Ahoj",

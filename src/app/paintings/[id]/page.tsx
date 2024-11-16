@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FiArrowLeft } from "react-icons/fi";
 import { Painting } from "@/lib/pages/_paintings_page";
-import { paintingsData } from "@/lib/constats/data";
+import { paintingsData } from "@/lib/data/data";
 
 export default function Page({ params }: { params: Painting }) {
   const painting = paintingsData.find((p) => p.id === params.id);

@@ -1,7 +1,7 @@
 "use client"
 import { useEffect, ReactNode } from 'react';
 import { gsap } from 'gsap';
-import { AnimatedSectionProps } from '@/lib/interfaces';
+import { AnimatedSectionProps } from '@/lib/utils/interfaces';
 
 
 const AnimatedSection: React.FC<AnimatedSectionProps> = ({

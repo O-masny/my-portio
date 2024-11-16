@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { FiArrowLeft } from "react-icons/fi"; // Import ikony šipky zpět
-import { paintingsData } from "@/lib/constats/data";
+import { paintingsData } from "@/lib/data/data";
 import PaintingCard from "@/lib/components/cards/painting_card";
 import Footer from "@/lib/components/utils/components/footer";
 

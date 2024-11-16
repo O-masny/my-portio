@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useLayoutEffect, useRef } from "react";
-import { bitter, bebas } from "../../styles/global_styles";
+import { bitter, bebas } from "../../../styles/global_styles";
 import Image from "next/image";
-import { runTitleAnimation } from "../components/utils/animations/titleAnimation";
+import { runTitleAnimation } from "@/lib/utils/animations/titleAnimation";
 
 
 export default function LandingScreen() {

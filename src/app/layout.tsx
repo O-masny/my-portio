@@ -1,7 +1,6 @@
 import { Bitter, Bebas_Neue } from "next/font/google";
 import "../app/globals.css";
-import PageTransition from "@/lib/components/utils/animations/pageTransition";
-import Template from "@/lib/components/utils/animations/pageTransition";
+import Template from "@/lib/utils/animations/pageTransition";
 
 const bitter = Bitter({
   subsets: ["latin"],
