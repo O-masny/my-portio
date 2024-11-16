@@ -1,4 +1,4 @@
-// lib/animations/wreathAnimation.ts
+"use client"
 import gsap from "gsap";
 
 export const wreathAnimation = (wreathContainer: HTMLElement | null) => {

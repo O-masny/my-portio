@@ -1,4 +1,3 @@
-// lib/animations/animatePageInOut.ts
 "use client"
 import gsap from "gsap";
 import { useRouter } from "next/navigation"; // Import správného hooku useRouter z next/navigation
