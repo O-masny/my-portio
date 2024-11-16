@@ -1,3 +1,4 @@
+
 export const projectDetails = [
   {
     title: "Projekt 1",

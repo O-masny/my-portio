@@ -1,4 +1,4 @@
-import CardProject from "@/lib/components/card";
+import CardProject from "@/lib/components/utils/components/card";
 import { projectDetails } from "@/lib/constats/about_me";
 import React from "react";
 

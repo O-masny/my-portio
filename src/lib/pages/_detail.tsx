@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FiArrowLeft } from "react-icons/fi";
 import { Painting } from "@/lib/pages/_paintings_page";
-import { paintingsData } from "@/lib/data/data";
+import { paintingsData } from "@/lib/constats/data";
 
 export default function PaintingDetailScreen({ params }: { params: Painting }) {
   const painting = paintingsData.find((p) => p.id === params.id);
@@ -35,9 +35,8 @@ export default function PaintingDetailScreen({ params }: { params: Painting }) {
 
       <div className="relative">
         <div
-          className={`fixed top-0 left-0 w-full p-4 z-20 transition-opacity duration-300 ${
-            scrollY > 50 ? "opacity-100" : "opacity-0"
-          }`}
+          className={`fixed top-0 left-0 w-full p-4 z-20 transition-opacity duration-300 ${scrollY > 50 ? "opacity-100" : "opacity-0"
+            }`}
           style={{
             background:
               "linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0))",

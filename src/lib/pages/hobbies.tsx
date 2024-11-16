@@ -1,10 +1,11 @@
+"use client";
+
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import Slider from "../components/slider";
-import Achievements from "../components/achievements";
 import PortfolioCardGrid from "@/app/projects/page";
 import Link from "next/link";
-import BloomingFlower from "../components/utils/blooming_flower";
+import Achievements from "../components/utils/components/achievements";
+import Slider from "../components/utils/components/slider";
 
 export default function EducationAndHobbies() {
   const [contrastMode, setContrastMode] = useState(false);
@@ -40,35 +41,31 @@ export default function EducationAndHobbies() {
       <div className="relative text-5xl mb-8 px-4 py-2 flex justify-around w-full items-center">
         <div className="absolute w-full h-full flex justify-around items-center">
           <div
-            className={`absolute w-32 h-32 md:w-40 md:h-40 rounded-full flex items-center justify-center cursor-pointer ${
-              section === "Education" ? "bg-white" : "border-2 border-white"
-            }`}
+            className={`absolute w-32 h-32 md:w-40 md:h-40 rounded-full flex items-center justify-center cursor-pointer ${section === "Education" ? "bg-white" : "border-2 border-white"
+              }`}
             style={{ left: "20%", transform: "translate(-50%, -50%)" }}
             onClick={() => handleSectionChange("Education")}
           >
             <span
-              className={`text-xl font-bold relative z-20 ${
-                section === "Education"
-                  ? "text-black"
-                  : "text-white border-2 border-black"
-              }`}
+              className={`text-xl font-bold relative z-20 ${section === "Education"
+                ? "text-black"
+                : "text-white border-2 border-black"
+                }`}
             >
               Education
             </span>
           </div>
           <div
-            className={`absolute w-32 h-32 md:w-40 md:h-40 rounded-full flex items-center justify-center cursor-pointer ${
-              section === "Art" ? "bg-white" : "border-2 border-white"
-            }`}
+            className={`absolute w-32 h-32 md:w-40 md:h-40 rounded-full flex items-center justify-center cursor-pointer ${section === "Art" ? "bg-white" : "border-2 border-white"
+              }`}
             style={{ left: "80%", transform: "translate(-50%, -50%)" }}
             onClick={() => handleSectionChange("Art")}
           >
             <span
-              className={`text-xl font-bold relative z-20 ${
-                section === "Art"
-                  ? "text-black"
-                  : "text-white border-2 border-black"
-              }`}
+              className={`text-xl font-bold relative z-20 ${section === "Art"
+                ? "text-black"
+                : "text-white border-2 border-black"
+                }`}
             >
               Art
             </span>

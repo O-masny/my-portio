@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Bitter, Bebas_Neue } from "next/font/google";
 import "../app/globals.css";
-import WelcomePage from "@/lib/pages/welcome_page";
 
 const bitter = Bitter({
   subsets: ["latin"],
@@ -26,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={bebas.className}>
       <body className={bitter.className}>
-        <WelcomePage /> {children}
+        {children}
       </body>
     </html>
   );
