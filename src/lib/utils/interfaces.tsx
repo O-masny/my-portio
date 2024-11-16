@@ -2,11 +2,11 @@
 import { ReactNode } from "react";
 
 export interface AnimatedSectionProps {
-    children: ReactNode; // Obsah, který bude animován
-    className: string; // Možnost přidat vlastní CSS třídu
-    animationDuration?: number; // Délka animace
-    triggerPoint?: string; // Výchozí bod pro spuštění animace
-    customAnimation?: (element: HTMLElement) => void; // Možnost zadat vlastní animaci
+    children: ReactNode;
+    className: string;
+    animationDuration?: number;
+    triggerPoint?: string;
+    customAnimation?: (element: HTMLElement) => void;
 }
 
 export interface HorizontalScrollProps {
@@ -15,4 +15,13 @@ export interface HorizontalScrollProps {
 export interface WordData {
     text: string;
     value: number;
+}
+export interface CardProjectProps {
+    image: string; // URL obrázku
+    title: string; // Název projektu
+    description: string; // Popis projektu
+    date?: string; // Datum projektu (volitelné)
+    techstack: string; // Technologie použité v projektu
+    previewLink?: string; // Odkaz na náhled projektu (volitelné)
+    githubLink?: string; // Odkaz na GitHub projektu (volitelné)
 }

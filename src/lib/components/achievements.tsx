@@ -43,8 +43,7 @@ export default function Achievements() {
   return (
     <div className="flex flex-col  justify-center min-h-screen text-white p-8">
       <h1 className={`${bitter.className} text-4xl font-bold mb-8`}>
-        My Achievements
-      </h1>
+        About me      </h1>
 
       <motion.div
         className="max-w-4xl mb-16"
@@ -55,7 +54,7 @@ export default function Achievements() {
         <h2
           className={`${bitter.className} text-3xl font-semibold mb-4 text-left`}
         >
-          Completed Achievements
+          Completed milestones
         </h2>
         {completedAchievements.map((achievement, index) => (
           <motion.div
@@ -100,7 +99,7 @@ export default function Achievements() {
         <h2
           className={`${bitter.className} text-3xl font-semibold mb-4 text-left`}
         >
-          Ongoing Achievements
+          Ongoing activities
         </h2>
         {ongoingAchievements.map((achievement, index) => (
           <motion.div

@@ -3,32 +3,8 @@ import React, { useMemo, useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { scaleLog } from "@visx/scale";
 import { Wordcloud } from "@visx/wordcloud";
-import BloomingFlower from "../components/utils/components/blooming_flower";
+import { skillData } from "@/lib/data/wordcloud_data";
 
-interface WordData {
-  text: string;
-  value: number;
-}
-
-// Data pro Word Cloud
-const skillData: WordData[] = [
-  { text: "React", value: 60 },
-  { text: "Next.js", value: 75 },
-  { text: "Chess", value: 69 },
-  { text: "Tailwind CSS", value: 60 },
-  { text: "Node.js", value: 40 },
-  { text: "TypeScript", value: 73 },
-  { text: "JavaScript", value: 40 },
-  { text: "Dart", value: 100 },
-  { text: "Python", value: 25 },
-  { text: "Git", value: 95 },
-  { text: "React native", value: 100 },
-  { text: "Google Analytics 4", value: 95 },
-  { text: "Scratch", value: 95 },
-  { text: "Unreal engine", value: 40 },
-  { text: "Flutter", value: 80 },
-  { text: "Godot engine", value: 80 },
-];
 
 // Konfigurace pro Word Cloud
 const getRotationDegree = () => 0; // Náhodná rotace
