@@ -1,6 +1,7 @@
-import type { Metadata } from "next";
 import { Bitter, Bebas_Neue } from "next/font/google";
 import "../app/globals.css";
+import PageTransition from "@/lib/components/utils/animations/pageTransition";
+import Template from "@/lib/components/utils/animations/pageTransition";
 
 const bitter = Bitter({
   subsets: ["latin"],
@@ -12,9 +13,9 @@ const bebas = Bebas_Neue({
   weight: "400",
 });
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "OMA",
-  description: "Portofolio - Ondrej Masny",
+  description: "Portfolio - Ondrej Masny",
 };
 
 export default function RootLayout({
@@ -25,7 +26,15 @@ export default function RootLayout({
   return (
     <html lang="en" className={bebas.className}>
       <body className={bitter.className}>
-        {children}
+        <div
+          id="transition-element"
+          className="fixed inset-0 bg-black z-50"
+          style={{ transform: "translateX(-100%)" }}
+        />
+        <Template >
+          {children}
+        </Template >
+
       </body>
     </html>
   );
