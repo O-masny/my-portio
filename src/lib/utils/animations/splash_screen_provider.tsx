@@ -1,5 +1,5 @@
 "use client";
-import WelcomePage from "@/lib/pages/welcome_page";
+import WelcomePage from "@/lib/components/pages/welcome_page";
 import { useEffect, useState } from "react";
 const SplashScreenProvider = ({
   children,

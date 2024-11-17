@@ -1,6 +1,5 @@
 import dynamic from "next/dynamic";
 import BurgerMenu from "@/lib/components/nav/burger_menu";
-import Footer from "@/lib/components/footer";
 
 const WelcomePage = dynamic(() => import("../lib/components/pages/welcome_page"), {
   ssr: false,
