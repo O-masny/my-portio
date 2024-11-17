@@ -2,7 +2,8 @@
 import { AnimatePresence } from "framer-motion";
 import styles from "../../../styles/navbar.module.css";
 import { useState } from "react";
-import Navbar, { ILink, LinkArray } from "./navbar_body";
+import { ILink } from "@/lib/utils/interfaces";
+import Navbar from "./navbar_body";
 
 export default function NavbarComponent() {
   const [isActive, setIsActive] = useState(false);

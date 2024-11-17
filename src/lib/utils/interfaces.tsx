@@ -35,3 +35,11 @@ export interface Painting {
     imageUrl: string;
     date: string;
 }
+export interface ILink {
+    title: string;
+    href: string;
+}
+
+export interface LinkArray {
+    links: ILink[];
+}

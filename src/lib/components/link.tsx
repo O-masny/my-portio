@@ -1,7 +1,7 @@
 import styles from "../../../styles/navbar.module.css";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ILink } from "../../nav/navbar_body";
+import { ILink } from "../utils/interfaces";
 
 export default function Linker(
   props: ILink,
