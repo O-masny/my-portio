@@ -1,9 +1,7 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
-import Footer from "../footer";
 
-const LocomotiveScroll = () => import("locomotive-scroll");
 const EducationAndHobbies = dynamic(() => import("./hobbies"), {
   ssr: false,
 });
@@ -30,26 +28,20 @@ const ClientSideHomepage = () => {
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
 
   useEffect(() => {
-    let scroll: any = null;
 
-    if (containerRef.current) {
-      LocomotiveScroll().then((module) => {
-        if (containerRef.current) {
-          scroll = new module.default({
-            el: containerRef.current as HTMLElement,
-            smooth: true,
-          });
-        }
-      });
-    }
+    (
 
-    return () => {
-      if (scroll) {
-        scroll.destroy();
+      async () => {
+
+        const LocomotiveScroll = (await import('locomotive-scroll')).default
+
+        const locomotiveScroll = new LocomotiveScroll();
+
       }
-    };
-  }, [containerRef]);
 
+    )()
+
+  }, [])
   const scrollToSection = (sectionIndex: number) => {
     const section = sections[sectionIndex];
     const sectionElement = document.getElementById(section.id);
@@ -88,8 +80,7 @@ const ClientSideHomepage = () => {
             <Component />
           </div>
         );
-      })}   
-
+      })}
     </div>
   );
 };

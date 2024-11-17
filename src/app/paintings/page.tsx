@@ -1,4 +1,5 @@
-import React from "react";
+"use client"
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { FiArrowLeft } from "react-icons/fi"; // Import ikony šipky zpět
 import { paintingsData } from "@/lib/data/data";
@@ -6,6 +7,14 @@ import PaintingCard from "@/lib/components/cards/painting_card";
 import Footer from "@/lib/components/footer";
 
 const PaintingsPage = () => {
+  useEffect(() => {
+    (
+      async () => {
+        const LocomotiveScroll = (await import('locomotive-scroll')).default
+        const locomotiveScroll = new LocomotiveScroll();
+      }
+    )()
+  }, [])
   return (
     <div className="container mx-auto px-4">
       <Link href="/" shallow={true} scroll={true} >

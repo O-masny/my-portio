@@ -14,7 +14,7 @@ export default function Home() {
     <div>
       <WelcomePage />
       <BurgerMenu />
-      <HomepageScreen />   
+      <HomepageScreen />
     </div>
   );
 }
