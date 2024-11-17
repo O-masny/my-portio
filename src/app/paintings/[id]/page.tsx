@@ -2,8 +2,8 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FiArrowLeft } from "react-icons/fi";
-import { Painting } from "@/lib/pages/_paintings_page";
 import { paintingsData } from "@/lib/data/data";
+import { Painting } from "@/lib/components/pages/_paintings_page";
 
 export default function Page({ params }: { params: Painting }) {
   const painting = paintingsData.find((p) => p.id === params.id);
