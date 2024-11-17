@@ -1,3 +1,4 @@
+import { projectDetails } from "@/lib/data/about_me";
 import { CardProjectProps } from "@/lib/utils/interfaces";
 import dynamic from "next/dynamic";
 
@@ -7,10 +8,9 @@ const PortfolioClientSide = dynamic<{ projectDetails: CardProjectProps[] }>(
   { ssr: false }
 );
 
-export default function Portfolio({ projectDetails }: { projectDetails: CardProjectProps[] }) {
+export default function ProjectsPage() {
   return (
     <div>
-      {/* Klientská část */}
       <PortfolioClientSide projectDetails={projectDetails} />
     </div>
   );
