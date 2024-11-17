@@ -10,10 +10,6 @@ import Footer from "@/lib/components/footer";
 export default function DetailPage({ params }: { params: Painting }) {
     const painting = paintingsData.find((p) => p.id === params.id);
 
-    if (!painting) {
-        return <div>Painting not found</div>;
-    }
-
     const scrollContainerRef = useRef<HTMLDivElement | null>(null);
     useEffect(() => {
 
@@ -30,6 +26,10 @@ export default function DetailPage({ params }: { params: Painting }) {
         )()
 
     }, [])
+
+    if (!painting) {
+        return <div>Painting not found</div>;
+    }
 
     return (
         <div ref={scrollContainerRef}> {/* Wrapper pro LocomotiveScroll */}

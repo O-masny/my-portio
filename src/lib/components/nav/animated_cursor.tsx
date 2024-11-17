@@ -14,12 +14,12 @@ const FireballAnimation: React.FC = () => {
             // Animace s ScrollTrigger a závislost na scrollY
             gsap.to(fireballRef.current, {
                 ease: 'none',
-                x: 500, // Posun doleva
+                x: 900, // Posun doleva
 
                 scrollTrigger: {
                     trigger: "fireball", // Element, který spustí scroll trigger
-                    start: "top 60%",
-                    end: "bottom top",
+                    start: "top 80%",
+                    end: "bottom 10%",
                     scrub: 1, // Plynulý pohyb s pomalejším efektem
                     invalidateOnRefresh: true, // Při každém znovu načtení triggeru se nastaví nová hodnota
                 },
