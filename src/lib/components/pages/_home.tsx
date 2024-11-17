@@ -81,7 +81,6 @@ const ClientSideHomepage = () => {
           </div>
         );
       })}
-
     </div>
   );
 };

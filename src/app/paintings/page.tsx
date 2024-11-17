@@ -8,19 +8,12 @@ import Footer from "@/lib/components/footer";
 
 const PaintingsPage = () => {
   useEffect(() => {
-
     (
-
       async () => {
-
         const LocomotiveScroll = (await import('locomotive-scroll')).default
-
         const locomotiveScroll = new LocomotiveScroll();
-
       }
-
     )()
-
   }, [])
   return (
     <div className="container mx-auto px-4">

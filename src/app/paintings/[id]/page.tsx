@@ -6,6 +6,7 @@ import { Painting } from "@/lib/utils/interfaces";
 import Intro from "@/lib/components/pages/detail_paintings/intro";
 import Description from "@/lib/components/pages/detail_paintings/description";
 import Pictures from "@/lib/components/pages/detail_paintings/pictures";
+import Footer from "@/lib/components/footer";
 
 export default function Page({ params }: { params: Painting }) {
   const painting = paintingsData.find((p) => p.id === params.id);
@@ -33,6 +34,7 @@ export default function Page({ params }: { params: Painting }) {
       <Intro params={painting} />
       <Description />
       <Pictures />
+      <Footer />
     </div>
   );
 }
