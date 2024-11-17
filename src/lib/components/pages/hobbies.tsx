@@ -104,7 +104,7 @@ export default function EducationAndHobbies() {
             <div className="h-32"></div>{" "}
             <div className="relative group">
               <div className="absolute -inset-5">
-                <div className="w-full h-full max-w-sm mx-auto lg:mx-0 opacity-30 blur-lg bg-gradient-to-r from-yellow-400 via-pink-500 to-green-600"></div>
+                <div className="w-full h-full flex justify-center max-w-sm mx-auto opacity-30 blur-lg bg-gradient-to-r from-yellow-400 via-pink-500 to-green-600"></div>
               </div>
               <h1 className="text-3xl group-hover:text-black duration-500 font-bold mb-6 ">
                 There are few more, check them out!

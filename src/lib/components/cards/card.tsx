@@ -67,9 +67,9 @@ export default function CardProject({
           )}
           {/* Datum */}
         </div>
+        {date && <span className=" absolute right-5 bottom-5 text-sm text-gray-400">{date}</span>}
 
-      </div>        {date && <span className="absolute bottom-5 right-5 text-sm text-gray-400">{date}</span>}
-
+      </div>
     </div>
   );
 }
