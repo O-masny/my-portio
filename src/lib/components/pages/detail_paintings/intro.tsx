@@ -1,23 +1,22 @@
 'use client';
 import React, { useLayoutEffect, useRef } from 'react';
 import Image from 'next/image';
-import { paintingsData } from '@/lib/data/data';
 import { Painting } from '@/lib/utils/interfaces';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from './style.module.css';
 
 export default function Intro({ params }: { params: Painting }) {
-    const painting = paintingsData.find((p) => p.id === params.id);
 
-    if (!painting) {
-        return <div>Painting not found</div>;
-    }
+
 
     const background = useRef<HTMLDivElement | null>(null);
     const introImage = useRef<HTMLDivElement | null>(null);
 
+    // Efekt spouštěný při zobrazení komponenty
     useLayoutEffect(() => {
+        if (!params != null) return; // Zajistíme, že animace bude probíhat jen pokud je painting definován
+
         gsap.registerPlugin(ScrollTrigger);
 
         const timeline = gsap.timeline({
@@ -41,7 +40,7 @@ export default function Intro({ params }: { params: Painting }) {
                 height: "400px",
                 ease: "power2.out",
             }, 0); // Sync with background animation
-    }, []);
+    }, [params]); // Přidáme painting jako závislost
 
     return (
         <div className={styles.homeHeader}>
@@ -59,14 +58,14 @@ export default function Intro({ params }: { params: Painting }) {
             <div className={styles.intro}>
                 <div ref={introImage} data-scroll data-scroll-speed="0.3" className={styles.introImage}>
                     <Image
-                        src={painting.imageUrl}
+                        src={params.imageUrl}
                         alt="intro image"
                         fill={true}
                         priority={true}
                     />
                 </div>
                 <h1 data-scroll data-scroll-speed="0.7">
-                    {painting.title}
+                    {params.title}
                 </h1>
             </div>
         </div>
