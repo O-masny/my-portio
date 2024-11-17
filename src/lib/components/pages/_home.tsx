@@ -88,8 +88,8 @@ const ClientSideHomepage = () => {
             <Component />
           </div>
         );
-      })}
-      <Footer />
+      })}   
+
     </div>
   );
 };

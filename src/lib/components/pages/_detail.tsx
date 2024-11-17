@@ -3,8 +3,8 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FiArrowLeft } from "react-icons/fi";
-import { Painting } from "@/lib/pages/_paintings_page";
 import { paintingsData } from "@/lib/data/data";
+import { Painting } from "@/lib/utils/interfaces";
 
 export default function PaintingDetailScreen({ params }: { params: Painting }) {
   const painting = paintingsData.find((p) => p.id === params.id);

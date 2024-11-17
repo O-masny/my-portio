@@ -4,15 +4,8 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { usePathname, useRouter } from "next/navigation";
+import { LinkArray } from "@/lib/utils/interfaces";
 
-export interface ILink {
-  title: string;
-  href: string;
-}
-
-export interface LinkArray {
-  links: ILink[];
-}
 
 export default function Navbar({ links }: LinkArray) {
   const pathname = usePathname();
