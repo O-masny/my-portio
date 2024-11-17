@@ -15,6 +15,10 @@ export interface WordData {
     text: string;
     value: number;
 }
+export interface PaintingCardProps {
+    painting: Painting;
+}
+
 export interface CardProjectProps {
     image: string; // URL obrázku
     title: string; // Název projektu
@@ -23,4 +27,11 @@ export interface CardProjectProps {
     techstack: string; // Technologie použité v projektu
     previewLink?: string; // Odkaz na náhled projektu (volitelné)
     githubLink?: string; // Odkaz na GitHub projektu (volitelné)
+}
+export interface Painting {
+    id: string;
+    title: string;
+    description: string;
+    imageUrl: string;
+    date: string;
 }

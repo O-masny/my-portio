@@ -2,11 +2,9 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Painting } from "@/lib/pages/_paintings_page";
+import { PaintingCardProps } from "@/lib/utils/interfaces";
 
-interface PaintingCardProps {
-  painting: Painting;
-}
+
 
 const PaintingCard: React.FC<PaintingCardProps> = ({ painting }) => {
   return (

@@ -2,14 +2,8 @@
 import React, { useState, useEffect } from "react";
 import SkeletonLoader from "../cards/card_loader";
 import PaintingCard from "../cards/painting_card";
+import { Painting } from "@/lib/utils/interfaces";
 
-export interface Painting {
-  id: string;
-  title: string;
-  description: string;
-  imageUrl: string;
-  date: string;
-}
 interface Props {
   paintings: Painting[];
 }
