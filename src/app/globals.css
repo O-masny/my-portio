@@ -62,7 +62,6 @@ body {
 
 .fireball {
   position: relative;
-
   animation: fireball 0.5s linear infinite;
 }
 

@@ -14,7 +14,6 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({
     useEffect(() => {
         const element = document.querySelector(`.${className}`) as HTMLElement;
 
-        // Zajištění, že element existuje
         if (element) {
             // Použití vlastní animace, pokud je poskytnuta
             if (customAnimation) {

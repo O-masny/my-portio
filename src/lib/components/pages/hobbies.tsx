@@ -5,10 +5,6 @@ import PortfolioCardGrid from "@/app/projects/page";
 import Link from "next/link";
 import Achievements from "../achievements";
 import Slider from "../slider";
-import VerticalList from "../horizontal_list";
-import CreativeCarousel from "../horizontal_list";
-import HorizontalSlider from "../horizontal_list";
-import ScrollFallingObject from "../nav/animated_cursor";
 
 export default function EducationAndHobbies() {
   const [contrastMode, setContrastMode] = useState(false);
@@ -119,7 +115,6 @@ export default function EducationAndHobbies() {
           </motion.div>
         )}
       </div>
-      <ScrollFallingObject />
     </div>
   );
 }
