@@ -43,7 +43,8 @@
   animation: pulse-image 2s infinite ease-in-out;
 }
 body {
-  overflow: 'visible';
+  overflow-x: hidden;
+  
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(to bottom,
       transparent,

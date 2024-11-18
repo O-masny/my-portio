@@ -24,24 +24,21 @@ const Description: React.FC = () => {
             gsap.from(elements, {
                 scrollTrigger: {
                     trigger: containerRef.current,
-                    start: "top 60%",
-                    end: "bottom top",
-                    scrub: true,
-                    toggleActions: "play reverse play reverse",
+                    start: "bottom 50%",
+                    end: "bottom 20%",
+                    scrub: 1, // Plynulé propojení scrollu a animace
+                    toggleActions: "play none none reverse",
                     markers: false, // Zapněte pro ladění
-                    onRefresh: () => ScrollTrigger.refresh
                 },
                 autoAlpha: 0,
-                x: -200, // Posun doleva
-                stagger: 0.2, // Každý element se objeví s odstupem
+                x: -200,
+                stagger: 0.2, // Postupné zobrazování
                 ease: "power3.out",
             });
 
-            // Refreš ScrollTrigger po načtení stránky
-            ScrollTrigger.refresh();
+            ScrollTrigger.refresh(); // Zajistí správnou inicializaci při načtení stránky
         }
     }, []);
-
     return (
         <div ref={containerRef} className={styles.description}>
             {phrases.map((phrase, index) => (

@@ -106,7 +106,7 @@ export default function EducationAndHobbies() {
               <h1 className="text-3xl group-hover:text-black duration-500 font-bold mb-6 ">
                 There are few more, check them out!
               </h1>{" "}
-              <Link href="/paintings" shallow={true}>
+              <Link href="/paintings" shallow={true} scroll={false}>
                 <p className="relative hover:shadow-white group-hover:scale-150 duration-300  ">
                   <span className="relative z-10">Go to Paintings</span>{" "}
                 </p>
