@@ -131,7 +131,7 @@
 
     width: 20%;
 
-    font-size: 1.6vw;
+    font-size: 6vw;
 
 }
 
@@ -159,7 +159,35 @@
 }
 
 
+.textContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+}
 
+.leftText {
+    position: absolute;
+    top: 0; /* Pozice textu nahoře */
+    left: 0; /* Pozice textu vlevo */
+    font-size: 1rem; /* Upravte velikost podle potřeby */
+    color: white; /* Barva textu pro zajištění kontrastu s obrázkem */
+    max-width: 60%; /* Šířka textového bloku */
+}
+
+.rightText {
+    position: absolute;
+    bottom: 0; /* Pozice textu dole */
+    right: 0px; /* Pozice textu vpravo */
+    font-size: 1.5rem; /* Upravte velikost podle potřeby */
+    color: white; /* Barva textu */
+    max-width: 60%; /* Šířka textového bloku */
+}
 .projectEl {
 
     width: 100%;
@@ -171,12 +199,14 @@
     font-size: 3vw;
 
     border-bottom: 1px solid white;
+    overflow: hidden;
 
     display: flex;
 
     justify-content: flex-end;
 
 }
+
 
 .projectEl h2 {
 
@@ -189,23 +219,89 @@
     cursor: default;
 
 }
+
 /* Responsive media queries for smaller screens */
 @media (max-width: 768px) {
+    .projects {
+
+    position: relative;
+
+    color: white;
+
+    margin-top: 25vh;
+        font-size: 10vw;     /* Dynamická velikost písma pro menší obrazovky */
+
+    padding: 10%;
+
+}
     .projectDescription {
-        flex-direction: column; /* Stack the columns vertically on smaller screens */
-        padding: 10px; /* Less padding for smaller screens */
+        display: flex;
+        flex-direction: column;
+        font-size: 10vw;     /* Dynamická velikost písma pro menší obrazovky */
+        position: relative; /* Ujistěte se, že obrázek nebude "přesahovat" text */
+        height: 100vh;
     }
 
-    /* Adjust columns to take full width on small screens */
+    /* Zajistíme, že text bude na mobilních zařízeních správně zobrazen */
     .column {
         width: 100%;
-        font-size: 4vw; /* Increase font size on smaller devices */
-        text-align: justify; /* Improve text alignment */
+        font-size: 2rem; /* Velikost písma pro větší obrazovky */
+        text-align: justify;
+        margin-top: 20px;   /* Přidáme margin mezi textové sekce */
     }
 
-    /* Optionally adjust image container to fill space on small screens */
+    /* Upravit obrazovku pro menší zařízení */
     .imageContainer {
-        width: 100%; /* Make the image container full width on small screens */
-        height: 85%;
+        width: 100%;
+        height: 50vh; /* Nastavit výšku pro mobilní zařízení */
+        background-attachment: scroll; /* Deaktivujeme parallax pro mobil */
     }
+
+    /* Zajištění správného zobrazení při scrollování */
+    .description {
+        position: relative;
+        color: white;
+        font-size: 3vw;
+        text-transform: uppercase;
+        margin-top: 20vw;  /* Vhodné marginy pro mobil */
+        margin-left: 10vw;
+    }
+
+    .description p {
+        margin: 0;
+        font-size: 2rem; /* Velikost písma pro větší obrazovky */
+        position: relative;
+    }
+    .projectEl {
+
+    width: 100%;
+
+    color: white;
+
+    text-transform: uppercase;
+
+    font-size: 5vw;
+    font-weight: 800;
+    border-bottom: 1px solid white;
+    overflow: hidden;
+
+    display: flex;
+
+    justify-content: flex-end;
+
+}
+
+
+.projectEl h2 {
+
+    margin: 0px;
+
+    margin-top: 40px;
+
+    margin-bottom: 40px;
+
+    cursor: default;
+
+}
+
 }

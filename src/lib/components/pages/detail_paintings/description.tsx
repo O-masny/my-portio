@@ -22,24 +22,22 @@ const Description: React.FC = () => {
 
         // Add a media query. This will run the associated function when the media query matches.
         mm.add("(min-width: 800px)", () => {
-            // This setup code runs when the viewport is at least 800px wide
             if (containerRef.current) {
                 const elements = containerRef.current.querySelectorAll('p');
 
-                gsap.from(elements, {
-                    scrollTrigger: {
-                        trigger: containerRef.current,
-                        start: "top 60%", // When it reaches the center of the viewport
-                        end: "top 40% ",   // When it goes out of view from the top
-                        scrub: 1,            // Smooth linking with the scroll
-                        toggleActions: "play reverse play reverse", // Play animation when scrolling down and reverse when scrolling up
-                        markers: false, // Set to true to show debugging markers
+                gsap.fromTo(
+                    containerRef.current.children, // Získáme všechny děti, které jsou p
+                    {
+                        opacity: 0, // Začíná s opacity 0
+                        x: 50, // Začíná 100px vpravo
                     },
-                    autoAlpha: 0,   // Starting opacity
-                    x: -200,        // Moving from left to right
-                    stagger: 0.2,   // Staggered animation for each <p>
-                    ease: "power3.out", // Smooth easing
-                });
+                    {
+                        opacity: 1,
+                        x: 0, // Konec na pozici 0 (tedy původní)
+                        duration: 1, // Délka animace v sekundách
+                        stagger: 0.3, // Zpoždění mezi jednotlivými animacemi (stagger pro každý prvek)
+                    }
+                );
             }
         });
 
@@ -49,26 +47,25 @@ const Description: React.FC = () => {
             if (containerRef.current) {
                 const elements = containerRef.current.querySelectorAll('p');
 
-                gsap.from(elements, {
-                    scrollTrigger: {
-                        trigger: containerRef.current,
-                        start: "top 90%",  // Adjust start position for smaller screens
-                        end: "bottom top",
-                        scrub: 1,
-                        toggleActions: "play reverse play reverse",
-                        markers: false,
+
+                gsap.fromTo(
+                    containerRef.current.children, // Získáme všechny děti, které jsou p
+                    {
+                        opacity: 0, // Začíná s opacity 0
+                        x: 100, // Začíná 100px vpravo
                     },
-                    autoAlpha: 0,
-                    y: 50,            // Animate vertically for mobile
-                    stagger: 0.1,
-                    ease: "power3.out",
-                });
+                    {
+                        opacity: 1, // Konec s opacity 1
+                        x: 0, // Konec na pozici 0 (tedy původní)
+                        duration: 1, // Délka animace v sekundách
+                        stagger: 0.3, // Zpoždění mezi jednotlivými animacemi (stagger pro každý prvek)
+                    }
+                );
             }
         });
 
         // Cleanup function (optional)
         return () => {
-            // If we want to clean up after the media query stops matching
             mm.revert();
         };
     }, []);
