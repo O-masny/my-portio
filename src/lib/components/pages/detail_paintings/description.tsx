@@ -29,8 +29,8 @@ const Description: React.FC = () => {
                 gsap.from(elements, {
                     scrollTrigger: {
                         trigger: containerRef.current,
-                        start: "top center", // When it reaches the center of the viewport
-                        end: "bottom top",   // When it goes out of view from the top
+                        start: "top 60%", // When it reaches the center of the viewport
+                        end: "top 40% ",   // When it goes out of view from the top
                         scrub: 1,            // Smooth linking with the scroll
                         toggleActions: "play reverse play reverse", // Play animation when scrolling down and reverse when scrolling up
                         markers: false, // Set to true to show debugging markers

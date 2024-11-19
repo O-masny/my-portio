@@ -35,27 +35,22 @@
 }
 
 
-
 .introImage {
-
-    filter: brightness(70%);
-
-    width: 350px;
-
-    height: 475px;
-
-    position: absolute;
-
+    position: relative; /* Ensure the image container positions elements properly */
+    width: 100%; /* Make the container take full width */
+    height: 100%; /* Make the container take full height */
+    display: flex; /* Flexbox to center the image */
+    justify-content: center; /* Horizontally center the image */
+    align-items: center; /* Vertically center the image */
+    overflow: hidden; /* Hide any overflow */
 }
 
-
-
+/* Styling for the image itself */
 .introImage img {
-
-    object-fit: cover;
-
-    object-position: top;
-
+    object-fit: cover; /* Make the image cover the area without distorting it */
+    object-position: center; /* Center the image within its container */
+    width: 100%; /* Ensure the image takes the full width */
+    height: 100%; /* Ensure the image takes the full height */
 }
 
 .description {
@@ -104,7 +99,6 @@
 
     justify-content: space-between;
 
-    gap: 5%;
 
 }
 
@@ -116,7 +110,7 @@
 
     height: 100%;
 
-    width: 40%;
+    width: 50%;
 
 }
 
@@ -131,7 +125,6 @@
 
 
 .column {
-
     display: flex;
 
     height: 100%;
@@ -141,7 +134,6 @@
     font-size: 1.6vw;
 
 }
-
 
 
 .column:last-of-type {
@@ -192,8 +184,28 @@
 
     margin-top: 40px;
 
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 
     cursor: default;
 
+}
+/* Responsive media queries for smaller screens */
+@media (max-width: 768px) {
+    .projectDescription {
+        flex-direction: column; /* Stack the columns vertically on smaller screens */
+        padding: 10px; /* Less padding for smaller screens */
+    }
+
+    /* Adjust columns to take full width on small screens */
+    .column {
+        width: 100%;
+        font-size: 4vw; /* Increase font size on smaller devices */
+        text-align: justify; /* Improve text alignment */
+    }
+
+    /* Optionally adjust image container to fill space on small screens */
+    .imageContainer {
+        width: 100%; /* Make the image container full width on small screens */
+        height: 85%;
+    }
 }

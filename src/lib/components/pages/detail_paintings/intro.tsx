@@ -21,7 +21,7 @@ export default function Intro({ params }: { params: Painting }) {
 
         const timeline = gsap.timeline({
             scrollTrigger: {
-                trigger: document.documentElement, // Attach to the whole document
+                trigger: background.current, // Attach to the whole document
                 scrub: true,
                 start: "top", // Start animation when scrolling begins
                 end: "+=500px", // End animation after 500px of scrolling
@@ -31,7 +31,7 @@ export default function Intro({ params }: { params: Painting }) {
         timeline
             // Expand and move the background image
             .to(background.current, {
-                scale: 1.2, // Slightly zoom in
+                scale: 0.8, // Slightly zoom in
                 y: -100, // Move upwards
                 ease: "power2.out",
             })
@@ -47,7 +47,7 @@ export default function Intro({ params }: { params: Painting }) {
             {/* Background Image */}
             <div className={styles.backgroundImage} ref={background}>
                 <Image
-                    src={'/images/white_moon.jpeg'}
+                    src={params.imageUrl}
                     fill={true}
                     alt="background image"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -56,14 +56,7 @@ export default function Intro({ params }: { params: Painting }) {
             </div>
             {/* Intro Section */}
             <div className={styles.intro}>
-                <div ref={introImage} data-scroll data-scroll-speed="0.3" className={styles.introImage}>
-                    <Image
-                        src={params.imageUrl}
-                        alt="intro image"
-                        fill={true}
-                        priority={true}
-                    />
-                </div>
+
                 <h1 data-scroll data-scroll-speed="0.7">
                     {params.title}
                 </h1>

@@ -35,7 +35,7 @@ export default function DetailPage({ params }: { params: Painting }) {
         <div ref={scrollContainerRef}> {/* Wrapper pro LocomotiveScroll */}
             <Intro params={painting} />
             <Description />
-            <Pictures />
+            <Pictures params={painting}/>
             <Footer />
         </div>
     );
