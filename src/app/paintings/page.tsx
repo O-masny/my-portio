@@ -27,7 +27,7 @@ const PaintingsPage = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6  py-8">
         {paintingsData.map((painting) => (
           <div key={painting.id}>
-            <Link href={"/paintings/" + painting.id}>
+            <Link href={"/paintings/" + painting.id} shallow={true} scroll={false}>
               <PaintingCard painting={painting} />
             </Link>
           </div>

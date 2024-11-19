@@ -16,11 +16,16 @@ const ContactPage = dynamic(() => import("../../../app/contact/page"), {
   ssr: false,
 });
 
+const FireballAnimation = dynamic(() => import("../../components/nav/animated_cursor"), {
+  ssr: false,
+});
 const sections = [
   { name: "home", id: "home", Component: LandingScreen },
   { name: "experience", id: "experience", Component: ResponsiveWordcloud },
   { name: "hobbies", id: "hobbies", Component: EducationAndHobbies },
+  { name: "fireball", id: "fireball", Component: FireballAnimation },
   { name: "contact", id: "contact", Component: ContactPage },
+
 ];
 
 const ClientSideHomepage = () => {
@@ -34,7 +39,6 @@ const ClientSideHomepage = () => {
       async () => {
 
         const LocomotiveScroll = (await import('locomotive-scroll')).default
-
         const locomotiveScroll = new LocomotiveScroll();
 
       }

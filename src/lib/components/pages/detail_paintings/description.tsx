@@ -1,4 +1,3 @@
-'use client';
 import React, { useLayoutEffect, useRef } from 'react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import gsap from 'gsap';
@@ -18,28 +17,60 @@ const Description: React.FC = () => {
     useLayoutEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
 
-        if (containerRef.current) {
-            const elements = containerRef.current.querySelectorAll('p');
+        // Using gsap.matchMedia() to handle responsiveness
+        let mm = gsap.matchMedia();
 
-            gsap.from(elements, {
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: "top 60%",
-                    end: "bottom top",
-                    scrub: true,
-                    toggleActions: "play reverse play reverse",
-                    markers: false, // Zapněte pro ladění
-                    onRefresh: () => ScrollTrigger.refresh
-                },
-                autoAlpha: 0,
-                x: -200, // Posun doleva
-                stagger: 0.2, // Každý element se objeví s odstupem
-                ease: "power3.out",
-            });
+        // Add a media query. This will run the associated function when the media query matches.
+        mm.add("(min-width: 800px)", () => {
+            // This setup code runs when the viewport is at least 800px wide
+            if (containerRef.current) {
+                const elements = containerRef.current.querySelectorAll('p');
 
-            // Refreš ScrollTrigger po načtení stránky
-            ScrollTrigger.refresh();
-        }
+                gsap.from(elements, {
+                    scrollTrigger: {
+                        trigger: containerRef.current,
+                        start: "top center", // When it reaches the center of the viewport
+                        end: "bottom top",   // When it goes out of view from the top
+                        scrub: 1,            // Smooth linking with the scroll
+                        toggleActions: "play reverse play reverse", // Play animation when scrolling down and reverse when scrolling up
+                        markers: false, // Set to true to show debugging markers
+                    },
+                    autoAlpha: 0,   // Starting opacity
+                    x: -200,        // Moving from left to right
+                    stagger: 0.2,   // Staggered animation for each <p>
+                    ease: "power3.out", // Smooth easing
+                });
+            }
+        });
+
+        // Optionally, add another query for a smaller screen size
+        mm.add("(max-width: 799px)", () => {
+            // This setup code runs when the viewport is less than 800px wide (for smaller screens)
+            if (containerRef.current) {
+                const elements = containerRef.current.querySelectorAll('p');
+
+                gsap.from(elements, {
+                    scrollTrigger: {
+                        trigger: containerRef.current,
+                        start: "top 90%",  // Adjust start position for smaller screens
+                        end: "bottom top",
+                        scrub: 1,
+                        toggleActions: "play reverse play reverse",
+                        markers: false,
+                    },
+                    autoAlpha: 0,
+                    y: 50,            // Animate vertically for mobile
+                    stagger: 0.1,
+                    ease: "power3.out",
+                });
+            }
+        });
+
+        // Cleanup function (optional)
+        return () => {
+            // If we want to clean up after the media query stops matching
+            mm.revert();
+        };
     }, []);
 
     return (

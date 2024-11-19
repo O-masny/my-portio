@@ -5,10 +5,6 @@ import PortfolioCardGrid from "@/app/projects/page";
 import Link from "next/link";
 import Achievements from "../achievements";
 import Slider from "../slider";
-import VerticalList from "../horizontal_list";
-import CreativeCarousel from "../horizontal_list";
-import HorizontalSlider from "../horizontal_list";
-import ScrollFallingObject from "../nav/animated_cursor";
 
 export default function EducationAndHobbies() {
   const [contrastMode, setContrastMode] = useState(false);
@@ -110,7 +106,7 @@ export default function EducationAndHobbies() {
               <h1 className="text-3xl group-hover:text-black duration-500 font-bold mb-6 ">
                 There are few more, check them out!
               </h1>{" "}
-              <Link href="/paintings" shallow={true}>
+              <Link href="/paintings" shallow={true} scroll={false}>
                 <p className="relative hover:shadow-white group-hover:scale-150 duration-300  ">
                   <span className="relative z-10">Go to Paintings</span>{" "}
                 </p>
@@ -119,7 +115,6 @@ export default function EducationAndHobbies() {
           </motion.div>
         )}
       </div>
-      <ScrollFallingObject />
     </div>
   );
 }
