@@ -33,7 +33,7 @@ export default function EducationAndHobbies() {
   return (
     <div
       id="education"
-      className={`flex flex-col items-start justify-center min-h-screen ${textColor}`}
+      className={`flex flex-col items-start justify-center min-h-screen bg-black ${textColor}`}
     >
       {" "}
       <div className="h-64"></div>

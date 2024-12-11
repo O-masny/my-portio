@@ -13,7 +13,7 @@ export default function LandingScreen() {
   }, []);
 
   return (
-    <div className="flex flex-col md:flex-row min-h-screen relative overflow-hidden">
+    <div className="flex flex-col md:flex-row min-h-screen relative overflow-hidden bg-black">
       <div className="relative w-full h-screen md:h-auto md:w-1/2 flex items-center justify-center mr-2">
         <Image
           src="/images/white_moon.jpeg"
