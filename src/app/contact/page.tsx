@@ -30,7 +30,7 @@ const ContactPage = () => {
   }
 
 
-  return <div className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
+  return <div className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-black">
     <div className="absolute inset-0 -z-10 overflow-hidden">
     </div>
 
